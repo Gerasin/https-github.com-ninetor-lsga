@@ -1,0 +1,8 @@
+# lsga project
+assets/
+protected/runtime/
+protected/vendors/
+protected/config/db.php
+framework/gii/
+upload/
+.idea/

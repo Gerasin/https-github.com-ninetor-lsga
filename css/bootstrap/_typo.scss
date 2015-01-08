@@ -1,0 +1,67 @@
+/*	-------------------------------------------------
+	Базовые стили сайта | Base site styles
+	------------------------------------------------- */
+html {
+    height: 100%;
+    min-width: 1000px; /* Минимальная ширина страницы, обязательно задаем согласно дизайну */
+}
+
+body {
+    font: normal normal 14px/15px 'Roboto', Arial, sans-serif; /* Arial on Windows - http://mky.be/fontstack */
+    color: #fff;
+    -webkit-text-size-adjust: 100%;
+//    -webkit-font-smoothing: antialiased;
+    min-height: 100%;
+}
+
+a {
+    color: #03f;
+    text-decoration: underline;
+
+    &:hover {
+        text-decoration: none;
+    }
+
+    &.ajax-link {
+        text-decoration: none;
+        border-bottom: 1px dashed;
+    }
+}
+
+p {
+    margin-bottom: 15px;
+}
+
+h1 {}
+h2 {}
+h3 {}
+h4 {}
+h5 {}
+h6 {}
+
+
+// Reset fonts for relevant elements
+input,
+button,
+select,
+textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+
+input[type=text],
+input[type=password] {
+
+}
+
+textarea {
+
+}
+
+input[type=submit],
+input[type=button] {
+
+}
+

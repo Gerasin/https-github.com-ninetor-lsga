@@ -1,0 +1,16 @@
+php_value display_errors 1
+php_value error_reporting 0 
+AuthType Basic   
+AuthName "Private zone. Only for administrator!" 
+AuthUserFile  /var/www/nsuser/data/www/lsga.nineseven.ru/.htpasswd   
+require valid-user
+
+AddDefaultCharset UTF-8
+# Turn on URL rewriting
+RewriteEngine On
+
+# Installation directory
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+)$ /index.php?$1 [PT,L,QSA]
