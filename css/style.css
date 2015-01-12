@@ -2583,7 +2583,7 @@ input[type="radio"]:checked + label::before {
       .category-block.active .category-block_body .category-block_description {
         color: #fff; }
   .category-block + .category-block {
-    margin-left: 20px; }
+    margin-left: 19px; }
 
 .fixed-block {
   position: fixed; }
