@@ -31,7 +31,7 @@
                                     <th>Статус</th>
                                     <th>Дата создания</th> 
                                     <th></th>
-                                     <th></th>
+                                    <th></th>
                                 </tr>    
                                 <tr>
                                     <th></th>
@@ -40,13 +40,13 @@
                                         <select class="form-control" name="id_classroom" id="id_classroom" onchange="document.location.href = '/administration/lesson?id_classroom=' + this.value;">
                                             <option <?php if (empty($_GET['id_classroom']) || $_GET['id_classroom'] <= 0): ?>selected<?php endif; ?>value="0">Всё</option>
                                             <?php foreach ($classroom as $item): ?>
-                                                <option value="<?= $item->id ?>" <?php if ($_GET['id_classroom'] == $item->id): ?>selected<?php endif; ?>><?php echo $item->name ?></option>                          
+                                                <option value="<?= $item->id ?>" <?php if (!empty($_GET['id_classroom']) && $_GET['id_classroom'] == $item->id): ?>selected<?php endif; ?>><?php echo $item->name ?></option>                          
                                             <?php endforeach; ?>
                                         </select>
                                     </th>                                   
                                     <th></th> 
                                     <th></th>
-                                     <th></th> 
+                                    <th></th> 
                                     <th></th>
                                 </tr>     
                             </thead>

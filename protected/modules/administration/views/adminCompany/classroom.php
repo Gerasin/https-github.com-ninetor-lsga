@@ -38,13 +38,14 @@
                                     <th></th>
                                     <th></th>
                                     <th></th>
-                                    <th>
-                                        <select class="form-control" name="id_education" id="id_education" onchange="document.location.href = '/administration/classroom?id_education=' + this.value;">
-                                            <option <?php if (empty($_GET['id_education']) || $_GET['id_education'] <= 0): ?>selected<?php endif; ?>value="0">Всё</option>
-                                            <?php foreach ($education as $item): ?>
-                                                <option value="<?= $item->id ?>" <?php if ($_GET['id_education'] == $item->id): ?>selected<?php endif; ?>><?php echo $item->name ?></option>                          
-                                            <?php endforeach; ?>
-                                        </select>
+                                    <th> <?php if (count($education) > 0): ?>
+                                            <select class="form-control" name="id_education" id="id_education" onchange="document.location.href = '/administration/classroom?id_education=' + this.value;">
+                                                <option <?php if (empty($_GET['id_education']) || $_GET['id_education'] <= 0): ?>selected<?php endif; ?>value="0">Всё</option>
+                                                <?php foreach ($education as $item): ?>
+                                                    <option value="<?= $item->id ?>" <?php if (!empty($_GET['id_education'])&&$_GET['id_education'] == $item->id): ?>selected<?php endif; ?>><?php echo $item->name ?></option>                          
+                                                <?php endforeach; ?>
+                                            </select>
+                                        <?php endif; ?>
                                     </th>
                                     <th></th>                                
                                     <th></th>
