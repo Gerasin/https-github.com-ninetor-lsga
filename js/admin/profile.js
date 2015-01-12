@@ -1012,3 +1012,58 @@ function formpostsaddsubmit(block_id) {
 
     xhr.send(formData);
 }
+
+
+function formshopcategoryeditsubmit(category_id) {
+    $('#blockLoader').show();
+    $('.input-simple').removeClass('input-error');
+    $('.error-edit-user').attr('style', 'display:none');
+    var new_name = $('#form_shop_category_edit #name').val();
+    $.ajax({
+        data: { name: new_name },
+        dataType: 'json',
+        type: 'POST',
+        url: '/administration/shopCategory/editName/' + category_id,
+        success: function (data) {
+            if (data.success == 1) {
+                $('.success-edit-user').attr('style', 'display:block');
+                setTimeout(function () {
+                    document.location.href = "/administration/shopCategory/edit/" + category_id;
+                }, 1000);
+            }
+            else {
+                var errors = [];
+                    errors = data.error;
+                        $('#form_shop_category_edit #name').addClass('input-error');
+                        $('.error-edit-user').attr('style', 'display:block');
+            }
+        }
+    });
+}
+
+function formshopcategoryadd(parent_id) {
+    $('#blockLoader').show();
+    $('.input-simple').removeClass('input-error');
+    $('.error-edit-user').attr('style', 'display:none');
+    var new_name = $('#form_shop_category_add #name').val();
+    $.ajax({
+        data: { name: new_name, parent_id: parent_id },
+        dataType: 'json',
+        type: 'POST',
+        url: '/administration/shopCategory/addNew',
+        success: function (data) {
+            if (data.success == 1) {
+                $('.success-edit-user').attr('style', 'display:block');
+                setTimeout(function () {
+                   history.back();
+                }, 1000);
+            }
+            else {
+                var errors = [];
+                    errors = data.error;
+                        $('#form_shop_category_add #name').addClass('input-error');
+                        $('.error-edit-user').attr('style', 'display:block');
+            }
+        }
+    });
+}

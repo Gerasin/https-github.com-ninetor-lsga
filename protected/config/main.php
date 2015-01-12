@@ -93,7 +93,17 @@ return array(
                 'administration/mainBlocks/posts/edit/<id:\d+>' => 'administration/adminCompany/editPostsMainBlocks', //
                 'administration/mainBlocks/posts/update/<id:\d+>' => 'administration/adminCompany/updatePostsMainBlocks', //
                 'administration/mainBlocks/posts/delete/<id:\d+>' => 'administration/adminCompany/deletePostsMainBlocks', //
+
+
                 'administration/shopCategory' => 'administration/adminCompany/shopCategory', //
+                'administration/shopCategory/add' => 'administration/adminCompany/shopCategoryAdd', //
+                'administration/shopCategory/addNew' => 'administration/adminCompany/shopCategoryAddNew', //
+                'administration/shopCategory/add/<id:\d+>' => 'administration/adminCompany/shopCategoryAdd', //
+                'administration/shopCategory/edit/<id:\d+>' => 'administration/adminCompany/shopCategoryEdit', //
+                'administration/shopCategory/editName/<id:\d+>' => 'administration/adminCompany/shopCategoryEditName', //
+                'administration/shopCategory/delete/<id:\d+>' => 'administration/adminCompany/shopCategoryDelete', //
+
+
 
                 'administration/home/edit' => 'administration/dashboard/editHome', //
                 'administration/homeproblem/add' => 'administration/dashboard/addProblem',
