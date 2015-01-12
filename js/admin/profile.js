@@ -1023,7 +1023,7 @@ function formshopcategoryeditsubmit(category_id) {
         data: { name: new_name },
         dataType: 'json',
         type: 'POST',
-        url: '/administration/shopCategory/editName/' + category_id,
+        url: '/administration/adminShop/shopCategoryEditName?id=' + category_id,
         success: function (data) {
             if (data.success == 1) {
                 $('.success-edit-user').attr('style', 'display:block');
@@ -1050,7 +1050,7 @@ function formshopcategoryadd(parent_id) {
         data: { name: new_name, parent_id: parent_id },
         dataType: 'json',
         type: 'POST',
-        url: '/administration/shopCategory/addNew',
+        url: '/administration/adminShop/shopCategoryAddNew',
         success: function (data) {
             if (data.success == 1) {
                 $('.success-edit-user').attr('style', 'display:block');

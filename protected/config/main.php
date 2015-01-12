@@ -93,18 +93,6 @@ return array(
                 'administration/mainBlocks/posts/edit/<id:\d+>' => 'administration/adminCompany/editPostsMainBlocks', //
                 'administration/mainBlocks/posts/update/<id:\d+>' => 'administration/adminCompany/updatePostsMainBlocks', //
                 'administration/mainBlocks/posts/delete/<id:\d+>' => 'administration/adminCompany/deletePostsMainBlocks', //
-
-
-                'administration/shopCategory' => 'administration/adminCompany/shopCategory', //
-                'administration/shopCategory/add' => 'administration/adminCompany/shopCategoryAdd', //
-                'administration/shopCategory/addNew' => 'administration/adminCompany/shopCategoryAddNew', //
-                'administration/shopCategory/add/<id:\d+>' => 'administration/adminCompany/shopCategoryAdd', //
-                'administration/shopCategory/edit/<id:\d+>' => 'administration/adminCompany/shopCategoryEdit', //
-                'administration/shopCategory/editName/<id:\d+>' => 'administration/adminCompany/shopCategoryEditName', //
-                'administration/shopCategory/delete/<id:\d+>' => 'administration/adminCompany/shopCategoryDelete', //
-
-
-
                 'administration/home/edit' => 'administration/dashboard/editHome', //
                 'administration/homeproblem/add' => 'administration/dashboard/addProblem',
                 'administration/homeproblem/formadd' => 'administration/dashboard/problemFormAdd',
@@ -172,7 +160,16 @@ return array(
                 'administration/pagesText/update/<id:\d+>' => 'administration/adminCompany/updatePagesText', //
                 'administration/pagesText/delete/<id:\d+>' => 'administration/adminCompany/deletePagesText', // 
                 'administration/settings' => 'administration/adminCompany/editSettings', // 
-                
+
+                'administration/shopCategory' => 'administration/adminShop/shopCategory', //
+                'administration/shopCategory/add' => 'administration/adminShop/shopCategoryAdd', //
+                'administration/shopCategory/add/<id:\d+>' => 'administration/adminShop/shopCategoryAdd', //
+                'administration/shopCategory/edit/<id:\d+>' => 'administration/adminShop/shopCategoryEdit', //
+                'administration/shopCategory/delete/<id:\d+>' => 'administration/adminShop/shopCategoryDelete', //
+
+
+
+
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',

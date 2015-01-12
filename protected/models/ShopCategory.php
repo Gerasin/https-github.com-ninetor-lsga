@@ -103,6 +103,28 @@ class ShopCategory extends CActiveRecord
             }
         return $new_categories;
     }
+    public function getCategoriesForDelete($id)
+    {
+       $categories = $this->model()->findAllByAttributes(array('parent_id'=>$id));
+       $new_categories = null;
+        if (count($categories)>0)
+            {
+                foreach ($categories as $category) {
+                    $new_categories[] = $category->id;
+                }
+                foreach ($new_categories as $category) {
+                 $this->getCategoriesForDelete($category);
+                }
+            }
+        else
+        {
+            return;
+        }
+        foreach ($new_categories as $category) {
+        $category = $this->model()->findByPk($category);
+        $category->delete();
+        }
+    }
 
 	/**
 	 * Returns the static model of the specified AR class.
