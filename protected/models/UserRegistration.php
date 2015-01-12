@@ -10,12 +10,8 @@ class UserRegistration extends CFormModel {
     public $email;
     public $name;
     public $phone;
-    //public $title;
-    //public $country;
-    //public $city;
     public $password;
     public $password_repeat;
-    //public $volume;
     public $verifyCode;
 
     public function rules() {
@@ -26,9 +22,6 @@ class UserRegistration extends CFormModel {
             array('name', 'required', 'message' => 'Вы не указали никнейм'),
             array('name', 'nameUnique'),
             array('phone', 'required', 'message' => 'Вы не указали телефон'),
-            //array('title', 'required', 'message' => 'Вы не указали имя и фамилию/название фирмы'),
-            //array('country', 'required', 'message' => 'Вы не указали дстрану'),
-            //array('city', 'required', 'message' => 'Вы не указали город'),
             array('password', 'required', 'message' => 'Вы не ввели пароль'),
             array('password_repeat', 'required', 'message' => 'Вы не ввели повторный пароль'),
             array('password, password_repeat', 'length', 'min' => 6, 'tooShort' => 'Длина поля должна быть больше 6 символов'),
