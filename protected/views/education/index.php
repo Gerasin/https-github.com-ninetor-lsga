@@ -29,7 +29,7 @@ $this->pageTitle = "Школа";
     $count_education = 1;
     foreach ($education as $value):
         ?>
-        <div class="category-block <?php if ($value->active == 1): ?>active<?php endif; ?>">
+        <div class="category-block <?php if ($value->active == 1): ?>active<?php endif; ?>" <?php if ($value->active == 1): ?>onclick="document.location.href = '/education/category/<?= $value->id ?>'"<?php endif; ?>>
             <div class="category-block_body">
                 <img src="/upload/images/education/<?= $value->img ?>" alt="<?= $value->name ?>" />
                 <p class="category-block_title"><?= $value->name ?></p>

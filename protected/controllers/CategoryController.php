@@ -1,10 +1,12 @@
 <?php
 
-class CategoryController extends Controller {
+class CategoryController extends Controller
+{
 
     public $layout = '//layouts/inner';
 
-    public function actionIndex() {
+    public function actionIndex()
+    {
         $this->layout = '//layouts/inner_block';
         $id = Yii::app()->request->getParam('id');
         $category = Category::model()->findByPk($id);
@@ -21,7 +23,8 @@ class CategoryController extends Controller {
     /**
      * получем все свойства категории с вложеностями
      */
-    private function allPropertyCategory($id_category = '') {
+    private function allPropertyCategory($id_category = '')
+    {
         $properties = FALSE;
         $propertiesNo = CategoryProperties::model()->findAllByAttributes(array('id_category' => $id_category, 'id_properties' => 0), array("order" => "position ASC"));
         foreach ($propertiesNo as $value) {
@@ -61,7 +64,8 @@ class CategoryController extends Controller {
 //        }
 //    }
 
-    private function filterPages($res = '') {
+    private function filterPages($res = '')
+    {
         if (!is_null($res)) {
             $str = '';
             $i = 0;
@@ -91,7 +95,8 @@ class CategoryController extends Controller {
     /**
      * выводим нужную страницу
      */
-    public function actionPage() {
+    public function actionPage()
+    {
         $id_user = (int) Yii::app()->user->id;
         $user = User::model()->findByPk($id_user);
         $id = Yii::app()->request->getParam('id');
@@ -104,7 +109,8 @@ class CategoryController extends Controller {
     /**
      * получем все комментории к странице 
      */
-    private function allCommentsPage($id_page = '') {
+    private function allCommentsPage($id_page = '')
+    {
         $comments = FALSE;
         $commNo = Comments::model()->findAllByAttributes(array('id_parent' => null, 'id_page' => $id_page), array("order" => "date ASC"));
         foreach ($commNo as $value) {
@@ -117,16 +123,21 @@ class CategoryController extends Controller {
             }
             $comments[$value->id]['children'] = $this->allCommentsPageChildren($id_page, $value->id);
             $user = User::model()->findByPk($value->id_user);
-            $comments[$value->id]['user_name'] = $user->name;
-            $comments[$value->id]['user_img'] = $user->img;
-            $comments[$value->id]['user_like'] = $this->userReytinrComments($value->id_user);
-            $comments[$value->id]['user_click'] = $this->userLikeOneComments(Yii::app()->user->id, $value->id);
+            if (!is_null($user)) {
+                $comments[$value->id]['user_name'] = $user->name;
+                $comments[$value->id]['user_img'] = $user->img;
+                $comments[$value->id]['user_like'] = $this->userReytinrComments($value->id_user);
+                $comments[$value->id]['user_click'] = $this->userLikeOneComments(Yii::app()->user->id, $value->id);
+            } else {
+                $comments[$value->id] = NULL;
+            }
         }
         return $comments;
     }
 
     // дочерние комментарии
-    private function allCommentsPageChildren($id_page = '', $id_parent = '') {
+    private function allCommentsPageChildren($id_page = '', $id_parent = '')
+    {
         $comments = FALSE;
         $commNo = Comments::model()->findAllByAttributes(array('id_page' => $id_page, 'id_parent' => $id_parent), array("order" => "date ASC"));
         foreach ($commNo as $value) {
@@ -138,16 +149,21 @@ class CategoryController extends Controller {
                 $comments[$value->id]['like'] = '+' . $comments[$value->id]['like'];
             }
             $user = User::model()->findByPk($value->id_user);
-            $comments[$value->id]['user_name'] = $user->name;
-            $comments[$value->id]['user_img'] = $user->img;
-            $comments[$value->id]['user_like'] = $this->userReytinrComments($value->id_user);
-            $comments[$value->id]['user_click'] = $this->userLikeOneComments(Yii::app()->user->id, $value->id);
+            if (!is_null($user)) {
+                $comments[$value->id]['user_name'] = $user->name;
+                $comments[$value->id]['user_img'] = $user->img;
+                $comments[$value->id]['user_like'] = $this->userReytinrComments($value->id_user);
+                $comments[$value->id]['user_click'] = $this->userLikeOneComments(Yii::app()->user->id, $value->id);
+            } else {
+                $comments[$value->id] = NULL;
+            }
         }
         return $comments;
     }
 
     // рейтинг пользователя по комментариям
-    private function userReytinrComments($id_user) {
+    private function userReytinrComments($id_user)
+    {
         $sumLike = Yii::app()->db->createCommand('SELECT SUM(`like`) AS `sum` FROM `comments` WHERE `id_user`=' . $id_user)->queryAll();
         $sumNotlike = Yii::app()->db->createCommand('SELECT SUM(`notlike`) AS `sum` FROM `comments` WHERE `id_user`=' . $id_user)->queryAll();
         $sumLike = $sumLike[0]['sum'] - $sumNotlike[0]['sum'];
@@ -158,7 +174,8 @@ class CategoryController extends Controller {
     }
 
     // лайк пользователя по комментариям
-    private function userLikeOneComments($id_user = '', $id_comment = '') {
+    private function userLikeOneComments($id_user = '', $id_comment = '')
+    {
         if (Yii::app()->user->isGuest) {
             return 2;
         } else {

@@ -19,6 +19,7 @@ class LoginForm extends CFormModel {
         return array(
             array('username', 'required', 'message' => 'Вы не ввели эл. почту'),
             array('username', 'emailValidate'),
+            array('username', 'email'),
             array('password', 'required', 'message' => 'Вы не ввели пароль'),
             array('password', 'authenticate'),
         );

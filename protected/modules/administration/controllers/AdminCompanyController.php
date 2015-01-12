@@ -8,25 +8,30 @@
 /**
  * Description of AdminCompanyController
  */
-class AdminCompanyController extends AdminController {
+class AdminCompanyController extends AdminController
+{
 
-    public function actionIndex() {
+    public function actionIndex()
+    {
         $presentations = CompanyPresentation::model()->findAll();
         $this->render('index', array('presentations' => $presentations));
     }
 
-    public function actionAddAboutCompany() {
+    public function actionAddAboutCompany()
+    {
         $form = new CompanyPresentation();
         $this->processAboutCompanyForm($form);
     }
 
-    public function actionEditAboutCompany() {
+    public function actionEditAboutCompany()
+    {
         $id = Yii::app()->request->getParam('id');
         $form = CompanyPresentation::model()->findByPk($id);
         $this->processAboutCompanyForm($form);
     }
 
-    private function processAboutCompanyForm($form) {
+    private function processAboutCompanyForm($form)
+    {
         if (!empty($_POST['CompanyPresentation'])) {
 
             $form->attributes = $_POST['CompanyPresentation'];
@@ -52,23 +57,27 @@ class AdminCompanyController extends AdminController {
     /**
      * ОБРАЗОВАНИЕ
      */
-    public function actionEducation() {
+    public function actionEducation()
+    {
         $education = Education::model()->findAll(array("order" => "position ASC"));
         $this->render('education', array('education' => $education));
     }
 
-    public function actionAddEducation() {
+    public function actionAddEducation()
+    {
         $form = new EducationForm();
         $this->processEducationFormAdd($form);
     }
 
-    public function actionEditEducation() {
+    public function actionEditEducation()
+    {
         $id = Yii::app()->request->getParam('id');
         $form = Education::model()->findByPk($id);
         $this->render('education_form', array('education' => $form, 'edit' => 1));
     }
 
-    public function actionUpdateEducation() {
+    public function actionUpdateEducation()
+    {
 
         $form = new EducationForm();
         $form->attributes = Yii::app()->request->getPost('education');
@@ -89,7 +98,8 @@ class AdminCompanyController extends AdminController {
         }
     }
 
-    public function actionDeleteEducation() {
+    public function actionDeleteEducation()
+    {
         $id = Yii::app()->request->getParam('id');
         $Education = Education::model()->findByPk($id);
         $Education->delete();
@@ -97,7 +107,8 @@ class AdminCompanyController extends AdminController {
         $this->redirect($this->createUrl('/administration/education'));
     }
 
-    private function processEducationFormAdd($form) {
+    private function processEducationFormAdd($form)
+    {
         if (!empty($_POST['education'])) {
             $form->attributes = Yii::app()->request->getPost('education');
             $imageError = $this->addImageFormError('fileToUpload', 300, 460, 'education');
@@ -130,7 +141,8 @@ class AdminCompanyController extends AdminController {
         }
     }
 
-    private function processEducationFormUpdate($form, $id, $image, $active) {
+    private function processEducationFormUpdate($form, $id, $image, $active)
+    {
         $education = Education::model()->findByPk($id);
         $education->name = $form->name;
         $education->description = $form->description;
@@ -149,14 +161,15 @@ class AdminCompanyController extends AdminController {
      * @param type $toDirectory
      * @return string
      */
-    private function addImageForm($fileName, $toWidth, $toHeight, $toDirectory, $nameImage) {
+    private function addImageForm($fileName, $toWidth, $toHeight, $toDirectory, $nameImage)
+    {
         if (!empty($_FILES[$fileName]['tmp_name'])) {
             //$nameImage = 'education' . time() . '.jpg';
             $ih = new CImageHandler();
             Yii::app()->ih
-                ->load($_FILES[$fileName]['tmp_name'])
-                ->adaptiveThumb($toWidth, $toHeight)
-                ->save($_SERVER['DOCUMENT_ROOT'] . '/upload/images/' . $toDirectory . '/' . $nameImage);
+                    ->load($_FILES[$fileName]['tmp_name'])
+                    ->adaptiveThumb($toWidth, $toHeight)
+                    ->save($_SERVER['DOCUMENT_ROOT'] . '/upload/images/' . $toDirectory . '/' . $nameImage);
             return $nameImage;
         }
     }
@@ -170,7 +183,8 @@ class AdminCompanyController extends AdminController {
      * @param type $toDirectory
      * @return type
      */
-    private function addImageFormError($fileName, $toWidth, $toHeight, $toDirectory) {
+    private function addImageFormError($fileName, $toWidth, $toHeight, $toDirectory)
+    {
         if (!empty($_FILES[$fileName]['tmp_name'])) {
             return Education::model()->imageFormValidate($_FILES[$fileName]);
         }
@@ -179,7 +193,8 @@ class AdminCompanyController extends AdminController {
     /**
      * КЛАССЫ
      */
-    public function actionClassroom() {
+    public function actionClassroom()
+    {
         if (empty($_GET['id_education']) || $_GET['id_education'] <= 0) {
             $classroom = Classroom::model()->findAll(array("order" => "position ASC"));
         } else {
@@ -192,19 +207,22 @@ class AdminCompanyController extends AdminController {
         $this->render('classroom', array('classroom' => $classroom, 'educationName' => $education_mas, 'education' => $education));
     }
 
-    public function actionAddClassroom() {
+    public function actionAddClassroom()
+    {
         $form = new ClassroomForm();
         $this->processClassroomFormAdd($form);
     }
 
-    public function actionEditClassroom() {
+    public function actionEditClassroom()
+    {
         $id = Yii::app()->request->getParam('id');
         $form = Classroom::model()->findByPk($id);
         $education = Education::model()->findAll();
         $this->render('classroom_form', array('classroom' => $form, 'education' => $education, 'edit' => 1));
     }
 
-    public function actionUpdateClassroom() {
+    public function actionUpdateClassroom()
+    {
         $form = new ClassroomForm();
         $form->attributes = Yii::app()->request->getPost('classroom');
         if ($form->validate()) {
@@ -223,7 +241,8 @@ class AdminCompanyController extends AdminController {
         }
     }
 
-    public function actionDeleteClassroom() {
+    public function actionDeleteClassroom()
+    {
         $id = Yii::app()->request->getParam('id');
         $classroom = Classroom::model()->findByPk($id);
         $classroom->delete();
@@ -231,7 +250,8 @@ class AdminCompanyController extends AdminController {
         $this->redirect($this->createUrl('/administration/classroom'));
     }
 
-    private function processClassroomFormAdd($form) {
+    private function processClassroomFormAdd($form)
+    {
         if (!empty($_POST['classroom'])) {
             $form->attributes = Yii::app()->request->getPost('classroom');
             if ($form->validate()) {
@@ -259,7 +279,8 @@ class AdminCompanyController extends AdminController {
         }
     }
 
-    private function processClassroomFormUpdate($form, $id, $active, $id_education) {
+    private function processClassroomFormUpdate($form, $id, $active, $id_education)
+    {
         $classroom = Classroom::model()->findByPk($id);
         $classroom->name = $form->name;
         $classroom->id_education = $id_education;
@@ -270,20 +291,23 @@ class AdminCompanyController extends AdminController {
     /**
      * Вопросы
      */
-    public function actionProblem() {
+    public function actionProblem()
+    {
         $id = Yii::app()->request->getParam('id');
         $problem = Problem::model()->findAllByAttributes(array('id_class' => $id));
         $classroom = Classroom::model()->findByPk($id);
         $this->render('problem', array('problem' => $problem, 'classroom' => $classroom, 'classId' => $id));
     }
 
-    public function actionAddProblem() {
+    public function actionAddProblem()
+    {
         $classId = Yii::app()->request->getParam('id');
         $classroom = Classroom::model()->findAll();
         $this->render('problem_form_add', array('classroom' => $classroom, 'classId' => $classId));
     }
 
-    public function actionProblemFormAdd() {
+    public function actionProblemFormAdd()
+    {
         if (!empty($_POST['problem'])) {
             $form = new ProblemForm(); // problem form
             $form->attributes = Yii::app()->request->getPost('problem');
@@ -314,7 +338,8 @@ class AdminCompanyController extends AdminController {
         }
     }
 
-    private function addAnsTable($ans, $problem, $status) {
+    private function addAnsTable($ans, $problem, $status)
+    {
         foreach ($ans as $value) {
             $new_ans = new Ans();
             $new_ans->id_problem = $problem;
@@ -328,13 +353,25 @@ class AdminCompanyController extends AdminController {
         }
     }
 
-    private function newStatusForProblem($id, $andId) {
+    public function actionDeleteAnsTable()
+    {
+        $problem = Yii::app()->request->getPost('problem');
+        Ans::model()->deleteAll('id=' . $problem);
+
+        header('Content-type: application/json');
+        echo CJSON::encode(array('success' => 1, 'problem_id' => $problem));
+        Yii::app()->end();
+    }
+
+    private function newStatusForProblem($id, $andId)
+    {
         $problem = Problem::model()->findByPk($id);
         $problem->status_ans = $andId;
         $problem->update();
     }
 
-    public function actionEditProblem() {
+    public function actionEditProblem()
+    {
         $id = Yii::app()->request->getParam('id');
         $form = Problem::model()->findByPk($id);
         $classroom = Classroom::model()->findAll();
@@ -342,7 +379,8 @@ class AdminCompanyController extends AdminController {
         $this->render('problem_form', array('problem' => $form, 'classroom' => $classroom, 'ans' => $ans, 'edit' => 1));
     }
 
-    public function actionUpdateProblem() {
+    public function actionUpdateProblem()
+    {
         $form = new ProblemForm();
         $form->attributes = Yii::app()->request->getPost('problem');
         if ($form->validate()) {
@@ -370,10 +408,18 @@ class AdminCompanyController extends AdminController {
         }
     }
 
+    public function actionDeleteProblem()
+    {
+        $problem = Yii::app()->request->getParam('id');
+        Problem::model()->deleteAll('id=' . $problem);
+        header("Location: " . $_SERVER['HTTP_REFERER']);
+    }
+
     /**
      * УРОКИ
      */
-    public function actionLesson() {
+    public function actionLesson()
+    {
         if (empty($_GET['id_classroom']) || $_GET['id_classroom'] <= 0) {
             $lesson = Lesson::model()->findAll(array("order" => "position ASC"));
         } else {
@@ -386,19 +432,22 @@ class AdminCompanyController extends AdminController {
         $this->render('lesson', array('lesson' => $lesson, 'classroom' => $classroom, 'classroomName' => $classroom_mas));
     }
 
-    public function actionAddLesson() {
+    public function actionAddLesson()
+    {
         $form = new LessonForm(); // Lesson form
         $this->processLessonFormAdd($form);
     }
 
-    public function actionEditLesson() {
+    public function actionEditLesson()
+    {
         $id = Yii::app()->request->getParam('id');
         $form = Lesson::model()->findByPk($id);
         $classroom = Classroom::model()->findAll();
         $this->render('lesson_form', array('lesson' => $form, 'classroom' => $classroom, 'edit' => 1));
     }
 
-    public function actionUpdateLesson() {
+    public function actionUpdateLesson()
+    {
         $form = new LessonForm();
         $form->attributes = Yii::app()->request->getPost('lesson');
         if ($form->validate()) {
@@ -417,7 +466,8 @@ class AdminCompanyController extends AdminController {
         }
     }
 
-    public function actionDeleteLesson() {
+    public function actionDeleteLesson()
+    {
         $id = Yii::app()->request->getParam('id');
         $lesson = Lesson::model()->findByPk($id);
         $lesson->delete();
@@ -425,7 +475,8 @@ class AdminCompanyController extends AdminController {
         $this->redirect($this->createUrl('/administration/lesson'));
     }
 
-    private function processLessonFormAdd($form) {
+    private function processLessonFormAdd($form)
+    {
         if (!empty($_POST['lesson'])) {
             $form->attributes = Yii::app()->request->getPost('lesson');
             if ($form->validate()) {
@@ -454,7 +505,8 @@ class AdminCompanyController extends AdminController {
         }
     }
 
-    private function processLessonFormUpdate($form, $id, $active, $id_class) {
+    private function processLessonFormUpdate($form, $id, $active, $id_class)
+    {
         $lesson = Lesson::model()->findByPk($id);
         $lesson->name = $form->name;
         $lesson->description = $form->description;
@@ -463,7 +515,8 @@ class AdminCompanyController extends AdminController {
         $lesson->update();
     }
 
-    public function accessRules() {
+    public function accessRules()
+    {
         return array(
             array(
                 'allow',
@@ -477,7 +530,8 @@ class AdminCompanyController extends AdminController {
     /**
      * Обратная связь
      */
-    public function actionFeedback() {
+    public function actionFeedback()
+    {
         $feedback = Feedback::model()->findAll();
         foreach ($feedback as $item) {
             $array[$item->id]['id'] = $item->id;
@@ -489,12 +543,18 @@ class AdminCompanyController extends AdminController {
         $this->render('feedback', array('feedback' => $array));
     }
 
-    private function userFeeback($id_user = '') {
+    private function userFeeback($id_user = '')
+    {
         $user = User::model()->findByPk($id_user);
-        return $user->name;
+        if (!empty($user)) {
+            return $user->name;
+        } else {
+            return NULL;
+        }
     }
 
-    public function actionDeleteFeeback() {
+    public function actionDeleteFeeback()
+    {
         $id = Yii::app()->request->getParam('id');
         $feedback = Feedback::model()->findByPk($id);
         $feedback->delete();
@@ -504,24 +564,28 @@ class AdminCompanyController extends AdminController {
     /**
      * КАТЕГОРИИ
      */
-    public function actionCategory() {
+    public function actionCategory()
+    {
         $category = Category::model()->findAll(array("order" => "position ASC"));
         $this->render('category', array('category' => $category));
     }
 
-    public function actionAddCategory() {
+    public function actionAddCategory()
+    {
         $form = new CategoryForm();
         $this->processCategoryFormAdd($form);
     }
 
-    public function actionEditCategory() {
+    public function actionEditCategory()
+    {
         $id = Yii::app()->request->getParam('id');
         $form = Category::model()->findByPk($id);
         //$properties = CategoryProperties::model()->findAllByAttributes(array('id_category' => $id));
         $this->render('category_form', array('category' => $form, 'edit' => 1));
     }
 
-    public function actionUpdateCategory() {
+    public function actionUpdateCategory()
+    {
         $form = new CategoryForm();
         $form->attributes = Yii::app()->request->getPost('category');
         if ($form->validate()) {
@@ -539,7 +603,8 @@ class AdminCompanyController extends AdminController {
         }
     }
 
-    public function actionDeleteCategory() {
+    public function actionDeleteCategory()
+    {
         $id = Yii::app()->request->getParam('id');
         $category = Category::model()->findByPk($id);
         $category->delete();
@@ -547,7 +612,8 @@ class AdminCompanyController extends AdminController {
         $this->redirect($this->createUrl('/administration/category'));
     }
 
-    private function processCategoryFormAdd($form) {
+    private function processCategoryFormAdd($form)
+    {
         if (!empty($_POST['category'])) {
             $form->attributes = Yii::app()->request->getPost('category');
             if ($form->validate()) {
@@ -574,7 +640,8 @@ class AdminCompanyController extends AdminController {
         }
     }
 
-    private function processCategoryFormUpdate($form) {
+    private function processCategoryFormUpdate($form)
+    {
 
         $id = Yii::app()->request->getParam('id');
         $category = Category::model()->findByPk($id);
@@ -587,7 +654,8 @@ class AdminCompanyController extends AdminController {
     /**
      * СВОЙСТВА
      */
-    public function actionProperties() {
+    public function actionProperties()
+    {
         $properties = CategoryProperties::model()->findAll(array("order" => "position ASC"));
         $category = Category::model()->findAll();
         foreach ($category as $value) {
@@ -599,12 +667,14 @@ class AdminCompanyController extends AdminController {
         $this->render('properties', array('properties' => $properties, 'category' => $masCategoryName, 'propertiName' => $maspropertiesName));
     }
 
-    public function actionAddProperties() {
+    public function actionAddProperties()
+    {
         $form = new CategoryPropertiesForm();
         $this->processPropertiesFormAdd($form);
     }
 
-    public function actionEditProperties() {
+    public function actionEditProperties()
+    {
         $id = Yii::app()->request->getParam('id');
         $form = CategoryProperties::model()->findByPk($id);
         $properties = CategoryProperties::model()->findAllByAttributes(array('id_properties' => 0));
@@ -612,7 +682,8 @@ class AdminCompanyController extends AdminController {
         $this->render('properties_form', array('properties' => $form, 'edit' => 1, 'propert' => $properties, 'categorys' => $category));
     }
 
-    public function actionUpdateProperties() {
+    public function actionUpdateProperties()
+    {
         $form = new CategoryPropertiesForm();
         $form->attributes = Yii::app()->request->getPost('properties');
         if ($form->validate()) {
@@ -641,7 +712,8 @@ class AdminCompanyController extends AdminController {
         }
     }
 
-    public function actionDeleteProperties() {
+    public function actionDeleteProperties()
+    {
         $id = Yii::app()->request->getParam('id');
         $properties = CategoryProperties::model()->findByPk($id);
         $properties->delete();
@@ -649,7 +721,8 @@ class AdminCompanyController extends AdminController {
         $this->redirect($this->createUrl('/administration/properties'));
     }
 
-    private function processPropertiesFormAdd($form) {
+    private function processPropertiesFormAdd($form)
+    {
         if (!empty($_POST['properties'])) {
             $form->attributes = Yii::app()->request->getPost('properties');
             if ($form->validate()) {
@@ -687,7 +760,8 @@ class AdminCompanyController extends AdminController {
     /**
      *  получим id родительско категории
      */
-    private function parentIdCategory($id = '') {
+    private function parentIdCategory($id = '')
+    {
         $properties = CategoryProperties::model()->findByPk($id);
         return $properties->id_category;
     }
@@ -695,7 +769,8 @@ class AdminCompanyController extends AdminController {
     /**
      * СТРАНИЦЫ КАТЕГОРИЙ
      */
-    public function actionPages() {
+    public function actionPages()
+    {
         if (empty($_GET['id_category']) || $_GET['id_category'] <= 0) {
             $pages = Pages::model()->findAll(array("order" => "position ASC"));
         } else {
@@ -707,10 +782,11 @@ class AdminCompanyController extends AdminController {
         foreach ($category as $value) {
             $masCategoryName[$value->id] = $value->name;
         }
-        $this->render('pages', array('pages' => $pages, 'categoryName' => $masCategoryName,'category' => $category, 'comments' => $comments));
+        $this->render('pages', array('pages' => $pages, 'categoryName' => $masCategoryName, 'category' => $category, 'comments' => $comments));
     }
 
-    public function actionAddPages() {
+    public function actionAddPages()
+    {
         //$classId = Yii::app()->request->getParam('id');
         $category = Category::model()->findAll();
         $properties = CategoryProperties::model()->findAllByAttributes(array('id_category' => $category[0]['id']));
@@ -718,7 +794,8 @@ class AdminCompanyController extends AdminController {
     }
 
     // передаем новые свойства для страницы
-    public function actionAddPagesPropertis() {
+    public function actionAddPagesPropertis()
+    {
         $id = Yii::app()->request->getPost('id_category');
         if (!empty($id)) {
             $properties = CategoryProperties::model()->findAllByAttributes(array('id_category' => Yii::app()->request->getPost('id_category')));
@@ -740,7 +817,8 @@ class AdminCompanyController extends AdminController {
         }
     }
 
-    public function actionAddPagesForm() {
+    public function actionAddPagesForm()
+    {
         if (!empty($_POST['pages'])) {
             $form = new PagesForm();
             $form->attributes = Yii::app()->request->getPost('pages');
@@ -782,7 +860,8 @@ class AdminCompanyController extends AdminController {
         }
     }
 
-    public function actionEditPages() {
+    public function actionEditPages()
+    {
         $id = Yii::app()->request->getParam('id');
         $form = Pages::model()->findByPk($id);
         $category = Category::model()->findAll();
@@ -799,7 +878,8 @@ class AdminCompanyController extends AdminController {
     /**
      *  записываем все свойства страницы
      */
-    private function addAllPropertisPages($propertis = '', $id_page = '') {
+    private function addAllPropertisPages($propertis = '', $id_page = '')
+    {
         foreach ($propertis as $value) {
             $pages = new PagesProperties();
             $pages->id_pages = $id_page;
@@ -808,7 +888,8 @@ class AdminCompanyController extends AdminController {
         }
     }
 
-    private function deleteAllPropertisPages($id_page = '') {
+    private function deleteAllPropertisPages($id_page = '')
+    {
         $pages = PagesProperties::model()->findAllByAttributes(array('id_pages' => $id_page));
         foreach ($pages as $value) {
             $properties = PagesProperties::model()->findByPk($value->id);
@@ -816,7 +897,8 @@ class AdminCompanyController extends AdminController {
         }
     }
 
-    public function actionUpdatePages() {
+    public function actionUpdatePages()
+    {
         $form = new PagesForm();
         $form->attributes = Yii::app()->request->getPost('pages');
         $imageError = $this->addImageFormError('fileToUpload', 330, 240, 'pages/temp');
@@ -855,7 +937,8 @@ class AdminCompanyController extends AdminController {
         }
     }
 
-    public function actionDeletePages() {
+    public function actionDeletePages()
+    {
         $id = Yii::app()->request->getParam('id');
         $pages = Pages::model()->findByPk($id);
         $pages->delete();
@@ -865,7 +948,8 @@ class AdminCompanyController extends AdminController {
     /**
      * КОММЕНТАРИИ
      */
-    private function coutPagesComments($pages = '') {
+    private function coutPagesComments($pages = '')
+    {
         foreach ($pages as $value) {
             $comm = Comments::model()->findAllByAttributes(array('id_page' => $value->id));
             $mas[$value->id] = count($comm);
@@ -873,11 +957,13 @@ class AdminCompanyController extends AdminController {
         return $mas;
     }
 
-    public function actionComments() {
+    public function actionComments()
+    {
         $this->render('comments', array('comments' => $this->allCommentsNotPages()));
     }
 
-    private function allCommentsNotPages() {
+    private function allCommentsNotPages()
+    {
         $comments = FALSE;
         $commNo = Comments::model()->findAllByAttributes(array('id_parent' => null), array("order" => "date ASC"));
         foreach ($commNo as $value) {
@@ -896,7 +982,8 @@ class AdminCompanyController extends AdminController {
     }
 
     // дочерние комментарии
-    private function allCommentsNotPageChildren($id_parent = '') {
+    private function allCommentsNotPageChildren($id_parent = '')
+    {
         $comments = FALSE;
         $commNo = Comments::model()->findAllByAttributes(array('id_parent' => $id_parent), array("order" => "date ASC"));
         foreach ($commNo as $value) {
@@ -914,13 +1001,15 @@ class AdminCompanyController extends AdminController {
         return $comments;
     }
 
-    public function actionCommentsPage() {
+    public function actionCommentsPage()
+    {
         $id = Yii::app()->request->getParam('id');
         $pages = Pages::model()->findByPk($id);
         $this->render('comments', array('pages' => $pages, 'comments' => $this->allCommentsPages($pages->id)));
     }
 
-    private function allCommentsPages($id_page = '') {
+    private function allCommentsPages($id_page = '')
+    {
         $comments = FALSE;
         $commNo = Comments::model()->findAllByAttributes(array('id_parent' => null, 'id_page' => $id_page), array("order" => "date ASC"));
         foreach ($commNo as $value) {
@@ -940,7 +1029,8 @@ class AdminCompanyController extends AdminController {
 
     // дочерние комментарии
 
-    private function allCommentsPageChildren($id_page = '', $id_parent = '') {
+    private function allCommentsPageChildren($id_page = '', $id_parent = '')
+    {
         $comments = FALSE;
         $commNo = Comments::model()->findAllByAttributes(array('id_page' => $id_page, 'id_parent' => $id_parent), array("order" => "date ASC"));
         foreach ($commNo as $value) {
@@ -958,7 +1048,8 @@ class AdminCompanyController extends AdminController {
         return $comments;
     }
 
-    public function actionDeleteComments() {
+    public function actionDeleteComments()
+    {
         $id = Yii::app()->request->getParam('id');
         $comments = Comments::model()->findByPk($id);
         $comments->delete();
@@ -969,12 +1060,14 @@ class AdminCompanyController extends AdminController {
      * МЕНЮ
      */
     // вывести меню
-    public function actionMenuCategory() {
+    public function actionMenuCategory()
+    {
         $menu = MenuCategory::model()->findAll();
         $this->render('menu_category', array('menu' => $menu));
     }
 
-    public function actionMenu() {
+    public function actionMenu()
+    {
         $id = Yii::app()->request->getParam('id');
         $menu = Menu::model()->findAllByAttributes(array("id_menu" => $id), array("order" => "position ASC"));
         $menu_category = MenuCategory::model()->findByPk($id);
@@ -982,12 +1075,14 @@ class AdminCompanyController extends AdminController {
     }
 
     // добавление нового пункта
-    public function actionAddMenu() {
+    public function actionAddMenu()
+    {
         $menu = MenuCategory::model()->findAll();
         $this->render('menu_form_add', array('menu_category' => $menu));
     }
 
-    public function actionAddMenuForm() {
+    public function actionAddMenuForm()
+    {
         $form = new MenuForm();
         $form->attributes = Yii::app()->request->getPost('menu');
         if ($form->validate()) {
@@ -1013,14 +1108,16 @@ class AdminCompanyController extends AdminController {
 
     // редактивароник
 
-    public function actionEditMenu() {
+    public function actionEditMenu()
+    {
         $id = Yii::app()->request->getParam('id');
         $form = Menu::model()->findByPk($id);
         $menu_category = MenuCategory::model()->findAll();
         $this->render('menu_form', array('menu' => $form, 'edit' => 1, 'menu_category' => $menu_category));
     }
 
-    public function actionUpdateMenu() {
+    public function actionUpdateMenu()
+    {
         $form = new MenuForm();
         $form->attributes = Yii::app()->request->getPost('menu');
         if ($form->validate()) {
@@ -1043,7 +1140,8 @@ class AdminCompanyController extends AdminController {
     }
 
     // удаление
-    public function actionDeleteMenu() {
+    public function actionDeleteMenu()
+    {
         $id = Yii::app()->request->getParam('id');
         $menu = Menu::model()->findByPk($id);
         $menu->delete();
@@ -1054,7 +1152,8 @@ class AdminCompanyController extends AdminController {
      * ПОЗИЦИИ ЭЛЕМЕНТОВ
      */
     // позиции для страниц категорий
-    public function actionPositionPages() {
+    public function actionPositionPages()
+    {
         if ($_POST['position']) {
             $position = $_POST['position'];
             $count = 0;
@@ -1075,7 +1174,8 @@ class AdminCompanyController extends AdminController {
     }
 
     // позиции для категорий
-    public function actionPositionCategory() {
+    public function actionPositionCategory()
+    {
         if ($_POST['position']) {
             $position = $_POST['position'];
             $count = 0;
@@ -1096,7 +1196,8 @@ class AdminCompanyController extends AdminController {
     }
 
     // позиции для свойств
-    public function actionPositionProperties() {
+    public function actionPositionProperties()
+    {
         if ($_POST['position']) {
             $position = $_POST['position'];
             $count = 0;
@@ -1117,7 +1218,8 @@ class AdminCompanyController extends AdminController {
     }
 
     // позиции для уроков
-    public function actionPositionLesson() {
+    public function actionPositionLesson()
+    {
         if ($_POST['position']) {
             $position = $_POST['position'];
             $count = 0;
@@ -1138,7 +1240,8 @@ class AdminCompanyController extends AdminController {
     }
 
     // позиции для класов
-    public function actionPositionClassroom() {
+    public function actionPositionClassroom()
+    {
         if ($_POST['position']) {
             $position = $_POST['position'];
             $count = 0;
@@ -1159,7 +1262,8 @@ class AdminCompanyController extends AdminController {
     }
 
     // позиции для школа(образовнаие)
-    public function actionPositionEducation() {
+    public function actionPositionEducation()
+    {
         if ($_POST['position']) {
             $position = $_POST['position'];
             $count = 0;
@@ -1180,7 +1284,8 @@ class AdminCompanyController extends AdminController {
     }
 
     // позиции для школа(образовнаие)
-    public function actionPositionMenu() {
+    public function actionPositionMenu()
+    {
         if ($_POST['menu']) {
             $menu = $_POST['menu'];
             $count = 0;
@@ -1203,16 +1308,19 @@ class AdminCompanyController extends AdminController {
     /**
      * СТРАНИЦЫ
      */
-    public function actionPagesText() {
+    public function actionPagesText()
+    {
         $pages = PagesText::model()->findAll();
         $this->render('pages_text', array('pages' => $pages));
     }
 
-    public function actionAddPagesText() {
+    public function actionAddPagesText()
+    {
         $this->render('pages_text_form_add');
     }
 
-    public function actionAddPagesTextForm() {
+    public function actionAddPagesTextForm()
+    {
         if (!empty($_POST['pages'])) {
             $form = new PagesTextForm();
             $form->attributes = Yii::app()->request->getPost('pages');
@@ -1243,14 +1351,16 @@ class AdminCompanyController extends AdminController {
         }
     }
 
-    public function actionEditPagesText() {
+    public function actionEditPagesText()
+    {
         $id = Yii::app()->request->getParam('id');
         $form = PagesText::model()->findByPk($id);
 
         $this->render('pages_text_form', array('pages' => $form, 'edit' => 1));
     }
 
-    public function actionUpdatePagesText() {
+    public function actionUpdatePagesText()
+    {
         $form = new PagesTextForm();
         $form->attributes = Yii::app()->request->getPost('pages');
         if ($form->validate()) {
@@ -1271,7 +1381,8 @@ class AdminCompanyController extends AdminController {
         }
     }
 
-    public function actionDeletePagesText() {
+    public function actionDeletePagesText()
+    {
         $id = Yii::app()->request->getParam('id');
         $pages = PagesText::model()->findByPk($id);
         $pages->delete();
@@ -1281,7 +1392,8 @@ class AdminCompanyController extends AdminController {
     /**
      * настройки (переписать)
      */
-    public function actionEditSettings() {
+    public function actionEditSettings()
+    {
         $education_block = trim(Yii::app()->request->getPost('education_block'));
         $x = trim(Yii::app()->request->getPost('x'));
         $y = trim(Yii::app()->request->getPost('y'));
@@ -1331,22 +1443,26 @@ class AdminCompanyController extends AdminController {
 
 
     /*
-    * БЛОКИ НА ГЛАВНОЙ
-    */
-    public function actionMainBlocks() {
-        $blocks = MainBlocks::model()->findAll(array('order'=>'position DESC'));
+     * БЛОКИ НА ГЛАВНОЙ
+     */
+
+    public function actionMainBlocks()
+    {
+        $blocks = MainBlocks::model()->findAll(array('order' => 'position DESC'));
 //        var_dump($blocks); die;
         $this->render('main_blocks', array('blocks' => $blocks));
     }
 
-    public function actionEditMainBlocks() {
+    public function actionEditMainBlocks()
+    {
         $block_id = Yii::app()->request->getParam('id');
         $block = MainBlocks::model()->findByPk($block_id);
         $this->render('main_blocks_edit', array('block' => $block, 'edit' => 1));
     }
 
-    public function actionEditPositionMainBlocks() {
-        if (Yii::app()->request->getPost('position')!== NULL) {
+    public function actionEditPositionMainBlocks()
+    {
+        if (Yii::app()->request->getPost('position') !== NULL) {
             $position = Yii::app()->request->getPost('position');
             $count = 1;
             foreach ($position as $value) {
@@ -1365,18 +1481,21 @@ class AdminCompanyController extends AdminController {
         }
     }
 
-    public function actionDeleteMainBlocks() {
+    public function actionDeleteMainBlocks()
+    {
         $block_id = Yii::app()->request->getParam('id');
         $block = MainBlocks::model()->findByPk($block_id);
         $block->delete();
-        header("Location: /administration/mainBlocks"); return;
+        header("Location: /administration/mainBlocks");
+        return;
     }
 
-
     /*
-    * ПОСТЫ В БЛОКАХ НА ГЛАВНОЙ
-    */
-    public function actionEditPostsMainBlocks() {
+     * ПОСТЫ В БЛОКАХ НА ГЛАВНОЙ
+     */
+
+    public function actionEditPostsMainBlocks()
+    {
         $post_id = Yii::app()->request->getParam('id');
         $post = MainPosts::model()->findByPk($post_id);
         $this->render('posts_form', array('post' => $post, 'edit' => 1));
@@ -1385,18 +1504,21 @@ class AdminCompanyController extends AdminController {
     private function processPostFormUpdate($form, $id, $image, $additional_photos, $isNew)
     {
         $post = (!$isNew) ? MainPosts::model()->findByPk($id) : new MainPosts();
-        if ($isNew) $post->block_id = $id;
+        if ($isNew)
+            $post->block_id = $id;
         $post->name = $form->name;
         $post->url = $form->url;
-        if ($additional_photos) $post->additional_photos = $additional_photos;
+        if ($additional_photos)
+            $post->additional_photos = $additional_photos;
         if (isset($image)) {
             $post->photo = $image;
         }
         return (!$isNew) ? $post->update() : $post->save();
     }
 
-    private function addImagePostFormError($fileName) {
-        if (!empty($_FILES[$fileName]['name'])){
+    private function addImagePostFormError($fileName)
+    {
+        if (!empty($_FILES[$fileName]['name'])) {
             if (!empty($_FILES[$fileName]['tmp_name'])) {
 
                 return MainPosts::model()->imageFormValidate($_FILES[$fileName]);
@@ -1406,7 +1528,8 @@ class AdminCompanyController extends AdminController {
         }
     }
 
-    public function actionUpdatePostsMainBlocks() {
+    public function actionUpdatePostsMainBlocks()
+    {
         $isNew = Yii::app()->request->getParam('new');
         $id = Yii::app()->request->getParam('id'); // id = id блока если новая запись, если изменяем то это id поста
         $type_block = (!$isNew) ? MainPosts::model()->findByPk($id)->block->type : MainBlocks::model()->findByPk($id)->type;
@@ -1420,23 +1543,19 @@ class AdminCompanyController extends AdminController {
 
         $addImageError = false;
         $imageErrorsAdditional = array();
-        if ($DopImage)
-        {
+        if ($DopImage) {
             $imageErrorsAdditional[0] = $this->addImagePostFormError('fileToUploadAddone');
             $imageErrorsAdditional[1] = $this->addImagePostFormError('fileToUploadAddtwo');
             $imageErrorsAdditional[2] = $this->addImagePostFormError('fileToUploadAddthree');
             $imageErrorsAdditional[3] = $this->addImagePostFormError('fileToUploadAddfour');
             $imageErrorsAdditional[4] = $this->addImagePostFormError('fileToUploadAddfive');
-            if ($isNew)
-            {
-                if (in_array(NULL,$imageErrorsAdditional, true))
+            if ($isNew) {
+                if (in_array(NULL, $imageErrorsAdditional, true))
                     $addImageError = true;
             }
-            else
-            {
+            else {
                 foreach ($imageErrorsAdditional as $image) {
-                    if (!($image === NULL || $image===false))
-                    {
+                    if (!($image === NULL || $image === false)) {
                         $addImageError = true;
                         break;
                     }
@@ -1447,8 +1566,7 @@ class AdminCompanyController extends AdminController {
 
             $width = 100;
             $height = 100;
-            switch ($type_block)
-            {
+            switch ($type_block) {
                 case 1 :
                     $width = 310;
                     $height = 190;
@@ -1477,26 +1595,22 @@ class AdminCompanyController extends AdminController {
             $nameImage = 'mainPost' . time() . '.jpg';
             $image = $this->addImageForm('fileToUpload', $width, $height, 'main', $nameImage);
             $userAddImages = '';
-            if ($DopImage)
-            {
+            if ($DopImage) {
 
-                $imageAdd[0] = $this->addImageForm('fileToUploadAddone', $width, $height, 'main','mainPostAddOne' . time() . '.jpg');
-                $imageAdd[1] = $this->addImageForm('fileToUploadAddtwo', $width, $height, 'main','mainPostAddTwo' . time() . '.jpg');
-                $imageAdd[2] = $this->addImageForm('fileToUploadAddthree', $width, $height, 'main','mainPostAddThree' . time() . '.jpg');
-                $imageAdd[3] = $this->addImageForm('fileToUploadAddfour', $width, $height, 'main','mainPostAddFour' . time() . '.jpg');
-                $imageAdd[4] = $this->addImageForm('fileToUploadAddfive', $width, $height, 'main','mainPostAddFive' . time() . '.jpg');
-                if (!$isNew)
-                {
+                $imageAdd[0] = $this->addImageForm('fileToUploadAddone', $width, $height, 'main', 'mainPostAddOne' . time() . '.jpg');
+                $imageAdd[1] = $this->addImageForm('fileToUploadAddtwo', $width, $height, 'main', 'mainPostAddTwo' . time() . '.jpg');
+                $imageAdd[2] = $this->addImageForm('fileToUploadAddthree', $width, $height, 'main', 'mainPostAddThree' . time() . '.jpg');
+                $imageAdd[3] = $this->addImageForm('fileToUploadAddfour', $width, $height, 'main', 'mainPostAddFour' . time() . '.jpg');
+                $imageAdd[4] = $this->addImageForm('fileToUploadAddfive', $width, $height, 'main', 'mainPostAddFive' . time() . '.jpg');
+                if (!$isNew) {
                     $dop_images = unserialize(MainPosts::model()->findByPk($id)->additional_photos);
-                    for ($i=0; $i<5; $i++) {
-                        if ($imageAdd[$i]===NULL)
-                        {
+                    for ($i = 0; $i < 5; $i++) {
+                        if ($imageAdd[$i] === NULL) {
                             $imageAdd[$i] = $dop_images[$i];
                         }
                     }
                 }
-                if (!in_array(NULL, $imageAdd, true))
-                {
+                if (!in_array(NULL, $imageAdd, true)) {
                     $userAddImages = serialize($imageAdd);
                 }
                 $userAddImages = serialize($imageAdd);
@@ -1514,21 +1628,23 @@ class AdminCompanyController extends AdminController {
         }
     }
 
-    public function actionAddMainBlocks() {
-        if ((Yii::app()->request->getPost('type')!== NULL && Yii::app()->request->getPost('position')!== NULL))
-        {
+    public function actionAddMainBlocks()
+    {
+        if ((Yii::app()->request->getPost('type') !== NULL && Yii::app()->request->getPost('position') !== NULL)) {
             $block = new MainBlocks();
-            $block->type = Yii::app()->request->getPost('type') ;
+            $block->type = Yii::app()->request->getPost('type');
             $block->position = Yii::app()->request->getPost('position');
             $block->save();
-            header("Location: /administration/mainBlocks/edit/".$block->getPrimaryKey()); return;
+            header("Location: /administration/mainBlocks/edit/" . $block->getPrimaryKey());
+            return;
         }
-        $blocks = MainBlocks::model()->findAll(array('order'=>'position DESC'));
-        $pos = (isset($blocks[0]->position)) ? (($blocks[0]->position)+1) : $pos=1;
+        $blocks = MainBlocks::model()->findAll(array('order' => 'position DESC'));
+        $pos = (isset($blocks[0]->position)) ? (($blocks[0]->position) + 1) : $pos = 1;
         $this->render('main_blocks_add', array('position' => $pos));
     }
 
-    public function actionAddPostsMainBlocks() {
+    public function actionAddPostsMainBlocks()
+    {
         $block = MainBlocks::model()->findByPk(Yii::app()->request->getParam('id'));
         $add_images = ($block->type == 4) ? true : false;
         $this->render('posts_form', array('add_images' => $add_images));
