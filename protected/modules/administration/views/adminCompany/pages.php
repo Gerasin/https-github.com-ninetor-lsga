@@ -45,7 +45,7 @@
                                         <select class="form-control" name="id_category" id="id_category" onchange="document.location.href = '/administration/pages?id_category=' + this.value;">
                                             <option <?php if (empty($_GET['id_category']) || $_GET['id_category'] <= 0): ?>selected<?php endif; ?>value="0">Всё</option>
                                             <?php foreach ($category as $item): ?>
-                                                <option value="<?= $item->id ?>" <?php if ($_GET['id_category'] == $item->id): ?>selected<?php endif; ?>><?php echo $item->name ?></option>                          
+                                                <option value="<?= $item->id ?>" <?php if (!empty($_GET['id_category']) && $_GET['id_category'] == $item->id): ?>selected<?php endif; ?>><?php echo $item->name ?></option>                          
                                             <?php endforeach; ?>
                                         </select>
                                     </th>

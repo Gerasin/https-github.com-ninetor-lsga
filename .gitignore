@@ -1,8 +1,13 @@
 # lsga project
+../.gitignore
+../.gitignore~
+../index.php
 assets/
 protected/runtime/
 protected/vendors/
 protected/config/db.php
+protected/config/db.php~
+config/db.php
 framework/gii/
 upload/
 .idea/

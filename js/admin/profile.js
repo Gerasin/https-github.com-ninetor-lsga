@@ -8,17 +8,17 @@ function formpagestexteditsubmit(menu_id) {
         dataType: 'json',
         type: 'POST',
         url: '/administration/pagesText/update/' + menu_id,
-        success: function (data) {
+        success: function(data) {
             if (data.success == 1) {
                 $('.success-edit-user').attr('style', 'display:block');
-                setTimeout(function () {
+                setTimeout(function() {
                     //document.location.href = "/administration/menu/edit/" + data.menu_id;
                 }, 1000);
             }
             else {
                 var errors = [];
                 errors = data.error;
-                form.find('.list-group-item').each(function () {
+                form.find('.list-group-item').each(function() {
                     var input_element = $(this).find('input,textarea,select,checkbox');
                     var input = input_element[0]['name'];
                     input = input.replace('pages[', '');
@@ -42,17 +42,17 @@ function formpagesediteditsubmitadd() {
         dataType: 'json',
         type: 'POST',
         url: '/administration/pagesText/addform',
-        success: function (data) {
+        success: function(data) {
             if (data.success == 1) {
                 $('.success-edit-user').attr('style', 'display:block');
-                setTimeout(function () {
+                setTimeout(function() {
                     //document.location.href = "/administration/menu/edit/" + data.menu_id;
                 }, 1000);
             }
             else {
                 var errors = [];
                 errors = data.error;
-                form.find('.list-group-item').each(function () {
+                form.find('.list-group-item').each(function() {
                     var input_element = $(this).find('input,textarea,select,checkbox');
                     var input = input_element[0]['name'];
                     input = input.replace('pages[', '');
@@ -80,17 +80,17 @@ function formmenueditsubmit(menu_id) {
         dataType: 'json',
         type: 'POST',
         url: '/administration/menu/update/' + menu_id,
-        success: function (data) {
+        success: function(data) {
             if (data.success == 1) {
                 $('.success-edit-user').attr('style', 'display:block');
-                setTimeout(function () {
+                setTimeout(function() {
                     document.location.href = "/administration/menu/edit/" + data.menu_id;
                 }, 1000);
             }
             else {
                 var errors = [];
                 errors = data.error;
-                form.find('.list-group-item').each(function () {
+                form.find('.list-group-item').each(function() {
                     var input_element = $(this).find('input,textarea,select,checkbox');
                     var input = input_element[0]['name'];
                     input = input.replace('menu[', '');
@@ -114,17 +114,17 @@ function formmenueditsubmitadd() {
         dataType: 'json',
         type: 'POST',
         url: '/administration/menu/addform',
-        success: function (data) {
+        success: function(data) {
             if (data.success == 1) {
                 $('.success-edit-user').attr('style', 'display:block');
-                setTimeout(function () {
+                setTimeout(function() {
                     document.location.href = "/administration/menu/edit/" + data.menu_id;
                 }, 1000);
             }
             else {
                 var errors = [];
                 errors = data.error;
-                form.find('.list-group-item').each(function () {
+                form.find('.list-group-item').each(function() {
                     var input_element = $(this).find('input,textarea,select,checkbox');
                     var input = input_element[0]['name'];
                     input = input.replace('menu[', '');
@@ -175,10 +175,10 @@ function formhomeproblemeditsubmitadd() {
         dataType: 'json',
         type: 'POST',
         url: '/administration/homeproblem/formadd',
-        success: function (data) {
+        success: function(data) {
             if (data.success == 1) {
                 $('.success-edit-user').attr('style', 'display:block');
-                setTimeout(function () {
+                setTimeout(function() {
                     document.location.href = "/administration/homeproblem/edit/" + data.problem_id;
                 }, 1000);
             }
@@ -187,7 +187,7 @@ function formhomeproblemeditsubmitadd() {
                 $('.error-edit-user').attr('style', 'display:block');
                 var errors = [];
                 errors = data.error;
-                form.find('.list-group-item').each(function () {
+                form.find('.list-group-item').each(function() {
                     var input_element = $(this).find('input,textarea,select,checkbox');
                     var input = input_element[0]['name'];
                     input = input.replace('problem[', '');
@@ -211,10 +211,10 @@ function formhomeproblemeditsubmit(problem_id) {
         dataType: 'json',
         type: 'POST',
         url: '/administration/homeproblem/update/' + problem_id,
-        success: function (data) {
+        success: function(data) {
             if (data.success == 1) {
                 $('.success-edit-user').attr('style', 'display:block');
-                setTimeout(function () {
+                setTimeout(function() {
                     document.location.href = "/administration/homeproblem/edit/" + data.problem_id;
                 }, 1000);
             }
@@ -223,7 +223,7 @@ function formhomeproblemeditsubmit(problem_id) {
                 $('.error-edit-user').attr('style', 'display:block');
                 var errors = [];
                 errors = data.error;
-                form.find('.list-group-item').each(function () {
+                form.find('.list-group-item').each(function() {
                     var input_element = $(this).find('input,textarea,select,checkbox');
                     var input = input_element[0]['name'];
                     input = input.replace('problem[', '');
@@ -252,13 +252,13 @@ function formpageseditsubmit(pages_id) {
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "/administration/pages/update/" + pages_id);
 
-    xhr.onreadystatechange = function () {
+    xhr.onreadystatechange = function() {
         if (xhr.readyState == 4) {
             if (xhr.status == 200) {
                 data = JSON.parse(xhr.responseText);
                 if (data.success == '1') {
                     $('.success-edit-user').attr('style', 'display:block');
-                    setTimeout(function () {
+                    setTimeout(function() {
                         location.reload();
                     }, 1000);
                 } else {
@@ -266,7 +266,7 @@ function formpageseditsubmit(pages_id) {
                     errors = data.error;
                     var form1 = $('#form_pages_edit');
 
-                    form1.find('.list-group-item').each(function () {
+                    form1.find('.list-group-item').each(function() {
                         var input_element = $(this).find('input,textarea,select,checkbox');
                         var input = input_element[0]['name'];
                         input = input.replace('pages[', '');
@@ -290,7 +290,7 @@ function newProrertisPage(id) {
         dataType: 'json',
         type: 'POST',
         url: '/administration/adminCompany/AddPagesPropertis',
-        success: function (data) {
+        success: function(data) {
             if (data.success == 1) {
                 $('#pageProperties').html(data.propertis);
             }
@@ -308,7 +308,7 @@ function formpageseditsubmitadd() {
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "/administration/pages/addform");
 
-    xhr.onreadystatechange = function () {
+    xhr.onreadystatechange = function() {
         if (xhr.readyState == 4) {
             if (xhr.status == 200) {
                 data = JSON.parse(xhr.responseText);
@@ -316,7 +316,7 @@ function formpageseditsubmitadd() {
                 if (data.success == '1') {
                     return false;
                     $('.success-edit-user').attr('style', 'display:block');
-                    setTimeout(function () {
+                    setTimeout(function() {
                         document.location.href = "/administration/pages/edit/" + data.education_id;
                     }, 1000);
                 } else {
@@ -324,7 +324,7 @@ function formpageseditsubmitadd() {
                     errors = data.error;
                     var form1 = $('#form_pages_edit');
 
-                    form1.find('.list-group-item').each(function () {
+                    form1.find('.list-group-item').each(function() {
                         var input_element = $(this).find('input,textarea,select,checkbox');
                         var input = input_element[0]['name'];
                         input = input.replace('pages[', '');
@@ -360,17 +360,17 @@ function formpropertieseditsubmit(properties_id) {
         dataType: 'json',
         type: 'POST',
         url: '/administration/properties/update/' + properties_id,
-        success: function (data) {
+        success: function(data) {
             if (data.success == 1) {
                 $('.success-edit-user').attr('style', 'display:block');
-                setTimeout(function () {
+                setTimeout(function() {
                     document.location.href = "/administration/properties/edit/" + data.properties_id;
                 }, 1000);
             }
             else {
                 var errors = [];
                 errors = data.error;
-                form.find('.list-group-item').each(function () {
+                form.find('.list-group-item').each(function() {
                     var input_element = $(this).find('input,textarea,select,checkbox');
                     var input = input_element[0]['name'];
                     input = input.replace('properties[', '');
@@ -395,10 +395,10 @@ function formpropertieseditsubmitadd() {
         dataType: 'json',
         type: 'POST',
         url: '/administration/properties/add',
-        success: function (data) {
+        success: function(data) {
             if (data.success == 1) {
                 $('.success-edit-user').attr('style', 'display:block');
-                setTimeout(function () {
+                setTimeout(function() {
                     document.location.href = "/administration/properties/edit/" + data.properties_id;
                 }, 1000);
             }
@@ -407,7 +407,7 @@ function formpropertieseditsubmitadd() {
                 $('.error-edit-user').attr('style', 'display:block');
                 var errors = [];
                 errors = data.error;
-                form.find('.list-group-item').each(function () {
+                form.find('.list-group-item').each(function() {
                     var input_element = $(this).find('input,textarea,select,checkbox');
                     var input = input_element[0]['name'];
                     input = input.replace('properties[', '');
@@ -433,17 +433,17 @@ function formcategoryeditsubmit(category_id) {
         dataType: 'json',
         type: 'POST',
         url: '/administration/category/update/' + category_id,
-        success: function (data) {
+        success: function(data) {
             if (data.success == 1) {
                 $('.success-edit-user').attr('style', 'display:block');
-                setTimeout(function () {
+                setTimeout(function() {
                     document.location.href = "/administration/category/edit/" + data.category_id;
                 }, 1000);
             }
             else {
                 var errors = [];
                 errors = data.error;
-                form.find('.list-group-item').each(function () {
+                form.find('.list-group-item').each(function() {
                     var input_element = $(this).find('input,textarea,select,checkbox');
                     var input = input_element[0]['name'];
                     input = input.replace('category[', '');
@@ -467,11 +467,11 @@ function formcategoryeditsubmitadd() {
         dataType: 'json',
         type: 'POST',
         url: '/administration/category/add',
-        success: function (data) {
+        success: function(data) {
             if (data.success == 1) {
 
                 $('.success-edit-user').attr('style', 'display:block');
-                setTimeout(function () {
+                setTimeout(function() {
                     document.location.href = "/administration/category/edit/" + data.category_id;
                 }, 1000);
             }
@@ -480,7 +480,7 @@ function formcategoryeditsubmitadd() {
                 $('.error-edit-user').attr('style', 'display:block');
                 var errors = [];
                 errors = data.error;
-                form.find('.list-group-item').each(function () {
+                form.find('.list-group-item').each(function() {
                     var input_element = $(this).find('input,textarea,select,checkbox');
                     var input = input_element[0]['name'];
                     input = input.replace('category[', '');
@@ -505,10 +505,10 @@ function formproblemeditsubmit(problem_id) {
         dataType: 'json',
         type: 'POST',
         url: '/administration/problem/update/' + problem_id,
-        success: function (data) {
+        success: function(data) {
             if (data.success == 1) {
                 $('.success-edit-user').attr('style', 'display:block');
-                setTimeout(function () {
+                setTimeout(function() {
                     document.location.href = "/administration/problem/edit/" + data.problem_id;
                 }, 1000);
             }
@@ -517,7 +517,7 @@ function formproblemeditsubmit(problem_id) {
                 $('.error-edit-user').attr('style', 'display:block');
                 var errors = [];
                 errors = data.error;
-                form.find('.list-group-item').each(function () {
+                form.find('.list-group-item').each(function() {
                     var input_element = $(this).find('input,textarea,select,checkbox');
                     var input = input_element[0]['name'];
                     input = input.replace('problem[', '');
@@ -543,9 +543,20 @@ function add_ans(id_block) {
 }
 
 // delete block
-function formproblemdeleteblock(id_block) {
-    $('#id_ans_' + id_block).html('');
-    $('#id_ans_' + id_block).remove();
+function formproblemdeleteblock(id_block, problem) {
+
+    if (problem) {
+        $.ajax({
+            data: {problem: problem},
+            dataType: 'json',
+            type: 'POST',
+            url: '/administration/AdminCompany/deleteAnsTable',
+            success: function(data) {
+                $('#id_ans_' + id_block).html('');
+                $('#id_ans_' + id_block).remove();
+            }
+        });
+    }
 }
 
 // add problem
@@ -558,10 +569,10 @@ function formproblemeditsubmitadd() {
         dataType: 'json',
         type: 'POST',
         url: '/administration/problem/formadd',
-        success: function (data) {
+        success: function(data) {
             if (data.success == 1) {
                 $('.success-edit-user').attr('style', 'display:block');
-                setTimeout(function () {
+                setTimeout(function() {
                     document.location.href = "/administration/problem/edit/" + data.problem_id;
                 }, 1000);
             }
@@ -570,7 +581,7 @@ function formproblemeditsubmitadd() {
                 $('.error-edit-user').attr('style', 'display:block');
                 var errors = [];
                 errors = data.error;
-                form.find('.list-group-item').each(function () {
+                form.find('.list-group-item').each(function() {
                     var input_element = $(this).find('input,textarea,select,checkbox');
                     var input = input_element[0]['name'];
                     input = input.replace('problem[', '');
@@ -595,17 +606,17 @@ function formlessoneditsubmit(lesson_id) {
         dataType: 'json',
         type: 'POST',
         url: '/administration/lesson/update/' + lesson_id,
-        success: function (data) {
+        success: function(data) {
             if (data.success == 1) {
                 $('.success-edit-user').attr('style', 'display:block');
-                setTimeout(function () {
+                setTimeout(function() {
                     document.location.href = "/administration/lesson/edit/" + data.lesson_id;
                 }, 1000);
             }
             else {
                 var errors = [];
                 errors = data.error;
-                form.find('.list-group-item').each(function () {
+                form.find('.list-group-item').each(function() {
                     var input_element = $(this).find('input,textarea,select,checkbox');
                     var input = input_element[0]['name'];
                     input = input.replace('lesson[', '');
@@ -629,17 +640,17 @@ function formlessoneditsubmitadd() {
         dataType: 'json',
         type: 'POST',
         url: '/administration/lesson/add',
-        success: function (data) {
+        success: function(data) {
             if (data.success == 1) {
                 $('.success-edit-user').attr('style', 'display:block');
-                setTimeout(function () {
+                setTimeout(function() {
                     document.location.href = "/administration/lesson/edit/" + data.lesson_id;
                 }, 1000);
             }
             else {
                 var errors = [];
                 errors = data.error;
-                form.find('.list-group-item').each(function () {
+                form.find('.list-group-item').each(function() {
                     var input_element = $(this).find('input,textarea,select,checkbox');
                     var input = input_element[0]['name'];
                     input = input.replace('lesson[', '');
@@ -664,17 +675,17 @@ function formclassroomeditsubmit(classroom_id) {
         dataType: 'json',
         type: 'POST',
         url: '/administration/classroom/update/' + classroom_id,
-        success: function (data) {
+        success: function(data) {
             if (data.success == 1) {
                 $('.success-edit-user').attr('style', 'display:block');
-                setTimeout(function () {
+                setTimeout(function() {
                     document.location.href = "/administration/classroom/edit/" + data.classroom_id;
                 }, 1000);
             }
             else {
                 var errors = [];
                 errors = data.error;
-                form.find('.list-group-item').each(function () {
+                form.find('.list-group-item').each(function() {
                     var input_element = $(this).find('input,textarea,select,checkbox');
                     var input = input_element[0]['name'];
                     input = input.replace('classroom[', '');
@@ -698,17 +709,17 @@ function formclassroomeditsubmitadd() {
         dataType: 'json',
         type: 'POST',
         url: '/administration/classroom/add',
-        success: function (data) {
+        success: function(data) {
             if (data.success == 1) {
                 $('.success-edit-user').attr('style', 'display:block');
-                setTimeout(function () {
+                setTimeout(function() {
                     document.location.href = "/administration/classroom/edit/" + data.classroom_id;
                 }, 1000);
             }
             else {
                 var errors = [];
                 errors = data.error;
-                form.find('.list-group-item').each(function () {
+                form.find('.list-group-item').each(function() {
                     var input_element = $(this).find('input,textarea,select,checkbox');
                     var input = input_element[0]['name'];
                     input = input.replace('classroom[', '');
@@ -734,13 +745,13 @@ function formeducationeditsubmitadd() {
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "/administration/education/add");
 
-    xhr.onreadystatechange = function () {
+    xhr.onreadystatechange = function() {
         if (xhr.readyState == 4) {
             if (xhr.status == 200) {
                 data = JSON.parse(xhr.responseText);
                 if (data.success == '1') {
                     $('.success-edit-user').attr('style', 'display:block');
-                    setTimeout(function () {
+                    setTimeout(function() {
                         document.location.href = "/administration/education/edit/" + data.education_id;
                     }, 1000);
                 } else {
@@ -748,7 +759,7 @@ function formeducationeditsubmitadd() {
                     errors = data.error;
                     var form1 = $('#form_education_edit');
 
-                    form1.find('.list-group-item').each(function () {
+                    form1.find('.list-group-item').each(function() {
                         var input_element = $(this).find('input,textarea,select,checkbox');
                         var input = input_element[0]['name'];
                         input = input.replace('education[', '');
@@ -778,13 +789,13 @@ function formeducationeditsubmit(education_id) {
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "/administration/education/update/" + education_id);
 
-    xhr.onreadystatechange = function () {
+    xhr.onreadystatechange = function() {
         if (xhr.readyState == 4) {
             if (xhr.status == 200) {
                 data = JSON.parse(xhr.responseText);
                 if (data.success == '1') {
                     $('.success-edit-user').attr('style', 'display:block');
-                    setTimeout(function () {
+                    setTimeout(function() {
                         location.reload();
                     }, 1000);
                 } else {
@@ -792,7 +803,7 @@ function formeducationeditsubmit(education_id) {
                     errors = data.error;
                     var form1 = $('#form_education_edit');
 
-                    form1.find('.list-group-item').each(function () {
+                    form1.find('.list-group-item').each(function() {
                         var input_element = $(this).find('input,textarea,select,checkbox');
                         var input = input_element[0]['name'];
                         input = input.replace('education[', '');
@@ -819,20 +830,20 @@ function formusereditsubmit(user_id) {
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "/administration/user/user_update/" + user_id);
 
-    xhr.onreadystatechange = function () {
+    xhr.onreadystatechange = function() {
         if (xhr.readyState == 4) {
             if (xhr.status == 200) {
                 data = JSON.parse(xhr.responseText);
                 if (data.success == '1') {
                     $('.success-edit-user').attr('style', 'display:block');
-                    setTimeout(function () {
+                    setTimeout(function() {
                         location.reload();
                     }, 1000);
                 } else {
                     var errors = [];
                     errors = data.error;
                     var form1 = $('#form_user_edit');
-                    form1.find('.list-group-item').each(function () {
+                    form1.find('.list-group-item').each(function() {
                         var input_element = $(this).find('input,textarea,select,checkbox');
                         var input = input_element[0]['name'];
                         input = input.replace('user[', '');
@@ -858,17 +869,17 @@ function formusereditsubmit123(user_id) {
         dataType: 'json',
         type: 'POST',
         url: '/administration/user/user_update/' + user_id,
-        success: function (data) {
+        success: function(data) {
             if (data.success == 1) {
                 $('.success-edit-user').attr('style', 'display:block');
-                setTimeout(function () {
+                setTimeout(function() {
                     location.reload();
                 }, 1000);
             }
             else {
                 var errors = [];
                 errors = data.error;
-                form.find('.list-group-item').each(function () {
+                form.find('.list-group-item').each(function() {
                     var input_element = $(this).find('input,textarea,select,checkbox');
                     var input = input_element[0]['name'];
                     input = input.replace('user[', '');
@@ -897,13 +908,13 @@ function formpostseditsubmit(post_id) {
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "/administration/mainBlocks/posts/update/" + post_id);
 
-    xhr.onreadystatechange = function () {
+    xhr.onreadystatechange = function() {
         if (xhr.readyState == 4) {
             if (xhr.status == 200) {
                 data = JSON.parse(xhr.responseText);
                 if (data.success == '1') {
                     $('.success-edit-user').attr('style', 'display:block');
-                    setTimeout(function () {
+                    setTimeout(function() {
                         window.history.back();
                     }, 1000);
                     // console.log('1');
@@ -913,7 +924,7 @@ function formpostseditsubmit(post_id) {
                     errors = data.error;
                     var form1 = $('#form_posts_edit');
                     var ImageErrors = data.imageError;
-                    form1.find('.list-group-item').each(function () {
+                    form1.find('.list-group-item').each(function() {
                         var input_element = $(this).find('input,textarea,select,checkbox');
                         var input = input_element[0]['name'];
                         console.log(input);
@@ -932,7 +943,7 @@ function formpostseditsubmit(post_id) {
                     var boolImageErrorView = false;
                     for (var i = 0; i < ImageErrorsAdditional.length; i++)
                     {
-                        if (ImageErrorsAdditional[i]!==null) {
+                        if (ImageErrorsAdditional[i] !== null) {
                             boolImageErrorView = true;
                             $('#fileToUploadAdd' + (i + 1)).addClass('input-error');
                         }
@@ -962,21 +973,21 @@ function formpostsaddsubmit(block_id) {
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "/administration/mainBlocks/posts/update/" + block_id + "?new=true");
 
-    xhr.onreadystatechange = function () {
+    xhr.onreadystatechange = function() {
         if (xhr.readyState == 4) {
             if (xhr.status == 200) {
                 data = JSON.parse(xhr.responseText);
                 if (data.success == '1') {
                     $('.success-edit-user').attr('style', 'display:block');
-                    setTimeout(function () {
-                        location.href = "/administration/mainBlocks/edit/"+block_id;
+                    setTimeout(function() {
+                        location.href = "/administration/mainBlocks/edit/" + block_id;
                     }, 1000);
                 } else {
                     $('#blockLoader').hide();
                     var errors = [];
                     errors = data.error;
                     var form1 = $('#form_posts_edit');
-                    form1.find('.list-group-item').each(function () {
+                    form1.find('.list-group-item').each(function() {
                         var input_element = $(this).find('input,textarea,select,checkbox');
                         var input = input_element[0]['name'];
                         if (errors[input] > '') {
@@ -994,7 +1005,7 @@ function formpostsaddsubmit(block_id) {
                     var boolImageErrorView = false;
                     for (var i = 0; i < ImageErrorsAdditional.length; i++)
                     {
-                        if (ImageErrorsAdditional[i]!=false) {
+                        if (ImageErrorsAdditional[i] != false) {
                             boolImageErrorView = true;
                             $('#fileToUploadAdd' + (i + 1)).addClass('input-error');
                         }

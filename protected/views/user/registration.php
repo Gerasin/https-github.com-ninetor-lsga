@@ -19,25 +19,9 @@
             <span class="error-text"></span>
         </div>
 
-        <div class="form-register-row">
-            <label for="name-register" class="form-register-label">Имя и фамилия / Название фирмы</label>
-            <input class="input-simple form-register-input" id="name-register" name="user[title]" type="text"/>
-            <span class="error-text"></span>
-        </div>
+        
 
-        <div class="form-register-sep"></div>
-
-        <div class="form-register-row">
-            <label for="state-register" class="form-register-label">Страна</label>
-            <input class="input-simple form-register-input" id="state-register" name="user[country]" type="text"/>
-            <span class="error-text"></span>
-        </div>
-
-        <div class="form-register-row">
-            <label for="city-register" class="form-register-label">Город</label>
-            <input class="input-simple form-register-input" id="city-register" name="user[city]" type="text"/>
-            <span class="error-text"></span>
-        </div>
+        
 
         <div class="form-register-row">
             <label for="phone-register" class="form-register-label">Телефон (с кодом города)</label>
@@ -71,11 +55,7 @@
         </div>
 
         <div class="form-register-bottom">
-            <label class="check-simple form-register-agree" >
-                <input class="check-simple-input" name="user[checkbox]" type="checkbox"/>
-                <span class="check-simple-text">Я согласен с правилами сайта</span>
-                <span class="error-text"></span>
-            </label>
+            
 
             <div class="form-captcha"> 
                 <div class="form-captcha-title">Введите символы, показанные на картинке</div>

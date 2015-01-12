@@ -39,7 +39,7 @@ class DashboardController extends AdminController {
     }
 
     public function actionAddProblem() {
-        $this->render('problem_form');
+        $this->render('problem_form_add');
     }
 
     public function actionProblemFormAdd() {

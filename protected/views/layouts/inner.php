@@ -29,6 +29,7 @@
         <script type="text/javascript" src="/js/modernizr.custom.js"></script> <!-- Определение возможностей браузера -->
         <script type="text/javascript" src="/js/respond.js"></script>
         <script type="text/javascript" src="/js/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="js/jquery.maskedinput.min.js"></script>
         <script type="text/javascript" src="/js/mediaelement-and-player.min.js"></script>
         <script type="text/javascript" src="/js/jquery.nicescroll.min.js"></script>
         <script type="text/javascript" src="/js/scripts.js"></script>

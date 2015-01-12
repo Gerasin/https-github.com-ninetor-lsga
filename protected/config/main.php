@@ -121,7 +121,8 @@ return array(
                 'administration/problem/add/<id:\d+>' => 'administration/adminCompany/addProblem', //
                 'administration/problem/formadd' => 'administration/adminCompany/problemFormAdd', //
                 'administration/problem/edit/<id:\d+>' => 'administration/adminCompany/editProblem', //
-                'administration/problem/update/<id:\d+>' => 'administration/adminCompany/updateProblem', //                
+                'administration/problem/update/<id:\d+>' => 'administration/adminCompany/updateProblem', //   
+                'administration/problem/delete/<id:\d+>' => 'administration/adminCompany/deleteProblem',
                 'administration/feedback' => 'administration/adminCompany/feedback', //
                 'administration/feedback/delete/<id:\d+>' => 'administration/adminCompany/deleteFeeback', //                
                 'administration/category' => 'administration/adminCompany/category', //
