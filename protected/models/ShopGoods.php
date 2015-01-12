@@ -1,21 +1,26 @@
 <?php
 
 /**
- * This is the model class for table "shop_category".
+ * This is the model class for table "shop_goods".
  *
- * The followings are the available columns in table 'shop_category':
+ * The followings are the available columns in table 'shop_goods':
  * @property integer $id
- * @property string $name
- * @property integer $parent_id
+ * @property string $code
+ * @property integer $shop_category_id
+ * @property integer $warehouse_count
+ * @property integer $price
+ * @property integer $discount
+ * @property string $picture
+ * @property string $created
  */
-class ShopCategory extends CActiveRecord
+class ShopGoods extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'shop_category';
+		return 'shop_goods';
 	}
 
 	/**
@@ -26,12 +31,13 @@ class ShopCategory extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name', 'required'),
-			array('parent_id', 'numerical', 'integerOnly'=>true),
-			array('name', 'length', 'max'=>255),
+			array('code, shop_category_id, warehouse_count, price, created', 'required'),
+			array('shop_category_id, warehouse_count, price, discount', 'numerical', 'integerOnly'=>true),
+			array('code', 'length', 'max'=>100),
+			array('picture', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, parent_id', 'safe', 'on'=>'search'),
+			array('id, code, shop_category_id, warehouse_count, price, discount, picture, created', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -43,7 +49,8 @@ class ShopCategory extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-            'shopGoods' => array(self::HAS_MANY, 'ShopGoods', 'shop_category_id'),
+            'shopCategory' => array(self::BELONGS_TO, 'ShopCategory', 'shop_category_id'),
+            'shopGoodsProperties' => array(self::HAS_MANY, 'ShopGoodsProperties', 'shop_goods_id'),
 		);
 	}
 
@@ -54,8 +61,13 @@ class ShopCategory extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Name',
-			'parent_id' => 'Parent',
+			'code' => 'Code',
+			'shop_category_id' => 'Shop Category',
+			'warehouse_count' => 'Warehouse Count',
+			'price' => 'Price',
+			'discount' => 'Discount',
+			'picture' => 'Picture',
+			'created' => 'Created',
 		);
 	}
 
@@ -78,37 +90,24 @@ class ShopCategory extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('name',$this->name,true);
-		$criteria->compare('parent_id',$this->parent_id);
+		$criteria->compare('code',$this->code,true);
+		$criteria->compare('shop_category_id',$this->shop_category_id);
+		$criteria->compare('warehouse_count',$this->warehouse_count);
+		$criteria->compare('price',$this->price);
+		$criteria->compare('discount',$this->discount);
+		$criteria->compare('picture',$this->picture,true);
+		$criteria->compare('created',$this->created,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
 	}
 
-
-
-    public function getCategories($id)
-    {
-       $categories = $this->model()->findAllByAttributes(array('parent_id'=>$id));
-       $new_categories = null;
-        if (count($categories))
-            {
-                foreach ($categories as $category) {
-                    $new_categories[$category->id] = array($category->name, $category->parent_id);
-                }
-                foreach ($new_categories as $id_category => $category) {
-                    $new_categories[$id_category]['child'] = $this->getCategories($id_category);
-                }
-            }
-        return $new_categories;
-    }
-
 	/**
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return ShopCategory the static model class
+	 * @return ShopGoods the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

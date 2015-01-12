@@ -6,13 +6,10 @@ class m150108_144602_create_shop_goods extends CDbMigration
 	{
         $this->createTable('shop_goods', array(
             'id' => 'pk',
-            'code' => 'string NOT NULL',
+            'name' => 'varchar(300) NOT NULL',
+            'code' => 'varchar(100) NOT NULL',
             'shop_category_id' => 'int NOT NULL',
             'warehouse_count' => 'int NOT NULL',
-//            'description' => 'text NULL',
-//            'delivery' => 'text NULL',
-//            'guarantee' => 'text NULL',
-//            'seller' => 'text NULL',
             'price' => 'int NOT NULL',
             'discount' => 'int NULL',
             'picture' => 'text NULL',

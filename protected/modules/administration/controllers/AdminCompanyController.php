@@ -1535,6 +1535,16 @@ class AdminCompanyController extends AdminController {
     }
 
 
+    /**
+     * SHOP
+     */
+    public function actionShopCategory() {
+        $categories = ShopCategory::model()->findAllByAttributes(array('parent_id'=>null));
+        $this->render('shopCategory', array('categories'=>$categories));
+    }
+
 }
+
+
 
 ?>

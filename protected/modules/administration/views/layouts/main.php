@@ -90,6 +90,22 @@
                         <li>
                             <a href="/administration/mainBlocks" <?php if (Yii::app()->controller->action->id=="mainBlocks") echo 'class="active"'; ?>>Блоки на главной странице</a>
                         </li>
+                        <li>
+                            <a href="#" data-toggle="collapse" data-target="#shop_admi" class="collapsed" aria-expanded="false">Магазин <i class="fa fa-fw fa-caret-down"></i></a>
+                           <?php if (Yii::app()->controller->action->id=="shopCategory")
+                               echo '<ul id="shop_admi" aria-expanded="false" >';
+                           else
+                               echo '<ul id="shop_admi" class="collapse" aria-expanded="false" style="height: 0px;">';
+                               ?>
+
+                                <li>
+                                    <a href="/administration/shopCategory" <?php if (Yii::app()->controller->action->id=="shopCategory") echo 'class="active"'; ?>>Категории</a>
+                                </li>
+                                <li>
+                                    <a href="#">Товары</a>
+                                </li>
+                            </ul>
+                        </li>
                         <li></br><span id="blockPosition"><b>Позиции сохранены</b></span></li>
                         <li></br><span id="blockError"><b>Данные не сохранились</b></span></li>
                         <li id="blockLoader"><img src="/images/loader.gif"></li>

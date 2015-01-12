@@ -73,7 +73,10 @@ return array(
                 'about' => 'pagesText/about', ///
                 'sitemap' => 'pagesText/sitemap', ///
                 'contacts' => 'pagesText/contacts', ///
-                'dealers' => 'pagesText/dealers', ///   
+                'dealers' => 'pagesText/dealers', ///
+//                'shop/<page:\d+>' => 'shop/index', ///
+                'shop' => 'shop/index', ///
+//              'shop?page=<page:\d+>' => 'shop/index', ///
                 'education' => '/education/index', ///
                 'education/category/<id:\d+>' => '/education/category', ///
                 'education/lesson/<cid:\d+>/<id:\d+>' => '/education/lessonList', ///
@@ -90,6 +93,8 @@ return array(
                 'administration/mainBlocks/posts/edit/<id:\d+>' => 'administration/adminCompany/editPostsMainBlocks', //
                 'administration/mainBlocks/posts/update/<id:\d+>' => 'administration/adminCompany/updatePostsMainBlocks', //
                 'administration/mainBlocks/posts/delete/<id:\d+>' => 'administration/adminCompany/deletePostsMainBlocks', //
+                'administration/shopCategory' => 'administration/adminCompany/shopCategory', //
+
                 'administration/home/edit' => 'administration/dashboard/editHome', //
                 'administration/homeproblem/add' => 'administration/dashboard/addProblem',
                 'administration/homeproblem/formadd' => 'administration/dashboard/problemFormAdd',

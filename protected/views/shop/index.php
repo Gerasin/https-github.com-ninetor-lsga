@@ -14,19 +14,11 @@
 <div class="">
 <ul class="breadcrumbs-bl" style="top: 20px;">
     <li>
-        <a class="breadcrumbs-link" href="#">Главная</a>
+        <a class="breadcrumbs-link" href="/">Главная</a>
     </li>
     <li>→</li>
     <li>
         <a class="breadcrumbs-link" href="#">Магазин</a>
-    </li>
-    <li>→</li>
-    <li>
-        <a class="breadcrumbs-link" href="#">Subaru</a>
-    </li>
-    <li>→</li>
-    <li>
-        Impreza WRX STI
     </li>
 </ul>
 <aside class="sidebar-main shop-filtr">
@@ -123,152 +115,57 @@
 
 <div class="content-main">
     <div class="shop">
-        <div class="tovar">
+
+        <?php
+
+        foreach ($goods as $one_goods) {
+            $image = ($one_goods->picture) ? 'images/tovars/'.$one_goods->picture : "images/tovars/no-photo";
+        echo '<div class="tovar">
             <a href="#" class="tovar-photo">
                         <span class="tovar-photo_wrapper">
-                            <img src="images/tovars/tovar-01.jpg" alt="">
+                            <img src='.$image.' alt="">
                         </span>
             </a>
-            <a href="#" class="tovar-name">Manzo Stainless Steel Catback Exhaust 02-07</a>
-            <p class="tovar-cost aright"><strong>15 000</strong> руб.</p>
+            <a href="#" class="tovar-name">'.$one_goods->name.'</a>
+            <p class="tovar-cost aright"><strong>'.$one_goods->price.'</strong> руб.</p>
             <p class="aright tovar_action">
                 <button class="favorite js-toggle-active pull-left"></button>
                 <button class="lock-link">Добавить в корзину</button>
                 <span class="hidden">В корзине.</span>
                 <a href="#" class="hidden underline">Оформить</a>
             </p>
-        </div><!--
-                --><div class="tovar active">
-            <a href="#" class="tovar-photo">
-                        <span class="tovar-photo_wrapper">
-                            <img src="images/tovars/tovar-02.jpg" alt="">
-                        </span>
-            </a>
-            <a href="#" class="tovar-name">Muffler turbo Back / Catback + UP + Down</a>
-            <p class="tovar-cost aright"><strong>23 300</strong> руб.</p>
-            <p class="aright tovar_action">
-                <button class="favorite js-toggle-active pull-left active"></button>
-                <button class="lock-link hidden">Добавить в корзину</button>
-                <span>В корзине.</span>
-                <a href="#" class="underline">Оформить</a>
-            </p>
-        </div><!--
-                --><div class="tovar">
-            <a href="#" class="tovar-photo">
-                        <span class="tovar-photo_wrapper">
-                            <img src="images/tovars/tovar-03.jpg" alt="">
-                        </span>
-            </a>
-            <a href="#" class="tovar-name">Subaru Impreza STI Special edition 17" SET</a>
-            <p class="tovar-cost aright"><strong>31 000</strong> руб.</p>
-            <p class="aright tovar_action">
-                <button class="favorite js-toggle-active pull-left"></button>
-                <button class="lock-link">Добавить в корзину</button>
-                <span class="hidden">В корзине.</span>
-                <a href="#" class="hidden underline">Оформить</a>
-            </p>
-        </div><!--
-                --><div class="tovar">
-            <a href="#" class="tovar-photo">
-                        <span class="tovar-photo_wrapper">
-                            <img src="images/tovars/no-photo.png" alt="">
-                        </span>
-            </a>
-            <a href="#" class="tovar-name">Manzo Stainless Steel Catback Exhaust 02-07</a>
-            <p class="tovar-cost aright"><strong>15 000</strong> руб.</p>
-            <p class="aright tovar_action">
-                <button class="favorite js-toggle-active pull-left"></button>
-                <button class="lock-link">Добавить в корзину</button>
-                <span class="hidden">В корзине.</span>
-                <a href="#" class="hidden underline">Оформить</a>
-            </p>
-        </div><!--
-                --><div class="tovar">
-            <a href="#" class="tovar-photo">
-                        <span class="tovar-photo_wrapper">
-                            <img src="images/tovars/tovar-01.jpg" alt="">
-                        </span>
-            </a>
-            <a href="#" class="tovar-name">Manzo Stainless Steel Catback Exhaust 02-07</a>
-            <p class="tovar-cost aright"><strong>15 000</strong> руб.</p>
-            <p class="aright tovar_action">
-                <button class="favorite js-toggle-active pull-left"></button>
-                <button class="lock-link">Добавить в корзину</button>
-                <span class="hidden">В корзине.</span>
-                <a href="#" class="hidden underline">Оформить</a>
-            </p>
-        </div><!--
-                --><div class="tovar">
-            <a href="#" class="tovar-photo">
-                        <span class="tovar-photo_wrapper">
-                            <img src="images/tovars/tovar-01.jpg" alt="">
-                        </span>
-            </a>
-            <a href="#" class="tovar-name">Manzo Stainless Steel Catback Exhaust 02-07</a>
-            <p class="tovar-cost aright"><strong>15 000</strong> руб.</p>
-            <p class="aright tovar_action">
-                <button class="favorite js-toggle-active pull-left"></button>
-                <button class="lock-link">Добавить в корзину</button>
-                <span class="hidden">В корзине.</span>
-                <a href="#" class="hidden underline">Оформить</a>
-            </p>
-        </div><!--
-                --><div class="tovar">
-            <a href="#" class="tovar-photo">
-                        <span class="tovar-photo_wrapper">
-                            <img src="images/tovars/no-photo.png" alt="">
-                        </span>
-            </a>
-            <a href="#" class="tovar-name">Manzo Stainless Steel Catback Exhaust 02-07</a>
-            <p class="tovar-cost aright"><strong>15 000</strong> руб.</p>
-            <p class="aright tovar_action">
-                <button class="favorite js-toggle-active pull-left"></button>
-                <button class="lock-link">Добавить в корзину</button>
-                <span class="hidden">В корзине.</span>
-                <a href="#" class="hidden underline">Оформить</a>
-            </p>
-        </div><!--
-                --><div class="tovar">
-            <a href="#" class="tovar-photo">
-                        <span class="tovar-photo_wrapper">
-                            <img src="images/tovars/tovar-01.jpg" alt="">
-                        </span>
-            </a>
-            <a href="#" class="tovar-name">Manzo Stainless Steel Catback Exhaust 02-07</a>
-            <p class="tovar-cost aright"><strong>15 000</strong> руб.</p>
-            <p class="aright tovar_action">
-                <button class="favorite js-toggle-active pull-left"></button>
-                <button class="lock-link">Добавить в корзину</button>
-                <span class="hidden">В корзине.</span>
-                <a href="#" class="hidden underline">Оформить</a>
-            </p>
-        </div><!--
-                --><div class="tovar">
-            <a href="#" class="tovar-photo">
-                        <span class="tovar-photo_wrapper">
-                            <img src="images/tovars/tovar-01.jpg" alt="">
-                        </span>
-            </a>
-            <a href="#" class="tovar-name">Manzo Stainless Steel Catback Exhaust 02-07</a>
-            <p class="tovar-cost aright"><strong>15 000</strong> руб.</p>
-            <p class="aright tovar_action">
-                <button class="favorite js-toggle-active pull-left"></button>
-                <button class="lock-link">Добавить в корзину</button>
-                <span class="hidden">В корзине.</span>
-                <a href="#" class="hidden underline">Оформить</a>
-            </p>
-        </div>
+        </div>';
+
+        }
+?>
+
+
+<!--        <div class="tovar active">-->
+<!--            <a href="#" class="tovar-photo">-->
+<!--                        <span class="tovar-photo_wrapper">-->
+<!--                            <img src="images/tovars/tovar-02.jpg" alt="">-->
+<!--                        </span>-->
+<!--            </a>-->
+<!--            <a href="#" class="tovar-name">Muffler turbo Back / Catback + UP + Down</a>-->
+<!--            <p class="tovar-cost aright"><strong>23 300</strong> руб.</p>-->
+<!--            <p class="aright tovar_action">-->
+<!--                <button class="favorite js-toggle-active pull-left active"></button>-->
+<!--                <button class="lock-link hidden">Добавить в корзину</button>-->
+<!--                <span>В корзине.</span>-->
+<!--                <a href="#" class="underline">Оформить</a>-->
+<!--            </p>-->
+<!--        </div> -->
+
     </div>
 
-    <div class="pagination">
-        <a href="#" class="pagination_edge">Назад</a>
-        <a href="#" class="pagination_point">1</a>
-        <a href="#" class="pagination_point active"><span>2</span></a>
-        <a href="#" class="pagination_point">3</a>
-        <a href="#" class="pagination_point">4</a>
-        <a href="#" class="pagination_point">5</a>
-        <a href="#" class="pagination_edge">Вперед</a>
-    </div>
+    <?php $this->widget('CLinkPager', array(
+        'pages' => $pages,
+        'header' => '',
+        'prevPageLabel'=>'Назад',
+        'nextPageLabel'=>'Вперед',
+        'cssFile' => '/css/pager.css',
+    ))?>
+
 </div>
 
 </div> <!-- end content -->

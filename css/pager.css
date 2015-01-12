@@ -1,0 +1,114 @@
+ul.yiiPager
+{
+    text-align: center;
+    margin: 60px 0 25px;
+}
+
+ul.yiiPager li
+{
+    display:inline;
+}
+
+ul.yiiPager a:link,
+ul.yiiPager a:visited
+{
+    color: #ff7f0a;
+    display: inline-block;
+    font-size: 17px;
+    line-height: 22px;
+    text-decoration: none;
+    vertical-align: middle;
+}
+
+ul.yiiPager .first,
+ul.yiiPager .last
+{
+    color: #ff7f0a;
+    margin: 0 25px;
+    border-bottom: 1px solid transparent;
+    -webkit-transition: border 0.2s linear;
+    -o-transition: border 0.2s linear;
+    transition: border 0.2s linear;
+}
+
+ul.yiiPager:hover,
+ul.yiiPager:hover
+{
+    border-bottom-color: #ff7f0a;
+}
+
+ul.yiiPager .page a
+{
+    color: #fff;
+    margin: 0 10px;
+    -webkit-transition: color 0.2s linear;
+    -o-transition: color 0.2s linear;
+    transition: color 0.2s linear;
+    text-align: center;
+    min-width: 20px;
+}
+ul.yiiPager .page a:hover
+{
+    color: #ff7f0a;
+}
+
+ul.yiiPager .selected a:hover
+{
+    color: #fff;
+}
+
+ul.yiiPager .selected a
+{
+    color: #fff;
+    font-weight: bold;
+    padding: 6px 9px;
+    margin: 0 9px;
+    position: relative;
+}
+ul.yiiPager .selected a:before
+{
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #ff7f0a;
+    -webkit-transform: skew(-28deg, 0);
+    -ms-transform: skewX(-28deg) skewY(0);
+    -o-transform: skew(-28deg, 0);
+    transform: skew(-28deg, 0);
+    z-index: -1;
+    color: black;
+}
+
+ul.yiiPager .hidden a
+{
+    border:solid 1px #DEDEDE;
+    color:#888888;
+}
+
+/**
+ * Hide first and last buttons by default.
+ */
+ul.yiiPager .first,
+ul.yiiPager .last
+{
+    display:none;
+}
+
+ul.yiiPager .next,
+ul.yiiPager .prev
+{
+    color: #ff7f0a;
+    margin: 0 25px;
+    border-bottom: 1px solid transparent;
+    -webkit-transition: border 0.2s linear;
+    -o-transition: border 0.2s linear;
+    transition: border 0.2s linear;
+}
+ul.yiiPager .next:hover,
+ul.yiiPager .prev:hover
+{
+    border-bottom-color: #ff7f0a;
+}

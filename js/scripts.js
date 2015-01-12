@@ -89,21 +89,21 @@ $(document).ready(function () {
     })
 
     // попап авторизации
-    $('.js-show-enter').on('click', function(e){
-        $('.popup-bg').fadeIn(200, function(){
-            $('.popup-container').fadeIn();
-        });
-
-        e.preventDefault();
-    });
-
-    $('.js-close-popup').on('click', function(e){
-        $('.popup-container').fadeOut(200, function(){
-            $('.popup-bg').fadeOut();
-        });
-
-        e.preventDefault();
-    })
+    //$('.js-show-enter').on('click', function(e){
+    //    $('.popup-bg').fadeIn(200, function(){
+    //        $('.popup-container').fadeIn();
+    //    });
+    //
+    //    e.preventDefault();
+    //});
+    //
+    //$('.js-close-popup').on('click', function(e){
+    //    $('.popup-container').fadeOut(200, function(){
+    //        $('.popup-bg').fadeOut();
+    //    });
+    //
+    //    e.preventDefault();
+    //})
 
     // кроссбраузерный чекбокс
     $('.check-simple').on('click', function(e){
