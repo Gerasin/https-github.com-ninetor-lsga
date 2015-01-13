@@ -92,7 +92,7 @@
                         </li>
                         <li>
                             <a href="#" data-toggle="collapse" data-target="#shop_admi" class="collapsed" aria-expanded="false">Магазин <i class="fa fa-fw fa-caret-down"></i></a>
-                           <?php if (Yii::app()->controller->action->id=="shopCategory")
+                           <?php if (Yii::app()->controller->action->id=="shopCategory" || Yii::app()->controller->action->id=="shopGoods")
                                echo '<ul id="shop_admi" aria-expanded="false" >';
                            else
                                echo '<ul id="shop_admi" class="collapse" aria-expanded="false" style="height: 0px;">';
@@ -102,7 +102,7 @@
                                     <a href="/administration/shopCategory" <?php if (Yii::app()->controller->action->id=="shopCategory") echo 'class="active"'; ?>>Категории</a>
                                 </li>
                                 <li>
-                                    <a href="#">Товары</a>
+                                    <a href="/administration/shopGoods" <?php if (Yii::app()->controller->action->id=="shopGoods") echo 'class="active"'; ?>>Товары</a>
                                 </li>
                             </ul>
                         </li>

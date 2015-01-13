@@ -76,6 +76,7 @@ return array(
                 'dealers' => 'pagesText/dealers', ///
 //                'shop/<page:\d+>' => 'shop/index', ///
                 'shop' => 'shop/index', ///
+                'shop/goods/<id:d+>' => 'shop/goods', ///
 //              'shop?page=<page:\d+>' => 'shop/index', ///
                 'education' => '/education/index', ///
                 'education/category/<id:\d+>' => '/education/category', ///
@@ -167,7 +168,10 @@ return array(
                 'administration/shopCategory/add/<id:\d+>' => 'administration/adminShop/shopCategoryAdd', //
                 'administration/shopCategory/edit/<id:\d+>' => 'administration/adminShop/shopCategoryEdit', //
                 'administration/shopCategory/delete/<id:\d+>' => 'administration/adminShop/shopCategoryDelete', //
-
+                'administration/shopGoods' => 'administration/adminShop/shopGoods', //
+                'administration/shopGoods/add' => 'administration/adminShop/shopGoodsAdd', //
+                'administration/shopGoods/edit/<id:\d+>' => 'administration/adminShop/shopGoodsEdit', //
+                'administration/shopGoods/delete/<id:\d+>' => 'administration/adminShop/shopGoodsDelete', //
 
 
 

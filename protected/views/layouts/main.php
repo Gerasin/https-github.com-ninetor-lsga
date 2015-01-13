@@ -20,8 +20,8 @@
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,400italic,500,500italic,700,700italic,300,300italic,900italic&subset=cyrillic' rel='stylesheet' type='text/css'>
 
         <!-- Подключаем файлы стилей -->
-        <link rel="stylesheet" type="text/css" href="css/reset.css" />
-        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="/css/reset.css" />
+        <link rel="stylesheet" type="text/css" href="/css/style.css" />
 
         <!-- Скрипты -->
         <script type="text/javascript" src="/js/modernizr.custom.js"></script> <!-- Определение возможностей браузера -->

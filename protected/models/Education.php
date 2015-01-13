@@ -101,46 +101,4 @@ class Education extends CActiveRecord {
     public static function model($className = __CLASS__) {
         return parent::model($className);
     }
-
-    public function imageFormValidate($param) {
-        $error = false;
-        if (!empty($param['error'])) {
-            switch ($param['error']) {
-
-                case '1':
-                    $error = 'размер загруженного файла превышает размер установленный параметром upload_max_filesize  в php.ini ';
-                    break;
-                case '2':
-                    $error = 'размер загруженного файла превышает размер установленный параметром MAX_FILE_SIZE в HTML форме. ';
-                    break;
-                case '3':
-                    $error = 'загружена только часть файла ';
-                    break;
-                case '4':
-                    $error = 'файл не был загружен (Пользователь в форме указал неверный путь к файлу). ';
-                    break;
-                case '6':
-                    $error = 'неверная временная дирректория';
-                    break;
-                case '7':
-                    $error = 'ошибка записи файла на диск';
-                    break;
-                case '8':
-                    $error = 'загрузка файла прервана';
-                    break;
-                case '999':
-                default:
-                    $error = 'No error code avaiable';
-            }
-        } elseif (empty($param['tmp_name']) || $param['tmp_name'] == 'none') {
-            $error = 'No file was uploaded..';
-        } else {           
-            $allowedTypes = array('image/gif', 'image/png', 'image/jpg', 'image/jpeg');
-            if (!in_array($param['type'], $allowedTypes)) {
-                 $error = "Формат файла должен быть JPG, PNG или GIF";
-            }        
-        }
-        return $error;
-    }
-
 }

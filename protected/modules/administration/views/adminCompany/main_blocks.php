@@ -89,7 +89,7 @@
                                 ?>
                                 <tr id="<?= $item->id; ?>" <?php if (count($item->mainPosts) != $count_posts) echo'style="background-color: #ac2925"'; ?> >
                                     <td style="width: 500px;">
-                                    <?= $item->type ?> - <img src="/images/main_blocks/<?= $item->type?>.png" style="max-width: 450px; max-height: 100px;">
+                                    <?= $item->type ?> - <img src="/images/main_blocks/<?= $item->type?>" style="max-width: 450px; max-height: 100px;">
                                     </td>
                                     <td>
                                         <?= $item->position ?>

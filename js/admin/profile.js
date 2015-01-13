@@ -1078,3 +1078,97 @@ function formshopcategoryadd(parent_id) {
         }
     });
 }
+
+
+
+function formgoodsaddsubmit() {
+    $('#blockLoader').show();
+    $('.input-simple').removeClass('input-error');
+    $('.error-edit-user').attr('style', 'display:none');
+    var form = document.forms.form_goods_add;
+    var formData = new FormData(form);
+    //
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/administration/adminShop/ShopGoodsAddNew");
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4) {
+            if (xhr.status == 200) {
+                data = JSON.parse(xhr.responseText);
+                if (data.success == '1') {
+                    $('.success-edit-user').attr('style', 'display:block');
+                    setTimeout(function() {
+                        location.href = "/administration/shopGoods/";
+                    }, 1000);
+                } else {
+                    $('#blockLoader').hide();
+                    var errors = [];
+                    errors = data.error[0];
+                    var form1 = $('#form_goods_add');
+                    form1.find('.list-group-item').each(function() {
+                        var input_element = $(this).find('input,textarea,select');
+                        var input = input_element[0]['id'];
+                        if (errors[input] > '') {
+                            input_element.addClass('input-error');
+                            $('.error-edit-user').attr('style', 'display:block');
+                        }
+                    });
+                    if (data.error[1]) {
+                        $('#fileToUploadmain').addClass('input-error');
+                        $('.error-edit-user').attr('style', 'display:block');
+                        $('.error-edit-user').text(data.error[1]);
+                    }
+                }
+
+            }
+        }
+    };
+
+    xhr.send(formData);
+}
+
+function formgoodseditsubmit() {
+    $('#blockLoader').show();
+    $('.input-simple').removeClass('input-error');
+    $('.error-edit-user').attr('style', 'display:none');
+    var form = document.forms.form_goods_edit;
+    var formData = new FormData(form);
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/administration/adminShop/ShopGoodsUpdate");
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4) {
+            if (xhr.status == 200) {
+                data = JSON.parse(xhr.responseText);
+                if (data.success == '1') {
+                    $('.success-edit-user').attr('style', 'display:block');
+                    setTimeout(function() {
+                        location.href = "/administration/shopGoods/";
+                    }, 1000);
+                } else {
+                    $('#blockLoader').hide();
+                    var errors = [];
+                    errors = data.error[0];
+                    var form1 = $('#form_goods_add');
+                    form1.find('.list-group-item').each(function() {
+                        var input_element = $(this).find('input,textarea,select');
+                        var input = input_element[0]['id'];
+                        if (errors[input] > '') {
+                            input_element.addClass('input-error');
+                            $('.error-edit-user').attr('style', 'display:block');
+                        }
+                    });
+                    if (data.error[1]) {
+                        $('#fileToUploadmain').addClass('input-error');
+                        $('.error-edit-user').attr('style', 'display:block');
+                        $('.error-edit-user').text(data.error[1]);
+                    }
+                }
+
+            }
+        }
+    };
+
+    xhr.send(formData);
+}

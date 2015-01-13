@@ -18,7 +18,7 @@
     </li>
     <li>→</li>
     <li>
-        <a class="breadcrumbs-link" href="#">Магазин</a>
+       Магазин
     </li>
 </ul>
 <aside class="sidebar-main shop-filtr">
@@ -119,9 +119,9 @@
         <?php
 
         foreach ($goods as $one_goods) {
-            $image = ($one_goods->picture) ? 'images/tovars/'.$one_goods->picture : "images/tovars/no-photo";
+            $image = ($one_goods->picture) ? '/upload/images/tovars/'.$one_goods->picture : "/images/tovars/no-photo";
         echo '<div class="tovar">
-            <a href="#" class="tovar-photo">
+            <a href="/shop/goods/'.$one_goods->id.'" class="tovar-photo">
                         <span class="tovar-photo_wrapper">
                             <img src='.$image.' alt="">
                         </span>
