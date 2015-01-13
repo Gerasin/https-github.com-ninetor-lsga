@@ -4,7 +4,7 @@ function password_recovery() {
         dataType: 'json',
         type: 'POST',
         url: '/user/userPasswordRecovery',
-        success: function (data) {
+        success: function(data) {
             if (data.success == 1) {
                 $('.popup-title').html('На указанную вами электронную почту отправлен новый парoль.');
                 $('#form_password_recovery').remove();
@@ -26,7 +26,7 @@ function send_login_form() {
         dataType: 'json',
         type: 'POST',
         url: '/user/loginForm',
-        success: function (data) {
+        success: function(data) {
             if (data.success == 1) {
                 location.reload();
             }
@@ -35,7 +35,7 @@ function send_login_form() {
                 var form = $('#form-login');
                 var errors = [];
                 errors = data.error;
-                form.find('.form-register-row').each(function () {
+                form.find('.form-register-row').each(function() {
                     var input_element = $(this).find('input'),
                             input = input_element.attr('name');
 
@@ -67,17 +67,18 @@ function formRegisterSubmit() {
         dataType: 'json',
         type: 'POST',
         url: 'user/RegistrationUser',
-        success: function (data) {
+        success: function(data) {
             if (data.success == 1) {
                 location.href = '/settings';
             }
             else {
+                $('#verify').val('');
                 var peremscroll = $('.header-content-title').offset().top;
                 $('body').animate({scrollTop: peremscroll}, 1100);
                 $('.form-captcha-img').html(data.captcha);
                 var errors = [];
                 errors = data.error;
-                form.find('.form-register-row').each(function () {
+                form.find('.form-register-row').each(function() {
                     var input_element = $(this).find('input,textarea'),
                             input = input_element.attr('name');
 
@@ -110,7 +111,7 @@ function nick_register(name) {
         dataType: 'json',
         type: 'POST',
         url: 'user/RegistrationNick',
-        success: function (data) {
+        success: function(data) {
             $('#ajax_loader_nick').attr('style',
                     'display:none');
             if (data.success == 1) {

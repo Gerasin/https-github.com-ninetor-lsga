@@ -1,5 +1,5 @@
 <?php
-    $this->pageTitle = $education->name;
+$this->pageTitle = $education->name;
 ?>
 <ul class="breadcrumbs-bl">
     <li>
@@ -28,21 +28,21 @@
 
         <table class="school-progress_table">
             <thead>
-                        <tr>
-                            <th>Уровень:</th>
-                            <th>Предмет усвоен на:</th>
-                            <th class="acenter">Статус завершенности:</th>
-                        </tr>
-                        <tr class="legend-row">
-                            <td></td>
-                            <td>
-                                <div class="bar">
-                                    <i class="bar-75"><span class="legend">75%</span></i>
-                                    <i class="bar-100"><span class="legend">100%</span></i>
-                                </div>
-                            </td>
-                            <td></td>
-                        </tr>
+                <tr>
+                    <th>Уровень:</th>
+                    <th>Предмет усвоен на:</th>
+                    <th class="acenter">Статус завершенности:</th>
+                </tr>
+                <tr class="legend-row">
+                    <td></td>
+                    <td>
+                        <div class="bar">
+                            <i class="bar-75"><span class="legend">75%</span></i>
+                            <i class="bar-100"><span class="legend">100%</span></i>
+                        </div>
+                    </td>
+                    <td></td>
+                </tr>
             </thead>
             <tbody>  
                 <?php foreach ($classroom as $value):
@@ -64,8 +64,7 @@
                             <?php elseif ($value['status'] == 3): ?>
                                 <span class="pseudo-button green-contrast"><span>Завершено</span></span>
                             <?php elseif ($value['status'] == 4): ?>
-                                <a href="#" onclick="startLessonUser(<?= $value['id'] ?>);
-                                        return false;" class="button"><span>Начать изучение</span></a>
+                                <a href="#" onclick="startLessonUser( < ? = $value['id'] ? > ); return false;" class="button"><span>Начать изучение</span></a>
                                <?php else: ?>
                                 <span class="pseudo-button dark-gray"><span>Закончите <?php echo $value['prev_name'] ?></span></span>
                             <?php endif; ?>                                                    
@@ -85,13 +84,11 @@
         <div class="about-free">
             <p>Данная школа бесплатна, но Вы можете</p>
             <p>
-                <?php if ($count): ?>
-                    <span id="thankyou" class="thankyou"><?= $count ?></span>
-                <?php else: ?>
-                    <span id="thankyou"><a href="#" class="popup-open" data-key="thanks-to" onclick="thankyouUser();">Сказать нам СПАСИБО!</a></span>
-                <?php endif; ?>
-                или 
-                <a href="#" class="popup-open" data-key="write-us">Напишите нам свои мысли по поводу школы</a>
+                поддержать нас лайкнув её в 
+                
+            <div class="pluso" data-background="none;" data-options="small,square,line,horizontal,nocounter,sepcounter=1,theme=14" data-services="vkontakte,odnoklassniki,facebook,twitter,google,email"></div>
+            , так-же нам будет очень интересно услышать
+            <a href="#" class="popup-open" data-key="write-us">Ваше мнение</a> по поводу школы.
             </p>
             <p>Это даст нам возможность продолжать добавлять в школу новый интересный функционал</p>
         </div>
@@ -110,7 +107,8 @@
                 <span class="error-text" id="error-text"></span>
             </fieldset>
             <fieldset class="aright">
-                <button type="submit" class="btn-simple popup-form-submit" onclick="feedbackUserForm(); return false;"><span>Отправить</span></button>
+                <button type="submit" class="btn-simple popup-form-submit" onclick="feedbackUserForm();
+                                return false;"><span>Отправить</span></button>
             </fieldset>
         </form>
     </article>
