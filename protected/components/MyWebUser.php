@@ -7,15 +7,10 @@
 class MyWebUser extends CWebUser
 {
 
-    public function __construct()
-    {
-        
-    }
-
     private $_model = null;
 
     public function getUserLogout()
-    {        
+    {
         if (Yii::app()->user->logoutDeleteUser()) {
             Yii::app()->user->logout();
             return true;
