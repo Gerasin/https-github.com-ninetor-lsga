@@ -55,60 +55,61 @@
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav side-nav">
                         <li>
-                            <a href="/administration/pagesText" <?php if (Yii::app()->controller->action->id=="pagesText") echo 'class="active"'; ?>>Текстовые страницы</a>
+                            <a href="/administration/pagesText" <?php if (Yii::app()->controller->action->id == "pagesText") echo 'class="active"'; ?>>Текстовые страницы</a>
                         </li>
                         <li>
-                            <a href="/administration/menu/category" <?php if (Yii::app()->controller->action->id=="menuCategory") echo 'class="active"'; ?>>Меню</a>
+                            <a href="/administration/menu/category" <?php if (Yii::app()->controller->action->id == "menuCategory") echo 'class="active"'; ?>>Меню</a>
                         </li>
                         <li>
-                            <a href="/administration/" <?php if (Yii::app()->controller->action->id=="index") echo 'class="active"'; ?>>Опросы</a>
+                            <a href="/administration/" <?php if (Yii::app()->controller->action->id == "index") echo 'class="active"'; ?>>Опросы</a>
                         </li>
                         <li>
-                            <a href="/administration/users" <?php if (Yii::app()->controller->action->id=="users") echo 'class="active"'; ?>>Пользователи</a>
+                            <a href="/administration/users" <?php if (Yii::app()->controller->action->id == "users") echo 'class="active"'; ?>>Пользователи</a>
                         </li>
                         <li>
-                            <a href="/administration/education" <?php if (Yii::app()->controller->action->id=="education") echo 'class="active"'; ?>>Школа(образование)</a>
+                            <a href="/administration/education" <?php if (Yii::app()->controller->action->id == "education") echo 'class="active"'; ?>>Школа(образование)</a>
                         </li>
                         <li>
-                            <a href="/administration/classroom" <?php if (Yii::app()->controller->action->id=="classroom") echo 'class="active"'; ?>>Классы/Экзамены</a>
+                            <a href="/administration/classroom" <?php if (Yii::app()->controller->action->id == "classroom") echo 'class="active"'; ?>>Классы/Экзамены</a>
                         </li>
                         <li>
-                            <a href="/administration/lesson" <?php if (Yii::app()->controller->action->id=="lesson") echo 'class="active"'; ?>>Уроки</a>
+                            <a href="/administration/lesson" <?php if (Yii::app()->controller->action->id == "lesson") echo 'class="active"'; ?>>Уроки</a>
                         </li>
                         <li>
-                            <a href="/administration/feedback" <?php if (Yii::app()->controller->action->id=="feedback") echo 'class="active"'; ?>>Обратная связь</a>
+                            <a href="/administration/feedback" <?php if (Yii::app()->controller->action->id == "feedback") echo 'class="active"'; ?>>Обратная связь</a>
                         </li>
                         <li>
-                            <a href="/administration/category" <?php if (Yii::app()->controller->action->id=="category") echo 'class="active"'; ?>>Категории</a>
+                            <a href="/administration/category" <?php if (Yii::app()->controller->action->id == "category") echo 'class="active"'; ?>>Категории</a>
                         </li>
                         <li>
-                            <a href="/administration/pages" <?php if (Yii::app()->controller->action->id=="pages") echo 'class="active"'; ?>>Страницы категории</a>
+                            <a href="/administration/pages" <?php if (Yii::app()->controller->action->id == "pages") echo 'class="active"'; ?>>Страницы категории</a>
                         </li>
                         <li>
-                            <a href="/administration/settings" <?php if (Yii::app()->controller->action->id=="editSettings") echo 'class="active"'; ?>>Настройки</a>
+                            <a href="/administration/settings" <?php if (Yii::app()->controller->action->id == "editSettings") echo 'class="active"'; ?>>Настройки</a>
                         </li>
                         <li>
-                            <a href="/administration/mainBlocks" <?php if (Yii::app()->controller->action->id=="mainBlocks") echo 'class="active"'; ?>>Блоки на главной странице</a>
+                            <a href="/administration/mainBlocks" <?php if (Yii::app()->controller->action->id == "mainBlocks") echo 'class="active"'; ?>>Блоки на главной странице</a>
                         </li>
                         <li>
                             <a href="#" data-toggle="collapse" data-target="#shop_admi" class="collapsed" aria-expanded="false">Магазин <i class="fa fa-fw fa-caret-down"></i></a>
-                           <?php if (Yii::app()->controller->action->id=="shopCategory")
-                               echo '<ul id="shop_admi" aria-expanded="false" >';
-                           else
-                               echo '<ul id="shop_admi" class="collapse" aria-expanded="false" style="height: 0px;">';
-                               ?>
+                            <?php
+                            if (Yii::app()->controller->action->id == "shopCategory")
+                                echo '<ul id="shop_admi" aria-expanded="false" >';
+                            else
+                                echo '<ul id="shop_admi" class="collapse" aria-expanded="false" style="height: 0px;">';
+                            ?>
 
-                                <li>
-                                    <a href="/administration/shopCategory" <?php if (Yii::app()->controller->action->id=="shopCategory") echo 'class="active"'; ?>>Категории</a>
-                                </li>
-                                <li>
-                                    <a href="#">Товары</a>
-                                </li>
-                            </ul>
+                        <li>
+                            <a href="/administration/shopCategory" <?php if (Yii::app()->controller->action->id == "shopCategory") echo 'class="active"'; ?>>Категории</a>
                         </li>
-                        <li></br><span id="blockPosition"><b>Позиции сохранены</b></span></li>
-                        <li></br><span id="blockError"><b>Данные не сохранились</b></span></li>
-                        <li id="blockLoader"><img src="/images/loader.gif"></li>
+                        <li>
+                            <a href="#">Товары</a>
+                        </li>
+                    </ul>
+                    </li>
+                    <li></br><span id="blockPosition"><b>Позиции сохранены</b></span></li>
+                    <li></br><span id="blockError"><b>Данные не сохранились</b></span></li>
+                    <li id="blockLoader"><img src="/images/loader.gif"></li>
                     </ul>
 
                 </div>

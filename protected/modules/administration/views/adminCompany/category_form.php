@@ -22,23 +22,23 @@
                             <option value="1" <?php if ($category->active == 1): ?>selected="selected"<?php endif; ?>>Ативен</option>
                             <option value="0" <?php if ($category->active != 1): ?>selected="selected"<?php endif; ?>>Не активен</option>                            
                         </select>
-                        
-                    <b>
-                        <li class="list-group-item">Дата создания: 
-                            <?php if (isset($category->created)): ?>
-                                <?= Yii::app()->dateFormatter->format('d MMMM yyyy', $category->created); ?>
-                            <?php else: ?>
-                                <?= date('Y-m-d', time()) ?>
-                            <?php endif; ?>
-                        </li> 
-                    </b>
-                    <div class="error-edit-user">Заполните корректно выделеные поля.</div>
-                    <div class="success-edit-user">Данные сохранены</div>  
-                    <?php if (isset($edit) && $edit == 1): ?>
-                        <button type="submit" class="form-personal-submit" onclick="formcategoryeditsubmit(<?php echo $category->id ?>)"  id="form-user-edit-submit">Сохранить</button>
-                    <?php else: ?>
-                        <button type="submit" class="form-personal-submit" onclick="formcategoryeditsubmitadd()"  id="form-user-edit-submit">Создать</button>
-                    <?php endif; ?>
+
+                        <b>
+                            <li class="list-group-item">Дата создания: 
+                                <?php if (isset($category->created)): ?>
+                                    <?= Yii::app()->dateFormatter->format('d MMMM yyyy', $category->created); ?>
+                                <?php else: ?>
+                                    <?= date('Y-m-d', time()) ?>
+                                <?php endif; ?>
+                            </li> 
+                        </b>
+                        <div class="error-edit-user">Заполните корректно выделеные поля.</div>
+                        <div class="success-edit-user">Данные сохранены</div>  
+                        <?php if (isset($edit) && $edit == 1): ?>
+                            <button type="submit" class="form-personal-submit" onclick="formcategoryeditsubmit(<?php echo $category->id ?>)"  id="form-user-edit-submit">Сохранить</button>
+                        <?php else: ?>
+                            <button type="submit" class="form-personal-submit" onclick="formcategoryeditsubmitadd()"  id="form-user-edit-submit">Создать</button>
+                        <?php endif; ?>
                 </form>
             </div>
         </div>

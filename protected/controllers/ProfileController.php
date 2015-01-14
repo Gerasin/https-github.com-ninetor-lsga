@@ -5,11 +5,21 @@
  *
  * @author gnesenka
  */
-class ProfileController extends Controller {
+class ProfileController extends Controller
+{
 
     public $layout = '//layouts/inner';
 
-    public function actionProfileSettings() {
+    public function __construct($id, $module = null)
+    {
+        parent::__construct($id, $module);
+        if (Yii::app()->user->isGuest) {
+            $this->redirect('/registration');
+        }
+    }
+
+    public function actionProfileSettings()
+    {
         $id = (int) Yii::app()->user->id;
         $user = User::model()->findByPk($id);
 
@@ -21,7 +31,8 @@ class ProfileController extends Controller {
         $this->render('settings', array('user' => $user));
     }
 
-    public function actionProfileUpdate() {
+    public function actionProfileUpdate()
+    {
         $form = new UserUpdate();
         $form->attributes = Yii::app()->request->getPost('user');
 
@@ -44,7 +55,8 @@ class ProfileController extends Controller {
         }
     }
 
-    private function updateUser($form) { 
+    private function updateUser($form)
+    {
         $id = (int) Yii::app()->user->id;
         $user = User::model()->findByPk($id);
         $user->email = $form->email;
@@ -55,14 +67,14 @@ class ProfileController extends Controller {
         if (isset($form->password) && $form->password != NULL) {
             $user->password = crypt($form->password);
             // отправить письмо на почту с новый паролем
-            $mail = Yii::app()->mail_manager->sendNewPassword($form->password,  $form->email);
+            $mail = Yii::app()->mail_manager->sendNewPassword($form->password, $form->email);
         }
         $user->street = $form->street;
         $user->house = $form->house;
         $user->postcode = $form->postcode;
         $user->apartment = $form->apartment;
         //$user->bdate = strtotime($form->bdate);
-        $user->bdate = $form->bdate;       
+        $user->bdate = $form->bdate;
         $user->update();
 
         return $user;
@@ -71,7 +83,8 @@ class ProfileController extends Controller {
     /**
      * image
      */
-    public function actionProfileUpdateImg() {
+    public function actionProfileUpdateImg()
+    {
         $fileName = 'fileToUpload';
         $imageError = $this->addImageFormError($fileName);
         if ($imageError != false) {
@@ -93,7 +106,7 @@ class ProfileController extends Controller {
             }
             $user->update();
             header('Content-type: application/json');
-            echo json_encode(array('success' => 1, 'image'=>"background: url('/upload/images/users/".$nameImage."')  no-repeat;"));
+            echo json_encode(array('success' => 1, 'image' => "background: url('/upload/images/users/" . $nameImage . "')  no-repeat;"));
             Yii::app()->end();
         }
     }
@@ -106,7 +119,8 @@ class ProfileController extends Controller {
      * @param type $toDirectory
      * @return string
      */
-    private function addImageForm($fileName, $toWidth, $toHeight, $toDirectory, $nameImage) {
+    private function addImageForm($fileName, $toWidth, $toHeight, $toDirectory, $nameImage)
+    {
         if (!empty($_FILES[$fileName]['tmp_name'])) {
             //$nameImage = 'education' . time() . '.jpg';
             $ih = new CImageHandler();
@@ -124,7 +138,8 @@ class ProfileController extends Controller {
      * @param type $fileName
      * @return type
      */
-    private function addImageFormError($fileName) {
+    private function addImageFormError($fileName)
+    {
         if (!empty($_FILES[$fileName]['tmp_name'])) {
             return Education::model()->imageFormValidate($_FILES[$fileName]);
         }
