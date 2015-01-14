@@ -321,11 +321,11 @@ header.short {
   margin: 0;
   padding: 0;
   list-style: none;
-  float: left;
+  float: right;
   position: relative;
   z-index: 3;
-  overflow: hidden;
-  margin-left: 248px; }
+  overflow: hidden;  
+}
   .menu-main li {
     float: left; }
     .menu-main li:first-child .menu-main-link:before {
@@ -2583,7 +2583,7 @@ input[type="radio"]:checked + label::before {
       .category-block.active .category-block_body .category-block_description {
         color: #fff; }
   .category-block + .category-block {
-    margin-left: 20px; }
+    margin-left: 19px; }
 
 .fixed-block {
   position: fixed; }

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
 
     <head>
@@ -27,6 +27,7 @@
         <script type="text/javascript" src="/js/modernizr.custom.js"></script> <!-- Определение возможностей браузера -->
         <script type="text/javascript" src="/js/respond.js"></script>
         <script type="text/javascript" src="/js/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="/js/jquery.maskedinput.min.js"></script>
         <script type="text/javascript" src="/js/scripts.js"></script>
         <script type="text/javascript" src="/js/home.js"></script>
     </head>
@@ -34,6 +35,7 @@
 
     <body class="main-page">
         <header>
+            <?php Yii::app()->user->getUserLogout() ?> 
             <div class="popup-bg"></div>
             <div class="header-bg-line"></div>
 

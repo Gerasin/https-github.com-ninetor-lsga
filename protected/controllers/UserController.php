@@ -123,9 +123,6 @@ class UserController extends Controller {
         $user->name = $form->name;
         $user->email = $form->email;
         $user->phone = $form->phone;
-        //$user->title = $form->title;
-        //$user->country = $form->country;
-        //$user->city = $form->city;
         $user->role = $role;
         $user->password = crypt($form->password);
         $user->last_time = time();

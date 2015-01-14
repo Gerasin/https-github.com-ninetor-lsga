@@ -63,7 +63,7 @@ $this->pageTitle = "Личные данные";
 
             <div class="form-person-col">
                 <label class="form-person-label" for="person-phone">Телефон (с кодом города)</label>
-                <input class="input-simple" type="text" id="person-phone" name="user[phone]" value="<?php echo $user->phone ?>" />
+                <input class="input-simple" type="text" id="phone-register" name="user[phone]" value="<?php echo $user->phone ?>" placeholder="8(__)__-__-___"/>
                 <span class="error-text"></span>
             </div>
 

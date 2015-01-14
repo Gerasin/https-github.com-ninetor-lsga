@@ -19,10 +19,6 @@
             <span class="error-text"></span>
         </div>
 
-        
-
-        
-
         <div class="form-register-row">
             <label for="phone-register" class="form-register-label">Телефон (с кодом города)</label>
             <input class="input-simple form-register-input" id="phone-register" type="text" name="user[phone]" value="" placeholder="8(__)__-__-___" />  
@@ -62,7 +58,7 @@
                 <div class="form-captcha-img">
                    <?php $this->widget('CCaptcha', array('buttonLabel' => 'Обновить')); ?>                   
                 </div>
-                <input class="form-captcha-input input-simple" name="user[verifyCode]" type="text"/>
+                <input class="form-captcha-input input-simple" name="user[verifyCode]" id="verify" type="text"/>
                 <span class="error-text" id="error-text-captcha"></span>
 
             </div> <!-- end of form-captcha -->

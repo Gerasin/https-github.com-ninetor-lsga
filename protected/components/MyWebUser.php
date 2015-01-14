@@ -9,6 +9,14 @@ class MyWebUser extends CWebUser
 
     private $_model = null;
 
+    public function getUserLogout()
+    {
+        if (Yii::app()->user->logoutDeleteUser()) {
+            Yii::app()->user->logout();
+            return true;
+        }
+    }
+
     public function getUserObj()
     {
         return $this->getState('__user_obj');

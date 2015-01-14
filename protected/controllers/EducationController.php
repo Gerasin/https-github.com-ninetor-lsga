@@ -50,14 +50,8 @@ class EducationController extends Controller {
             $count++;
         }
         $procent = $procent / count($classroom);
-        $user = Thankyou::model()->findAllByAttributes(array('id_user' => $id_user));
-        if (count($user) > 0 || !isset($user)) {
-            $count = Thankyou::model()->findAll();
-            $count = 'Cказали спасибо ' . count($count) . ' человек';
-        } else {
-            $count = false;
-        }
-        $this->render('category', array('classroom' => $mas, 'education' => $education, 'procent' => $procent, 'count' => $count));
+        
+        $this->render('category', array('classroom' => $mas, 'education' => $education, 'procent' => $procent));
     }
 
     /**

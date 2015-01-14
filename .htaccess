@@ -4,7 +4,7 @@
 #AuthName "Private zone. Only for administrator!"
 #AuthUserFile  /var/www/nsuser/data/www/lsga.nineseven.ru/.htpasswd
 #require valid-user
-
+php_flag apc.cache_by_default Off
 AddDefaultCharset UTF-8
 # Turn on URL rewriting
 RewriteEngine On
