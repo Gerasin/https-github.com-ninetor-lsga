@@ -172,8 +172,9 @@ return array(
                 'administration/shopGoods/add' => 'administration/adminShop/shopGoodsAdd', //
                 'administration/shopGoods/edit/<id:\d+>' => 'administration/adminShop/shopGoodsEdit', //
                 'administration/shopGoods/delete/<id:\d+>' => 'administration/adminShop/shopGoodsDelete', //
-
-
+                'administration/shopGoods/<id:\d+>/addProperty' => 'administration/adminShop/shopGoodsPropertyFormAdd', //
+                'administration/shopGoods/<id:\d+>/editProperty/<property:\d+>' => 'administration/adminShop/shopGoodsPropertyFormEdit', //
+                'administration/shopGoods/<id:\d+>/deleteProperty/<property:\d+>' => 'administration/adminShop/ShopGoodsPropertyDelete', //
 
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',

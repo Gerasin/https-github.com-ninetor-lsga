@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: roman
@@ -8,7 +9,8 @@
 class AdminShopController extends AdminController
 {
 
-    public function accessRules() {
+    public function accessRules()
+    {
         return array(
             array(
                 'allow',
@@ -121,7 +123,7 @@ class AdminShopController extends AdminController
             $goods->save();
 
             header('Content-type: application/json');
-            echo CJSON::encode(array('success' => 1));
+            echo CJSON::encode(array('success' => 1, 'id' => $goods->id));
         } else {
             header('Content-type: application/json');
             echo CJSON::encode(array('success' => 0, 'error' => array($form->getErrors(), $imageError)));
@@ -137,6 +139,7 @@ class AdminShopController extends AdminController
 
         $this->render('shop_goods_edit', array('goods' => $goods, 'categories' => $categories));
     }
+
     public function actionShopGoodsDelete()
     {
         $goods_id = Yii::app()->request->getParam('id');
@@ -148,21 +151,22 @@ class AdminShopController extends AdminController
 
     public function actionShopGoodsUpdate()
     {
+        $goods_id = Yii::app()->request->getParam('id');
         $form = new ShopGoodsForm();
         $form->attributes = Yii::app()->request->getPost('goods');
         $imageError = AdminMethods::checkImage('fileToUpload');
         if ($form->validate() && !$imageError) {
-            $goods = ShopGoods::model()->findByPk($form->id);
+            $goods = ShopGoods::model()->findByPk($goods_id);
             $goods->name = $form->name;
             $goods->code = $form->code;
             $goods->shop_category_id = $form->category;
             $goods->warehouse_count = $form->warehouse_count;
             $goods->price = $form->price;
             $goods->discount = $form->discount;
-           if (!is_null($imageError)) {
-               $nameImage = 'tovar' . time() . '.jpg';
-               $image = AdminMethods::addImageForm('fileToUpload', 450, 300, 'tovars', $nameImage);
-               $goods->picture = $image;
+            if (!is_null($imageError)) {
+                $nameImage = 'tovar' . time() . '.jpg';
+                $image = AdminMethods::addImageForm('fileToUpload', 450, 300, 'tovars', $nameImage);
+                $goods->picture = $image;
             }
             $goods->update();
 
@@ -174,5 +178,70 @@ class AdminShopController extends AdminController
         }
         Yii::app()->end();
     }
+
+    /**
+     * свойства товара
+     */
+    public function actionShopGoodsPropertyFormAdd()
+    {
+        $goods_id = Yii::app()->request->getParam('id');
+        {
+            $this->render('shop_goods_properties_form', array('goods_id'=>$goods_id));
+        }
+
+    }
+
+    public function actionShopGoodsPropertyAdd()
+    {
+            $title_property = Yii::app()->request->getPost('title_property');
+            $text_property = Yii::app()->request->getPost('text_property');
+            $goods_id = Yii::app()->request->getPost('goods_id');
+            $prop = new ShopGoodsProperties();
+            $prop->title = $title_property;
+            $prop->text = $text_property;
+            $prop->shop_goods_id = $goods_id;
+            $prop->save();
+
+            header('Content-type: application/json');
+            echo CJSON::encode(array('success' => 1));
+            Yii::app()->end();
+    }
+
+    public function actionShopGoodsPropertyEdit()
+    {
+            $title_property = Yii::app()->request->getPost('title_property');
+            $text_property = Yii::app()->request->getPost('text_property');
+            $property_id = Yii::app()->request->getPost('property_id');
+            $goods_id = Yii::app()->request->getPost('goods_id');
+            $prop = ShopGoodsProperties::model()->findByPk($property_id);
+            $prop->title = $title_property;
+            $prop->text = $text_property;
+            $prop->shop_goods_id = $goods_id;
+            $prop->save();
+
+            header('Content-type: application/json');
+            echo CJSON::encode(array('success' => 1));
+            Yii::app()->end();
+    }
+
+    public function actionShopGoodsPropertyFormEdit()
+    {
+            $property_id = Yii::app()->request->getParam('property');
+            $property = ShopGoodsProperties::model()->findByPk($property_id);
+            $this->render('shop_goods_properties_form', array('property' => $property));
+    }
+
+    public function actionShopGoodsPropertyDelete()
+    {
+            $property_id = Yii::app()->request->getParam('property');
+            $goods_id = Yii::app()->request->getParam('id');
+            $property = ShopGoodsProperties::model()->findByPk($property_id);
+        $property->delete();
+        header("Location: /administration/shopGoods/edit/".$goods_id);
+        return;
+    }
+
+
+
 
 }

@@ -7,7 +7,6 @@
  */
 class ShopGoodsForm extends CFormModel {
 
-    public $id;
     public $name;
     public $code;
     public $category;
@@ -18,7 +17,6 @@ class ShopGoodsForm extends CFormModel {
 
     public function rules() {
         return array(
-            array('id', 'required', 'message' => 'Вы не заполнили поля'),
             array('name', 'required', 'message' => 'Вы не заполнили поля'),
             array('code', 'required', 'message' => 'Вы не заполнили поля'),
             array('category', 'required', 'message' => 'Вы не заполнили поля'),

@@ -28,12 +28,12 @@ class ShopGoodsProperties extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('shop_goods_id, title, text, position', 'required'),
-			array('shop_goods_id, position', 'numerical', 'integerOnly'=>true),
+			array('shop_goods_id, title, text', 'required'),
+			array('shop_goods_id', 'numerical', 'integerOnly'=>true),
 			array('title', 'length', 'max'=>100),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, shop_goods_id, title, text, position', 'safe', 'on'=>'search'),
+			array('id, shop_goods_id, title, text', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -59,7 +59,6 @@ class ShopGoodsProperties extends CActiveRecord
 			'shop_goods_id' => 'Shop Goods',
 			'title' => 'Title',
 			'text' => 'Text',
-			'position' => 'Position',
 		);
 	}
 
@@ -85,7 +84,6 @@ class ShopGoodsProperties extends CActiveRecord
 		$criteria->compare('shop_goods_id',$this->shop_goods_id);
 		$criteria->compare('title',$this->title,true);
 		$criteria->compare('text',$this->text,true);
-		$criteria->compare('position',$this->position);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

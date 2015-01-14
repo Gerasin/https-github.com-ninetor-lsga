@@ -50,126 +50,36 @@
                     </div>
                 </div>
             </div>
+            <?php if (count($goods->shopGoodsProperties)>0){?>
             <div class="tovar_details js-tabs clearfix">
+
+
                 <div class="js-tabs_head">
-                    <span data-tab="tab-1">Описание</span>
-                    <span data-tab="tab-2">Доставка</span>
-                    <span data-tab="tab-3" class="active">Гарантии</span>
-                    <span data-tab="tab-4">Продавец</span>
-                    <span data-tab="tab-5">Похожие товары</span>
+                    <?php $i=1; foreach ($goods->shopGoodsProperties as $property) {
+                        if ($i==1)
+                        echo '<span data-tab="tab-'.$i.'" class="active">'.$property->title.'</span>';
+                        else
+                        echo '<span data-tab="tab-'.$i.'">'.$property->title.'</span>';
+                        $i++;
+                    }
+                    ?>
                 </div>
-                <div class="js-tabs_body" data-tab="tab-1">
-                    <h2>ВЫПУСКНОЙ КОЛЛЕКТОР BMW M3 E46 01 02 03 04 05 3.2L ВЫПУСКА HEADER 01-05 BMW E46 M3</h2>
-                    <p>
-                        Original Megan Racing Product. Part #MR-ABE-BE46M30E-VO<br>
-                        T-304 Stainless Steel Construction<br>
-                        Quad 3" burnt roll tips design<br>
-                        Direct, bolt-on installation.<br>
-                        No gaskets or hardware (bolts) included-- ABE connection uses a sliding flange on a flared pipe that accepts the original piping. The original bolts are reused. 4x M8x1.25x42mm nuts and bolts included for hangers.<br>
-                        Polished Tip Design<br>
-                    </p>
-                </div>
-                <div class="js-tabs_body" data-tab="tab-2">
-                    <h2>ВЫПУСКНОЙ КОЛЛЕКТОР BMW M3 E46 01 02 03 04 05 3.2L ВЫПУСКА HEADER 01-05 BMW E46 M3</h2>
-                    <p>
-                        You Receive in this Auction:One Axle Exhaust<br>
-                        Item is 100% New, Never used or installed.<br>
-                        Original Megan Racing Product. Part #MR-ABE-BE46M30E-VO<br>
-                        T-304 Stainless Steel Construction<br>
-                        2.5" diameter piping<br>
-                        1 Year Limited Warranty through Megan Racing.<br>
-                        Constructed of T-304 Stainless Steel and polished to a mirror finish, this Axle-Back system offers free-flowing performance over your OEM restrictive exhaust system. Being constructed of Stainless-Steel, this exhaust piece is much more lighter than your OEM system and offers increased Power:Weight ratio that plays an important role in your cars handling and performance.<br>
-                        Product does not come with installation instructions, please refer to a shop/factory manual for installation.
-                    </p>
-                </div>
-                <div class="js-tabs_body active" data-tab="tab-3">
-                    <h2>ВЫПУСКНОЙ КОЛЛЕКТОР BMW M3 E46 01 02 03 04 05 3.2L ВЫПУСКА HEADER 01-05 BMW E46 M3</h2>
-                    <p>
-                        You Receive in this Auction:One Axle Exhaust<br>
-                        Item is 100% New, Never used or installed.<br>
-                        Original Megan Racing Product. Part #MR-ABE-BE46M30E-VO<br>
-                        T-304 Stainless Steel Construction<br>
-                        Quad 3" burnt roll tips design<br>
-                        Direct, bolt-on installation.<br>
-                        No gaskets or hardware (bolts) included-- ABE connection uses a sliding flange on a flared pipe that accepts the original piping. The original bolts are reused. 4x M8x1.25x42mm nuts and bolts included for hangers.<br>
-                        Polished Tip Design<br>
-                        2.5" diameter piping<br>
-                        1 Year Limited Warranty through Megan Racing.<br>
-                        Constructed of T-304 Stainless Steel and polished to a mirror finish, this Axle-Back system offers free-flowing performance over your OEM restrictive exhaust system. Being constructed of Stainless-Steel, this exhaust piece is much more lighter than your OEM system and offers increased Power:Weight ratio that plays an important role in your cars handling and performance.<br>
-                        Product does not come with installation instructions, please refer to a shop/factory manual for installation.
-                    </p>
-                </div>
-                <div class="js-tabs_body" data-tab="tab-4">
-                    <h2>ТЕСТ</h2>
-                    <p>
-                        Тут очень мало текста
-                    </p>
-                </div>
-                <div class="js-tabs_body" data-tab="tab-5">
-                    <h2>ТЕСТ 2</h2>
-                    <p>А тут очень много текста</p>
-                    <p>
-                        You Receive in this Auction:One Axle Exhaust<br>
-                        Item is 100% New, Never used or installed.<br>
-                        Original Megan Racing Product. Part #MR-ABE-BE46M30E-VO<br>
-                        T-304 Stainless Steel Construction<br>
-                        Quad 3" burnt roll tips design<br>
-                        Direct, bolt-on installation.<br>
-                        No gaskets or hardware (bolts) included-- ABE connection uses a sliding flange on a flared pipe that accepts the original piping. The original bolts are reused. 4x M8x1.25x42mm nuts and bolts included for hangers.<br>
-                        Polished Tip Design<br>
-                        2.5" diameter piping<br>
-                        1 Year Limited Warranty through Megan Racing.<br>
-                        Constructed of T-304 Stainless Steel and polished to a mirror finish, this Axle-Back system offers free-flowing performance over your OEM restrictive exhaust system. Being constructed of Stainless-Steel, this exhaust piece is much more lighter than your OEM system and offers increased Power:Weight ratio that plays an important role in your cars handling and performance.<br>
-                        Product does not come with installation instructions, please refer to a shop/factory manual for installation.
-                    </p>
-                    <p>
-                        You Receive in this Auction:One Axle Exhaust<br>
-                        Item is 100% New, Never used or installed.<br>
-                        Original Megan Racing Product. Part #MR-ABE-BE46M30E-VO<br>
-                        T-304 Stainless Steel Construction<br>
-                        Quad 3" burnt roll tips design<br>
-                        Direct, bolt-on installation.<br>
-                        No gaskets or hardware (bolts) included-- ABE connection uses a sliding flange on a flared pipe that accepts the original piping. The original bolts are reused. 4x M8x1.25x42mm nuts and bolts included for hangers.<br>
-                        Polished Tip Design<br>
-                        2.5" diameter piping<br>
-                        1 Year Limited Warranty through Megan Racing.<br>
-                        Constructed of T-304 Stainless Steel and polished to a mirror finish, this Axle-Back system offers free-flowing performance over your OEM restrictive exhaust system. Being constructed of Stainless-Steel, this exhaust piece is much more lighter than your OEM system and offers increased Power:Weight ratio that plays an important role in your cars handling and performance.<br>
-                        Product does not come with installation instructions, please refer to a shop/factory manual for installation.
-                    </p>
-                    <p>
-                        You Receive in this Auction:One Axle Exhaust<br>
-                        Item is 100% New, Never used or installed.<br>
-                        Original Megan Racing Product. Part #MR-ABE-BE46M30E-VO<br>
-                        T-304 Stainless Steel Construction<br>
-                        Quad 3" burnt roll tips design<br>
-                        Direct, bolt-on installation.<br>
-                        No gaskets or hardware (bolts) included-- ABE connection uses a sliding flange on a flared pipe that accepts the original piping. The original bolts are reused. 4x M8x1.25x42mm nuts and bolts included for hangers.<br>
-                        Polished Tip Design<br>
-                        2.5" diameter piping<br>
-                        1 Year Limited Warranty through Megan Racing.<br>
-                        Constructed of T-304 Stainless Steel and polished to a mirror finish, this Axle-Back system offers free-flowing performance over your OEM restrictive exhaust system. Being constructed of Stainless-Steel, this exhaust piece is much more lighter than your OEM system and offers increased Power:Weight ratio that plays an important role in your cars handling and performance.<br>
-                        Product does not come with installation instructions, please refer to a shop/factory manual for installation.
-                    </p>
-                </div>
+                <?php $i=1;  foreach ($goods->shopGoodsProperties as $property) {
+                    if ($i==1)
+                        echo '<div class="js-tabs_body active" data-tab="tab-'.$i.'" ><p>'.$property->text.'</p></div>';
+                    else
+                    echo '<div class="js-tabs_body" data-tab="tab-'.$i.'"><p>'.$property->text.'</p></div>';
+                    $i++;
+                }
+                ?>
             </div>
-
+            <?php }?>
         </div>
-
     </div> <!-- end content -->
 
-    <footer>
-        <ul class="footer-menu">
-            <li><a class="footer-menu-link" href="#">О нас</a></li>
-            <li><a class="footer-menu-link" href="#">Контакты</a></li>
-            <li><a class="footer-menu-link" href="#">Правила сайта</a></li>
-            <li><a class="footer-menu-link" href="#">Карта сайта</a></li>
-            <li><a class="footer-menu-link" href="#">Дилеры</a></li>
-        </ul> <!--end footer-menu -->
-
-        <div class="footer-copyright">
-            © 2014 «LSGA»
-            Сделали в <a href="#">Nineseven</a>
-        </div>
-
-    </footer>
 </div>
+
+
+
+
+

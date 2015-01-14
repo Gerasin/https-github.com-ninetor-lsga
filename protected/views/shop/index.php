@@ -170,19 +170,4 @@
 
 </div> <!-- end content -->
 
-<footer>
-    <ul class="footer-menu">
-        <li><a class="footer-menu-link" href="#">О нас</a></li>
-        <li><a class="footer-menu-link" href="#">Контакты</a></li>
-        <li><a class="footer-menu-link" href="#">Правила сайта</a></li>
-        <li><a class="footer-menu-link" href="#">Карта сайта</a></li>
-        <li><a class="footer-menu-link" href="#">Дилеры</a></li>
-    </ul> <!--end footer-menu -->
-
-    <div class="footer-copyright">
-        © 2014 «LSGA»
-        Сделали в <a href="#">Nineseven</a>
-    </div>
-
-</footer>
 </div>
