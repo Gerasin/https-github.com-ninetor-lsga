@@ -9,17 +9,6 @@
 class AdminShopController extends AdminController
 {
 
-    public function accessRules()
-    {
-        return array(
-            array(
-                'allow',
-                'roles' => array('administrator'),
-                'actions' => array(),
-            ),
-            array('deny'),
-        );
-    }
 
     /**
      * SHOP category
@@ -114,6 +103,7 @@ class AdminShopController extends AdminController
             $goods->code = $form->code;
             $goods->shop_category_id = $form->category;
             $goods->warehouse_count = $form->warehouse_count;
+            $goods->empty_warehouse_message = $form->empty_warehouse_message;
             $goods->price = $form->price;
             $goods->discount = $form->discount;
             $goods->created = Yii::app()->dateFormatter->format('yyyy-MM-dd HH:mm:ss', time());
@@ -161,6 +151,7 @@ class AdminShopController extends AdminController
             $goods->code = $form->code;
             $goods->shop_category_id = $form->category;
             $goods->warehouse_count = $form->warehouse_count;
+            $goods->empty_warehouse_message = $form->empty_warehouse_message;
             $goods->price = $form->price;
             $goods->discount = $form->discount;
             if (!is_null($imageError)) {

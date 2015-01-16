@@ -46,6 +46,9 @@
                         <input class="input-simple" type="text" style="width: 100%" id="warehouse_count" name="goods[warehouse_count]" value="<?=$goods->warehouse_count?>"/>
                         <span id="errmsgcount" style="color: #ac2925"></span>
                     </li>
+                    <li class="list-group-item">Сообщение при отсутствии на складе: </br>
+                        <input class="input-simple" type="text" style="width: 100%" id="empty_warehouse_message" name="goods[empty_warehouse_message]" value="<?=$goods->empty_warehouse_message?>"/>
+                    </li>
                     <li class="list-group-item">Стоимость, руб.: </br>
                         <input class="input-simple" type="text" style="width: 100%" id="price" name="goods[price]" value="<?=$goods->price?>"/>
                         <span id="errmsgprice" style="color: #ac2925"></span>

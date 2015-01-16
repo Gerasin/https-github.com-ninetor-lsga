@@ -34,6 +34,7 @@ return array(
     'components' => array(
         'ih' => array('class' => 'CImageHandler'),
         'user' => array(
+            'loginUrl'=>array('/login'),
             'class' => 'MyWebUser',
             // enable cookie-based authentication
             'allowAutoLogin' => true,
@@ -69,7 +70,7 @@ return array(
                 '/' => 'main/index', ///               
                 'registration' => 'user/Registation', ///
                 'login' => 'user/Login', ///
-                'settings' => 'profile/ProfileSettings', ///                
+                'settings' => 'profile/ProfileSettings', ///
                 'about' => 'pagesText/about', ///
                 'sitemap' => 'pagesText/sitemap', ///
                 'contacts' => 'pagesText/contacts', ///
@@ -77,6 +78,7 @@ return array(
 //                'shop/<page:\d+>' => 'shop/index', ///
                 'shop' => 'shop/index', ///
                 'shop/goods/<id:d+>' => 'shop/goods', ///
+                'shop/goods/cart/step_one' => 'shop/cartStepOne', ///
 //              'shop?page=<page:\d+>' => 'shop/index', ///
                 'education' => '/education/index', ///
                 'education/category/<id:\d+>' => '/education/category', ///

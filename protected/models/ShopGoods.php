@@ -5,9 +5,11 @@
  *
  * The followings are the available columns in table 'shop_goods':
  * @property integer $id
+ * @property string $name
  * @property string $code
  * @property integer $shop_category_id
  * @property integer $warehouse_count
+ * @property integer $empty_warehouse_message
  * @property integer $price
  * @property integer $discount
  * @property string $picture
@@ -31,13 +33,13 @@ class ShopGoods extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('code, shop_category_id, warehouse_count, price, created', 'required'),
+			array('code, name, shop_category_id, warehouse_count, price, created', 'required'),
 			array('shop_category_id, warehouse_count, price, discount', 'numerical', 'integerOnly'=>true),
 			array('code', 'length', 'max'=>100),
 			array('picture', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, code, shop_category_id, warehouse_count, price, discount, picture, created', 'safe', 'on'=>'search'),
+			array('id, name, code, shop_category_id, warehouse_count, price, empty_warehouse_message, discount, picture, created', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -51,6 +53,7 @@ class ShopGoods extends CActiveRecord
 		return array(
             'shopCategory' => array(self::BELONGS_TO, 'ShopCategory', 'shop_category_id'),
             'shopGoodsProperties' => array(self::HAS_MANY, 'ShopGoodsProperties', 'shop_goods_id'),
+            'shopCart' => array(self::HAS_MANY, 'ShopCart', 'shop_goods_id'),
 		);
 	}
 
@@ -61,9 +64,11 @@ class ShopGoods extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
+			'name' => 'Name',
 			'code' => 'Code',
 			'shop_category_id' => 'Shop Category',
 			'warehouse_count' => 'Warehouse Count',
+			'empty_warehouse_message' => 'Empty Warehouse Message',
 			'price' => 'Price',
 			'discount' => 'Discount',
 			'picture' => 'Picture',
@@ -90,9 +95,11 @@ class ShopGoods extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
+		$criteria->compare('name',$this->name);
 		$criteria->compare('code',$this->code,true);
 		$criteria->compare('shop_category_id',$this->shop_category_id);
 		$criteria->compare('warehouse_count',$this->warehouse_count);
+		$criteria->compare('empty_warehouse_message',$this->empty_warehouse_message);
 		$criteria->compare('price',$this->price);
 		$criteria->compare('discount',$this->discount);
 		$criteria->compare('picture',$this->picture,true);

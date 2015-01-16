@@ -120,42 +120,35 @@
 
         foreach ($goods as $one_goods) {
             $image = ($one_goods->picture) ? '/upload/images/tovars/'.$one_goods->picture : "/images/tovars/no-photo";
-        echo '<div class="tovar">
-            <a href="/shop/goods/'.$one_goods->id.'" class="tovar-photo">
-                        <span class="tovar-photo_wrapper">
-                            <img src='.$image.' alt="">
-                        </span>
-            </a>
-            <a href="#" class="tovar-name">'.$one_goods->name.'</a>
-            <p class="tovar-cost aright"><strong>'.$one_goods->price.'</strong> руб.</p>
-            <p class="aright tovar_action">
-                <button class="favorite js-toggle-active pull-left"></button>
-                <button class="lock-link">Добавить в корзину</button>
-                <span class="hidden">В корзине.</span>
-                <a href="#" class="hidden underline">Оформить</a>
-            </p>
-        </div>';
+            $active = (in_array($one_goods->id, $cart));
+            $html = "";
+             if ($active)
+             {
+                 $html.= '<div class="tovar active">';
+             }
+                 else
+                 {
+                     $html.= '<div class="tovar">';
+                 }
 
+            $html.= '<a href="/shop/goods/'.$one_goods->id.'" class="tovar-photo"><span class="tovar-photo_wrapper"><img src='.$image.' alt=""></span></a>
+            <a href="/shop/goods/'.$one_goods->id.'" class="tovar-name">'.$one_goods->name.'</a>
+            <p class="tovar-cost aright"><strong>'.$one_goods->price.'</strong> руб.</p>
+            <p class="aright tovar_action"><button class="favorite js-toggle-active pull-left"></button>';
+            if ($active)
+            {
+                $html.= ' <button class="lock-link hidden" onclick="addToCart(this,'.$one_goods->id.',1)">Добавить в корзину</button>
+                <span class="">В корзине.</span><a href="/shop/cart" class="underline">Оформить</a>';
+            }
+            else
+            {
+                $html.= ' <button class="lock-link" onclick="addToCartIndex(this,'.$one_goods->id.',1)">Добавить в корзину</button>
+                <span class="hidden">В корзине.</span><a href="/shop/cart" class="hidden underline">Оформить</a>';
+            };
+            $html.= '</p></div>';
+            echo $html;
         }
 ?>
-
-
-<!--        <div class="tovar active">-->
-<!--            <a href="#" class="tovar-photo">-->
-<!--                        <span class="tovar-photo_wrapper">-->
-<!--                            <img src="images/tovars/tovar-02.jpg" alt="">-->
-<!--                        </span>-->
-<!--            </a>-->
-<!--            <a href="#" class="tovar-name">Muffler turbo Back / Catback + UP + Down</a>-->
-<!--            <p class="tovar-cost aright"><strong>23 300</strong> руб.</p>-->
-<!--            <p class="aright tovar_action">-->
-<!--                <button class="favorite js-toggle-active pull-left active"></button>-->
-<!--                <button class="lock-link hidden">Добавить в корзину</button>-->
-<!--                <span>В корзине.</span>-->
-<!--                <a href="#" class="underline">Оформить</a>-->
-<!--            </p>-->
-<!--        </div> -->
-
     </div>
 
     <?php $this->widget('CLinkPager', array(

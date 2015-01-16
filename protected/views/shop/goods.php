@@ -34,18 +34,38 @@
                 <div class="tovar_description">
                     <p class="tovar_description_title"> <?=$goods->name?></p>
                     <p class="tovar_description_article">Код продукта: <?=$goods->code?></p>
-                    <p class="tovar_description_delay">Отправка через 10-20 дней после заказа</p>
+                    <p class="tovar_description_delay"><?php
+                        $active = (in_array($goods->id, $cart));
+                        if ($goods->warehouse_count==0) echo $goods->empty_warehouse_message; else echo 'Есть в наличии'?></p>
                     <div class="tovar_description_action">
                         <div class="clearfix">
-                            <form class="tovar_action_count pull-right">
+                            <?php if (!$active){?>
+                            <div class="tovar_action_count pull-right">
                                 <em class="pull-left">Количество:</em>
-                                <button class="minus disabled"></button><input type="text" value="1"><button class="plus"></button>
-                            </form>
-                            <span class="tovar_action_cost"><strong><?=$goods->price?></strong> руб.</span>
+                                <button class="minus disabled"></button><input type="text" value="1" /><button class="plus"></button>
+                            </div><?php }?>
+                            <span class="tovar_action_cost">
+                                <?php
+
+                                if ($goods->discount>0)
+                                {
+                                    echo'<span style="text-decoration: line-through; color: red;">'.$goods->price.' руб. </span></br><strong>'.($goods->price-(($goods->price*$goods->discount)/100)).' руб.</strong>';
+                                }
+                                else echo'<strong>'.$goods->price.'</strong> руб.';?>
+
+                            </span>
                         </div>
                         <div class="clearfix">
-                            <button class="btn-simple pull-right tovar_action_buy"><span>Добавить в корзину</span></button>
                             <button class="js-toggle-active tovar_action_favorite"><span>Добавить в список желаний</span></button>
+
+                            <?php
+                     if ($active){
+                         echo '<a href="/shop/cart" class="btn-simple pull-right tovar_action_buy"><span>Оформить</span></a>';
+                     }else
+                            {
+                           echo '<button class="btn-simple pull-right tovar_action_buy"  onclick="addToCartGoodsPage(this,'.$goods->id.')"><span>Добавить в корзину</span></button>';
+                            }?>
+
                         </div>
                     </div>
                 </div>

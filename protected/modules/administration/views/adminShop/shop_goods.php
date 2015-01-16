@@ -28,6 +28,7 @@
                                 <th>Код товара</th>
                                 <th>Категория</th>
                                 <th>Кол-во на складе</th>
+                                <th>Сообщение при отсутствии на складе</th>
                                 <th>Стоимость, руб.</th>
                                 <th>Скидка, %</th>
                                 <th>Изображение</th>
@@ -50,6 +51,9 @@
                                     </td>
                                      <td>
                                         <?= $item->warehouse_count; ?>
+                                    </td>
+                                    <td>
+                                        <?= $item->empty_warehouse_message; ?>
                                     </td>
                                      <td>
                                         <?= $item->price; ?>
