@@ -3,18 +3,18 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">
-                    Добавление/Редактирование данных о категории
+                    Редактирование данных о категории
                 </h1>
                 <ol class="breadcrumb">
                     <li><i class="fa"></i><a href="/administration">Главная</a></li>
                     <li><i class="fa"></i><a href="/administration/category">Категории</a></li>
-                    <li><i class="fa"></i>Добавление/Редактирование</li>
+                    <li><i class="fa"></i>Редактирование категории</li>
                 </ol>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-12">
-                <form enctype="multipart/form-data" action="/administration/category/add" method="post" id="form_category_edit" onsubmit="return false;">                       
+                <form enctype="multipart/form-data" action="/administration/category/edit/<?= $category->id ?>" method="post" id="form_category_edit">                       
                     <li class="list-group-item">Название: </br><input style="width: 100%" class="input-simple" type="text" id="person-nick" name="category[name]" value="<?php echo $category->name ?>"/></li>
                     <li class="list-group-item">Описание: <textarea style="height: 100px" class="form-control" name="category[description]"><?php echo $category->description ?></textarea></li>
                     <li class="list-group-item">Статус: 
@@ -32,15 +32,16 @@
                                 <?php endif; ?>
                             </li> 
                         </b>
-                        <div class="error-edit-user">Заполните корректно выделеные поля.</div>
+                        <div class="error-edit-user" <?php if ($updateResult): ?>style="display: block"<?php endif; ?>>Заполните корректно поля обозначенние *.</div>
                         <div class="success-edit-user">Данные сохранены</div>  
-                        <?php if (isset($edit) && $edit == 1): ?>
-                            <button type="submit" class="form-personal-submit" onclick="formcategoryeditsubmit(<?php echo $category->id ?>)"  id="form-user-edit-submit">Сохранить</button>
-                        <?php else: ?>
-                            <button type="submit" class="form-personal-submit" onclick="formcategoryeditsubmitadd()"  id="form-user-edit-submit">Создать</button>
-                        <?php endif; ?>
+                        <button type="submit" class="form-personal-submit">Сохранить</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        CKEDITOR.replace('category[description]');
+    });
+</script>

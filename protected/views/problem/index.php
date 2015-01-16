@@ -1,5 +1,5 @@
 <?php
-    $this->pageTitle = "Экзамен";
+$this->pageTitle = "Экзамен";
 ?>
 <script type="text/javascript" src="/js/ans.js"></script>
 <ul class="breadcrumbs-bl">
@@ -35,7 +35,7 @@
 </aside> <!-- sidebar main -->
 
 <div class="content-main">
-    <div class="school"><?php if ($problem!=FALSE): ?>
+    <div class="school"><?php if ($problem != FALSE): ?>
             <h2 id="h2_ans"><?= $problem->text ?></h2>
             <hr />
             <h3>Выберите ответ:</h3>
@@ -43,23 +43,29 @@
                 <input type="hidden" name="problem" value="<?= $problem->id ?>"/>
                 <input type="hidden" name="class" value="<?= $id_problem ?>"/>
                 <input type="hidden" name="position" value="1"/>
-                <?php $countAns = 1;
+                <?php
+                $countAns = 1;
                 foreach ($ans as $value):
                     ?>
                     <fieldset>
                         <input type="radio" checked value="<?= $value->id ?>" id="radio-<?= $countAns ?>" name="ans" />
                         <label for="radio-<?= $countAns ?>"><?= $value->text ?></label>
                     </fieldset>
-                    <?php $countAns++;
+                    <?php
+                    $countAns++;
                 endforeach;
                 ?>            
             </form>
             <p id="comment_ans"><?= $problem->comment ?></p>
             <p class="next-question">
-                <img class="ans_loader" src="/images/ajax_loader.gif" /><a href="#" onclick="problem_ans_form();
-                        return false;" id="nextButton">Следующий вопрос &rarr;</a>
+                <img class="ans_loader" src="/images/ajax_loader.gif" />
+                <?php if (count($problems) != 1): ?>
+                    <a href="#" onclick="problem_ans_form(); return false;" id="nextButton">Следующий вопрос &rarr;</a>
+            <?php else: ?>
+                    <a href="#" onclick="problem_ans_form_end(); return false;" id="nextButton">Завершить экзамен</a>
+            <?php endif; ?>
             </p>
-        <?php else: ?>
+<?php else: ?>
             Вы не можете пройти этот тест
 <?php endif; ?>
     </div> <!-- end list-services -->

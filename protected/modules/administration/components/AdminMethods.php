@@ -1,12 +1,13 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: roman
  * Date: 12.01.15
  * Time: 18:22
  */
-
-class AdminMethods extends CApplicationComponent {
+class AdminMethods extends CApplicationComponent
+{
 
     public static function checkImage($fileName)
     {
@@ -27,20 +28,21 @@ class AdminMethods extends CApplicationComponent {
      * @param type $toDirectory
      * @return string
      */
-     public static function addImageForm($fileName, $toWidth, $toHeight, $toDirectory, $nameImage)
+    public static function addImageForm($fileName, $toWidth, $toHeight, $toDirectory, $nameImage)
     {
         if (!empty($_FILES[$fileName]['tmp_name'])) {
             //$nameImage = 'education' . time() . '.jpg';
             $ih = new CImageHandler();
             Yii::app()->ih
-                ->load($_FILES[$fileName]['tmp_name'])
-                ->adaptiveThumb($toWidth, $toHeight)
-                ->save($_SERVER['DOCUMENT_ROOT'] . '/upload/images/' . $toDirectory . '/' . $nameImage);
+                    ->load($_FILES[$fileName]['tmp_name'])
+                    ->adaptiveThumb($toWidth, $toHeight)
+                    ->save($_SERVER['DOCUMENT_ROOT'] . '/upload/images/' . $toDirectory . '/' . $nameImage);
             return $nameImage;
         }
     }
 
-    private static function imageFormValidate($param) {
+    private static function imageFormValidate($param)
+    {
         $error = false;
         if (!empty($param['error'])) {
             switch ($param['error']) {
@@ -81,19 +83,18 @@ class AdminMethods extends CApplicationComponent {
         return $error;
     }
 
-
-    public static  function addAnsTable($ans, $problem, $status)
+    public static function addAnsTable($ans, $id_problem, $status)
     {
         foreach ($ans as $value) {
             $new_ans = new Ans();
-            $new_ans->id_problem = $problem;
+            $new_ans->id_problem = $id_problem;
             $new_ans->text = $value;
             $st = ($ans[$status] == $value) ? 1 : NULL;
             $new_ans->status = $st;
             $new_ans->save();
             if ($st == 1) {
-                $problem = Problem::model()->findByPk($problem);
-                $problem->status_ans =  $new_ans->id;
+                $problem = Problem::model()->findByPk($id_problem);
+                $problem->status_ans = $new_ans->id;
                 $problem->update();
             }
         }
@@ -109,7 +110,7 @@ class AdminMethods extends CApplicationComponent {
         $lesson->update();
     }
 
-    public static function  userFeeback($id_user = '')
+    public static function userFeeback($id_user = '')
     {
         $user = User::model()->findByPk($id_user);
         if (!empty($user)) {
@@ -119,7 +120,7 @@ class AdminMethods extends CApplicationComponent {
         }
     }
 
-    public static  function processCategoryFormUpdate($form)
+    public static function processCategoryFormUpdate($form)
     {
         $id = Yii::app()->request->getParam('id');
         $category = Category::model()->findByPk($id);
@@ -128,10 +129,11 @@ class AdminMethods extends CApplicationComponent {
         $category->active = Yii::app()->request->getParam('active');
         $category->update();
     }
+
     /**
      *  получим id родительско категории
      */
-    public static  function parentIdCategory($id = '')
+    public static function parentIdCategory($id = '')
     {
         $properties = CategoryProperties::model()->findByPk($id);
         return $properties->id_category;
@@ -171,7 +173,7 @@ class AdminMethods extends CApplicationComponent {
         return $mas;
     }
 
-    public static  function allCommentsNotPages()
+    public static function allCommentsNotPages()
     {
         $comments = FALSE;
         $commNo = Comments::model()->findAllByAttributes(array('id_parent' => null), array("order" => "date ASC"));
@@ -250,8 +252,7 @@ class AdminMethods extends CApplicationComponent {
         return $comments;
     }
 
-
-    public static  function processPostFormUpdate($form, $id, $image, $additional_photos, $isNew)
+    public static function processPostFormUpdate($form, $id, $image, $additional_photos, $isNew)
     {
         $post = (!$isNew) ? MainPosts::model()->findByPk($id) : new MainPosts();
         if ($isNew)
