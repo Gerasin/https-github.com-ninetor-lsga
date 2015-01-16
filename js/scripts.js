@@ -89,21 +89,21 @@ $(document).ready(function () {
     })
 
     // попап авторизации
-    $('.js-show-enter').on('click', function(e){
-        $('.popup-bg').fadeIn(200, function(){
-            $('.popup-container').fadeIn();
-        });
-
-        e.preventDefault();
-    });
-
-    $('.js-close-popup').on('click', function(e){
-        $('.popup-container').fadeOut(200, function(){
-            $('.popup-bg').fadeOut();
-        });
-
-        e.preventDefault();
-    })
+    //$('.js-show-enter').on('click', function(e){
+    //    $('.popup-bg').fadeIn(200, function(){
+    //        $('.popup-container').fadeIn();
+    //    });
+    //
+    //    e.preventDefault();
+    //});
+    //
+    //$('.js-close-popup').on('click', function(e){
+    //    $('.popup-container').fadeOut(200, function(){
+    //        $('.popup-bg').fadeOut();
+    //    });
+    //
+    //    e.preventDefault();
+    //})
 
     // кроссбраузерный чекбокс
     $('.check-simple').on('click', function(e){
@@ -338,11 +338,13 @@ $(document).ready(function () {
             var input = parseInt($(this).parent().find('input').val());
             if( $(this).hasClass('minus') ) input--;
             if( $(this).hasClass('plus') ) input++;
-            $(this).parent().find('input').val( input );
+            $(this).siblings('input').val(input).trigger('change');;
             plusminusDisabled( $(this).parent() );
         }
         return false;
     });
+
+
     function plusminusDisabled(plusminus){
         $('.tovar_action_count').each(function(){
             var input = parseInt(plusminus.find('input').val()),
@@ -354,15 +356,10 @@ $(document).ready(function () {
             if (input <= 1)  minus.addClass('disabled');
         });
     }
-    
-    //Select - chosen
     $('.select-wrapper select').each(function(){
         $(this).chosen({disable_search_threshold: 10});
     });
-    
 });
-
-
 
 (function($){
     function SelectionList(options, element) {
@@ -633,3 +630,136 @@ jQuery(function($){
 	$.datepicker.setDefaults($.datepicker.regional['ru']);
     }
 });
+
+
+function addToCartIndex(element, goods_id, count)
+{
+    $.ajax({
+        data: { goods_id : goods_id, count:count },
+        dataType: 'json',
+        type: 'POST',
+        url: '/shop/addToCart',
+        success: function (data) {
+            if (data.success == 1) {
+                $(element).parents('.tovar').addClass("active");
+                $(element).addClass("hidden");
+                $(element).siblings("span").removeClass("hidden");
+                $(element).siblings("a").removeClass("hidden");
+            }
+            else {
+                alert("Произошла ошибка добавления товара в корзину.")
+            }
+        }
+    });
+}
+
+function addToCartGoodsPage(element, goods_id)
+{
+    var count = $('.tovar_action_count input').val();
+
+    $.ajax({
+        data: { goods_id : goods_id, count:count },
+        dataType: 'json',
+        type: 'POST',
+        url: '/shop/addToCart',
+        success: function (data) {
+            if (data.success == 1) {
+                var parent = $(element).parent();
+                $(element).remove();
+                $('div.tovar_action_count').remove();
+                parent.append('<a href="/shop/cart" class="btn-simple pull-right tovar_action_buy"><span>Оформить</span></a>');
+            }
+            else {
+                alert("Произошла ошибка добавления товара в корзину.")
+            }
+        }
+    });
+}
+
+function changeValCountCart(col){
+    document.body.style.cursor = 'wait';
+    var price = $(col).parents("tr").find(".tovar_cost input:hidden").val();
+    var count = $(col).val();
+
+    var id = $(col).parents("tr").prop('id');
+    $.ajax({
+        data: { id : id, count:count },
+        dataType: 'json',
+        type: 'POST',
+        url: '/shop/changeCountCart',
+        success: function (data) {
+            if (data.success == 1) {
+                document.body.style.cursor = 'default';
+                $(col).parents("tr").find(".tovar_cost strong").text(price*count);
+                var all = $(".tovar_cost strong");
+                var allsum = 0;
+                for (var i=0; i<all.length; i++){
+                    allsum += parseInt(all.eq(i).text());
+                }
+                $("tr:last").find(".summary-cost strong").text(allsum);
+
+                CalculateDiscount();
+            }
+            else {
+                alert("Произошла ошибка")
+            }
+        }
+    });
+
+}
+function CalculateDiscount(){
+    /**
+     *
+     Если у клиента до 100 кредитов он получает скидку по принципу:
+     Количество кредитов за которые клиент хочет получить скидку / (цена товара в корзине/100)/4.
+     Если у клиента больше 100 кредитов он получает скидку по принципу:
+     Количество кредитов за которые клиент хочет получить скидку / (цена товара в корзине/100)/1,2
+     */
+
+  var credits = $('.sale_credits').text();
+  var credits_input = $('.sale_input input').val();
+    var allsum = $("tr:last").find(".summary-cost strong").text();
+    var discount =0;
+    //if (credits<credits_input)
+    //{
+    //    alert("У вас не хватает кредитов")
+    //}
+    //else
+    //{
+            if (credits >= 100)
+            {
+              discount = credits_input/(allsum/100)/4;
+            }
+        else
+        {
+            discount = credits_input/(allsum/100)/1.2;
+        }
+    //}
+        var procent_discount = Math.floor(discount*Math.pow(10, 2))/Math.pow(10, 2); //округление до 2 знаков
+        $('.summary-sale').text(procent_discount+'%');
+    var new_price = Math.floor(allsum-((allsum*procent_discount)/100))//округление
+    $(".summary-cost.pull-right strong").text(new_price);
+
+}
+
+function RemoveFromBasket(col){
+    var id = $(col).parents("tr").prop('id');
+    document.body.style.cursor = 'wait';
+    $.ajax({
+        data: { id : id },
+        dataType: 'json',
+        type: 'POST',
+        url: '/shop/delete',
+        success: function (data) {
+            if (data.success == 1) {
+                document.body.style.cursor = 'default';
+                //$('.basket table tr#'+id).remove();
+            location.reload();
+            }
+            else {
+                alert("Произошла ошибка")
+            }
+        }
+    });
+        console.log(id)
+}
