@@ -31,7 +31,7 @@
                                 <option>Россия</option>
                                 <option>Чехия</option>
                                 <option>Франция</option>
-                            </select><div class="chosen-container chosen-container-single chosen-container-single-nosearch" style="width: 84px;" title=""><a class="chosen-single" tabindex="-1"><span>Россия</span><div><b></b></div></a><div class="chosen-drop"><div class="chosen-search"><input type="text" autocomplete="off" readonly=""></div><ul class="chosen-results"></ul></div></div>
+                            </select>
                         </div>
                     </fieldset>
                     <fieldset>
@@ -41,7 +41,7 @@
                                 <option>Москва</option>
                                 <option>Прага</option>
                                 <option>Париж</option>
-                            </select><div class="chosen-container chosen-container-single chosen-container-single-nosearch" style="width: 76px;" title=""><a class="chosen-single" tabindex="-1"><span>Москва</span><div><b></b></div></a><div class="chosen-drop"><div class="chosen-search"><input type="text" autocomplete="off" readonly=""></div><ul class="chosen-results"></ul></div></div>
+                            </select>
                         </div>
                     </fieldset>
                     <fieldset>

@@ -31,6 +31,7 @@
         <script type="text/javascript" src="/js/jquery.maskedinput.min.js"></script>
         <script type="text/javascript" src="/js/scripts.js"></script>
         <script type="text/javascript" src="/js/home.js"></script>
+        <script type="text/javascript" src="/js/chosen.jquery.min.js"></script>
     </head>
 
 
