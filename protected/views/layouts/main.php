@@ -22,6 +22,7 @@
         <!-- Подключаем файлы стилей -->
         <link rel="stylesheet" type="text/css" href="/css/reset.css" />
         <link rel="stylesheet" type="text/css" href="/css/style.css" />
+        <link rel="stylesheet" type="text/css" href="/css/modules/chosen.css" />
 
         <!-- Скрипты -->
         <script type="text/javascript" src="/js/modernizr.custom.js"></script> <!-- Определение возможностей браузера -->
