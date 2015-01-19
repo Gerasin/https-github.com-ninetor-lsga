@@ -11,6 +11,15 @@
         <script src="/js/admin/plugins/morris/morris-data.js"></script>
         <script src="/js/admin/profile.js"></script>
         <script src="/js/admin/ajaxfileupload.js"></script>
+        <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/admin/ckeditor/ckeditor.js" ></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $("#page-wrapper").accordion({
+                    heightStyle: "content",
+                    collapsible: true
+                });
+            });
+        </script>
 
         <link href="/css/admin/bootstrap.min.css" rel="stylesheet">
 
@@ -92,18 +101,19 @@
                         </li>
                         <li>
                             <a href="#" data-toggle="collapse" data-target="#shop_admi" class="collapsed" aria-expanded="false">Магазин <i class="fa fa-fw fa-caret-down"></i></a>
-                           <?php if (Yii::app()->controller->action->id=="shopCategory" || Yii::app()->controller->action->id=="shopGoods")
-                               echo '<ul id="shop_admi" aria-expanded="false" >';
-                           else
-                               echo '<ul id="shop_admi" class="collapse" aria-expanded="false" style="height: 0px;">';
-                               ?>
+                            <?php
+                            if (Yii::app()->controller->action->id == "shopCategory" || Yii::app()->controller->action->id == "shopGoods")
+                                echo '<ul id="shop_admi" aria-expanded="false" >';
+                            else
+                                echo '<ul id="shop_admi" class="collapse" aria-expanded="false" style="height: 0px;">';
+                            ?>
 
-                                <li>
-                                    <a href="/administration/shopCategory" <?php if (Yii::app()->controller->action->id=="shopCategory") echo 'class="active"'; ?>>Категории</a>
-                                </li>
-                                <li>
-                                    <a href="/administration/shopGoods" <?php if (Yii::app()->controller->action->id=="shopGoods") echo 'class="active"'; ?>>Товары</a>
-                                </li>
+                        <li>
+                            <a href="/administration/shopCategory" <?php if (Yii::app()->controller->action->id == "shopCategory") echo 'class="active"'; ?>>Категории</a>
+                        </li>
+                        <li>
+                            <a href="/administration/shopGoods" <?php if (Yii::app()->controller->action->id == "shopGoods") echo 'class="active"'; ?>>Товары</a>
+                        </li>
                     </ul>
                     </li>
                     <li></br><span id="blockPosition"><b>Позиции сохранены</b></span></li>
@@ -116,7 +126,7 @@
             </nav>
 
             <!-- CONTENT -->
-            <?php echo $content; ?>
+<?php echo $content; ?>
             <!-- CONTENT  END -->
             <footer>
                 <div class="footer-copyright">

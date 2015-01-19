@@ -21,9 +21,11 @@
 
         <!-- Подключаем файлы стилей -->
         <link rel="stylesheet" type="text/css" href="/css/reset.css" />
+        <link rel="stylesheet" type="text/css" href="/css/media/mediaelementplayer.css" />
         <link rel="stylesheet" type="text/css" href="/css/style.css" />
         <link rel="stylesheet" type="text/css" href="/css/modules/jquery-ui.css" />
-        <link rel="stylesheet" type="text/css" href="/css/modules/jquery-ui.theme.css" />
+        <link rel="stylesheet" type="text/css" href="/css/modules/jquery-ui.theme.css" />        
+        <link rel="stylesheet" type="text/css" href="/css/modules/chosen.css" />
 
         <!-- Скрипты -->
         <script type="text/javascript" src="/js/modernizr.custom.js"></script> <!-- Определение возможностей браузера -->
@@ -31,7 +33,8 @@
         <script type="text/javascript" src="/js/jquery-1.11.1.min.js"></script>
         <script type="text/javascript" src="/js/jquery.maskedinput.min.js"></script>
         <script type="text/javascript" src="/js/mediaelement-and-player.min.js"></script>
-        <script type="text/javascript" src="/js/jquery.nicescroll.min.js"></script>
+        <script type="text/javascript" src="/js/jquery.nicescroll.min.js"></script>        
+        <script type="text/javascript" src="/js/chosen.jquery.min.js"></script>
         <script type="text/javascript" src="/js/scripts.js"></script>
         <script type="text/javascript" src="/js/jquery-ui.min.js"></script>
         <script type="text/javascript"

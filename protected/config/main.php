@@ -10,7 +10,6 @@ return array(
     'sourceLanguage' => 'en',
     'language' => 'ru',
     'charset' => 'utf-8',
-    
     // preloading 'log' component
     'preload' => array('log'),
     // autoloading model and component classes
@@ -25,8 +24,8 @@ return array(
         'gii' => array(
             'class' => 'system.gii.GiiModule',
             'password' => 'password',
-            // If removed, Gii defaults to localhost only. Edit carefully to taste.
-            'ipFilters' => array('::1', '127.0.0.1'),
+        // If removed, Gii defaults to localhost only. Edit carefully to taste.
+        //'ipFilters' => array('127.0.0.1::1'),
         ),
         'administration' => array(),
     ),
@@ -62,10 +61,24 @@ return array(
         'mail_manager' => array(
             'class' => 'application.components.MailManager'
         ),
+        'session' => array(
+            'autoCreateSessionTable' => true, # запрещаем автосоздание таблицы в базе
+            'class' => 'system.web.CDbHttpSession', # подключаем класс
+            'connectionID' => 'db', # идентификатор соединения с базой
+            'sessionTableName' => 'yii_session', # название таблицы
+            'timeout' => '36000', # время хранения данных в базе в секундах
+        ),
+        'cache'=>array(
+            'class' => 'system.caching.CFileCache',
+//            'servers'=>array(
+//                array('host'=>'server1', 'port'=>11211, 'weight'=>60),
+//                array('host'=>'server2', 'port'=>11211, 'weight'=>40),
+//            ),
+        ),
         // uncomment the following to enable URLs in path-format
         'urlManager' => array(
             'urlFormat' => 'path',
-            'showScriptName'=>false,
+            'showScriptName' => false,
             'rules' => array(
                 '/' => 'main/index', ///               
                 'registration' => 'user/Registation', ///
@@ -75,6 +88,9 @@ return array(
                 'sitemap' => 'pagesText/sitemap', ///
                 'contacts' => 'pagesText/contacts', ///
                 'dealers' => 'pagesText/dealers', ///
+                'dyno-reservation' => 'dynoReservation/index', ///
+                'dyno-reservation/step-2' => 'dynoReservation/step2', ///
+                'dyno-reservation/step-3' => 'dynoReservation/step3', ///
 //                'shop/<page:\d+>' => 'shop/index', ///
                 'shop' => 'shop/index', ///
                 'shop/goods/<id:d+>' => 'shop/goods', ///
@@ -105,7 +121,7 @@ return array(
                 'administration/homeproblem/edit/<id:\d+>' => 'administration/dashboard/editProblem',
                 'administration/homeproblem/update/<id:\d+>' => 'administration/dashboard/updateProblem',
                 'administration/homeproblem/delete/<id:\d+>' => 'administration/dashboard/deleteHomeProblem',
-                'administration/company' => 'administration/adminCompany/index',                
+                'administration/company' => 'administration/adminCompany/index',
                 'administration/education' => 'administration/adminCompany/education', //
                 'administration/education/add' => 'administration/adminCompany/addEducation', //
                 'administration/education/edit/<id:\d+>' => 'administration/adminCompany/editEducation', //
@@ -167,7 +183,6 @@ return array(
                 'administration/pagesText/update/<id:\d+>' => 'administration/adminCompany/updatePagesText', //
                 'administration/pagesText/delete/<id:\d+>' => 'administration/adminCompany/deletePagesText', // 
                 'administration/settings' => 'administration/adminCompany/editSettings', // 
-
                 'administration/shopCategory' => 'administration/adminShop/shopCategory', //
                 'administration/shopCategory/add' => 'administration/adminShop/shopCategoryAdd', //
                 'administration/shopCategory/add/<id:\d+>' => 'administration/adminShop/shopCategoryAdd', //

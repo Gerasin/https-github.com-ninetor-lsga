@@ -7,18 +7,21 @@
  * 3 -- пересдача через год
  * 0 -- еще рано проходить тест
  */
-class ProblemController extends Controller {
+class ProblemController extends Controller
+{
 
     public $layout = '//layouts/inner';
 
-    public function __construct($id, $module = null) {
+    public function __construct($id, $module = null)
+    {
         parent::__construct($id, $module);
         if (Yii::app()->user->isGuest) {
             $this->redirect('/registration');
         }
     }
 
-    public function actionIndex() {
+    public function actionIndex()
+    {
         $id_problem = Yii::app()->request->getParam('id');
         $id_user = Yii::app()->user->id;
         $problems = Problem::model()->findAllByAttributes(array('id_class' => $id_problem));
@@ -35,10 +38,12 @@ class ProblemController extends Controller {
     /**
      * Проверим можно ли пользователю проходить тест
      */
-    private function userProblemAddTable($id_user = '', $id_problem = '') {
+    private function userProblemAddTable($id_user = '', $id_problem = '')
+    {
         $exam = UserProblem ::model()->findAllByAttributes(array('id_problem' => $id_problem, 'id_user' => $id_user));
         if (isset($exam) && $exam != NULL) {
             $problems = Problem::model()->findAllByAttributes(array('id_class' => $id_problem), array('order' => 'rand()'));
+            $mass = NULL;
             foreach ($problems as $value) {
                 $mass[$value->id] = NULL;
             }
@@ -50,7 +55,8 @@ class ProblemController extends Controller {
         }
     }
 
-    private function userProblemUpdateTable($ans = '', $rr) {
+    private function userProblemUpdateTable($ans = '', $rr)
+    {
         $userProblem = UserProblem::model()->findByPk($rr);
         $userProblem->ans = serialize($ans);
         $userProblem->date = time();
@@ -60,7 +66,8 @@ class ProblemController extends Controller {
     /**
      * получам статус теста для пользователя
      */
-    private function statusExemForUser($id_user = '', $id_problem = '') {
+    private function statusExemForUser($id_user = '', $id_problem = '')
+    {
         $exam = UserProblem ::model()->findAllByAttributes(array('id_problem' => $id_problem, 'id_user' => $id_user));
         return $exam[0]->status;
     }
@@ -68,7 +75,8 @@ class ProblemController extends Controller {
     /**
      *  текущие ответы пользователя на вопросы теста (кроме последнего и без подсчета)
      */
-    public function actionNewProblem() {
+    public function actionNewProblem()
+    {
         $id_problem = Yii::app()->request->getPost('problem');
         $user_ans = Yii::app()->request->getPost('ans');
         $id_class = Yii::app()->request->getPost('class');
@@ -110,7 +118,8 @@ class ProblemController extends Controller {
         Yii::app()->end();
     }
 
-    private function newIdProblem($ans) {
+    private function newIdProblem($ans)
+    {
         foreach ($ans as $key => $value) {
             if (is_null($value)) {
                 return $key;
@@ -119,7 +128,8 @@ class ProblemController extends Controller {
         return false;
     }
 
-    public function actionNewProblemEnd() {
+    public function actionNewProblemEnd()
+    {
         $id_problem = Yii::app()->request->getPost('problem');
         $user_ans = Yii::app()->request->getPost('ans');
         $id_class = Yii::app()->request->getPost('class');
@@ -154,7 +164,8 @@ class ProblemController extends Controller {
     /**
      * верно ли ответил пользователь на вопрос
      */
-    private function trueAnsUserProblem($id_problem = '', $id_ans = '') {
+    private function trueAnsUserProblem($id_problem = '', $id_ans = '')
+    {
         $problem = Problem::model()->findAllByAttributes(array('id' => $id_problem, 'status_ans' => $id_ans));
         return count($problem);
     }
@@ -162,7 +173,8 @@ class ProblemController extends Controller {
     /**
      *  обновляем данные о пройденном тесте
      */
-    private function newStatusProcent($id_problem = '', $procentTrue = '', $statusTrue = '') {
+    private function newStatusProcent($id_problem = '', $procentTrue = '', $statusTrue = '')
+    {
         $userProblem = UserProblem::model()->findByPk($id_problem);
         $userProblem->procent = $procentTrue;
         $userProblem->status = $statusTrue;
@@ -176,7 +188,8 @@ class ProblemController extends Controller {
      * @param type $procentTrue
      * @return type
      */
-    private function updateUser($procentTrue) {
+    private function updateUser($procentTrue)
+    {
         $id = (int) Yii::app()->user->id;
         $user = User::model()->findByPk($id);
         if ($procentTrue >= 75 && $procentTrue < 100) {
@@ -195,7 +208,8 @@ class ProblemController extends Controller {
     /**
      * получаем категорию для просмотра статистики
      */
-    private function categoryExem($pk = '') {
+    private function categoryExem($pk = '')
+    {
         $classroom = Classroom::model()->findByPk($pk);
         return $classroom['id_education'];
     }

@@ -1,24 +1,28 @@
 <?php
 
-class EducationController extends Controller {
+class EducationController extends Controller
+{
 
     public $layout = '//layouts/inner';
 
-    public function __construct($id, $module = null) {
+    public function __construct($id, $module = null)
+    {
         parent::__construct($id, $module);
         if (Yii::app()->user->isGuest) {
             $this->redirect('/registration');
         }
     }
 
-    public function actionIndex() {
+    public function actionIndex()
+    {
         $this->layout = '//layouts/inner_block';
         $education = Education::model()->findAll(array("order" => "position ASC"));
         $education_block = Settings::model()->findAllByAttributes(array('category' => 'education_block'));
         $this->render('index', array('education' => $education, 'education_block' => $education_block[0]['value']));
     }
 
-    public function actionCategory() {
+    public function actionCategory()
+    {
         $id = Yii::app()->request->getParam('id');
         $id_user = Yii::app()->user->id;
         $education = Education::model()->findByPk($id);
@@ -50,14 +54,15 @@ class EducationController extends Controller {
             $count++;
         }
         $procent = $procent / count($classroom);
-        
+
         $this->render('category', array('classroom' => $mas, 'education' => $education, 'procent' => $procent));
     }
 
     /**
      * получаем данные, которые привязано к пользователю и классу
      */
-    private function userClassDate($id_class = '', $id_user = '') {
+    private function userClassDate($id_class = '', $id_user = '')
+    {
         $exams = UserProblem ::model()->findAllByAttributes(array('id_problem' => $id_class, 'id_user' => $id_user));
         if (isset($exams[0])) {
             return $exams[0];
@@ -66,7 +71,8 @@ class EducationController extends Controller {
         }
     }
 
-    public function actionLessonList() {
+    public function actionLessonList()
+    {
         $cid = Yii::app()->request->getParam('cid');
         $id = Yii::app()->request->getParam('id');
         $id_user = Yii::app()->user->id;
@@ -79,7 +85,8 @@ class EducationController extends Controller {
 
         if (isset($lesson)) {
             $list = Lesson::model()->findAllByAttributes(array('id_class' => $cid), array("order" => "position ASC"));
-            $this->render('lesson', array('lesson' => $lesson, 'list' => $list, 'cid' => $cid));
+            $problem = Problem::model()->findAllByAttributes(array('id_class' => $cid));
+            $this->render('lesson', array('lesson' => $lesson, 'list' => $list, 'cid' => $cid, 'problem' => count($problem)));
         } else {
             $this->redirect('/education');
         }
@@ -88,7 +95,8 @@ class EducationController extends Controller {
     /**
      * создаем запись для изучения для поьзователя
      */
-    public function actionAddUserExem() {
+    public function actionAddUserExem()
+    {
         $id_problem = Yii::app()->request->getPost('idClass');
         $id_user = Yii::app()->user->id;
         $userProblem = new UserProblem();
