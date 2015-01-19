@@ -28,7 +28,7 @@
             <div class="tovar_summary">
                 <div class="tovar_summary_photo">
                     <div class="tovar_summary_photo_wrapper">
-                        <img src="<?=($goods->picture) ? '/upload/images/tovars/'.$goods->picture : "/images/tovars/no-photo"?>" alt="">
+                        <img src="<?=($goods->picture) ? '/upload/images/tovars/'.$goods->picture : "/images/tovars/no-photo.png"?>" alt="">
                     </div>
                 </div>
                 <div class="tovar_description">

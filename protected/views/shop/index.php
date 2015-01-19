@@ -119,7 +119,7 @@
         <?php
 
         foreach ($goods as $one_goods) {
-            $image = ($one_goods->picture) ? '/upload/images/tovars/'.$one_goods->picture : "/images/tovars/no-photo";
+            $image = ($one_goods->picture) ? '/upload/images/tovars/'.$one_goods->picture : "/images/tovars/no-photo.png";
             $active = (in_array($one_goods->id, $cart));
             $html = "";
              if ($active)

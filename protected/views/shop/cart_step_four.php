@@ -36,7 +36,7 @@
 
                     <?php
                     foreach ($cart as $goods) {
-                        $pic = ($goods->shopGoods->picture) ? '/upload/images/tovars/'.$goods->shopGoods->picture : "/images/tovars/no-photo";
+                        $pic = ($goods->shopGoods->picture) ? '/upload/images/tovars/'.$goods->shopGoods->picture : "/images/tovars/no-photopng";
                         if ($goods->shopGoods->discount>0)
                             $price = $goods->shopGoods->price-(($goods->shopGoods->price*$goods->shopGoods->discount)/100);
                         else
