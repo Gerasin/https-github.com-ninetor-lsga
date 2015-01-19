@@ -49,9 +49,9 @@
 
                                 if ($goods->discount>0)
                                 {
-                                    echo'<span style="text-decoration: line-through; color: red;">'.$goods->price.' руб. </span></br><strong>'.($goods->price-(($goods->price*$goods->discount)/100)).' руб.</strong>';
+                                    echo'<span style="text-decoration: line-through; color: red;">'.$goods->price.' &#8364; </span></br><strong>'.($goods->price-(($goods->price*$goods->discount)/100)).' &#8364; </strong>';
                                 }
-                                else echo'<strong>'.$goods->price.'</strong> руб.';?>
+                                else echo'<strong>'.$goods->price.'</strong> &#8364;';?>
 
                             </span>
                         </div>

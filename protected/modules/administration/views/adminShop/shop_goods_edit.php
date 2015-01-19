@@ -49,7 +49,7 @@
                     <li class="list-group-item">Сообщение при отсутствии на складе: </br>
                         <input class="input-simple" type="text" style="width: 100%" id="empty_warehouse_message" name="goods[empty_warehouse_message]" value="<?=$goods->empty_warehouse_message?>"/>
                     </li>
-                    <li class="list-group-item">Стоимость, руб.: </br>
+                    <li class="list-group-item">Стоимость,  &#8364;: </br>
                         <input class="input-simple" type="text" style="width: 100%" id="price" name="goods[price]" value="<?=$goods->price?>"/>
                         <span id="errmsgprice" style="color: #ac2925"></span>
                     </li>

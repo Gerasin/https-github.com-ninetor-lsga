@@ -88,6 +88,52 @@ class ShopController extends Controller
 
     public function actionCartStepOne()
 	{
-       $this->render('cart_step_one');
+        $price = Yii::app()->request->getPost('price');
+        $discount = Yii::app()->request->getPost('discount');
+        $credits = Yii::app()->request->getPost('credits');
+        Yii::app()->session['cart_price'] = $price;
+        Yii::app()->session['cart_discount'] = $discount;
+        Yii::app()->session['cart_credits'] = $credits;
+        $this->render('cart_step_one');
 	}
+
+    public function actionCartStepTwo()
+	{
+        $country = Yii::app()->request->getPost('country');
+        $city = Yii::app()->request->getPost('city');
+        $telephone = Yii::app()->request->getPost('telephone');
+        $street = Yii::app()->request->getPost('street');
+        $home = Yii::app()->request->getPost('home');
+        $apartment = Yii::app()->request->getPost('apartment');
+        Yii::app()->session['cart_telephone'] = $telephone;
+        Yii::app()->session['cart_street'] = $street;
+        Yii::app()->session['cart_home'] = $home;
+        Yii::app()->session['cart_apartment'] = $apartment;
+        Yii::app()->session['cart_city'] = $city;
+        Yii::app()->session['cart_country'] = $country;
+//        $this->render('cart_step_two');
+        header("Location: /shop/cart_step_three");
+        return;
+	}
+    public function actionCartStepThree()
+    {
+//      $type_delivery = Yii::app()->request->getPost('type_delivery');
+        $type_delivery = "Без доставки";
+        $cost_delivery = 0;
+        Yii::app()->session['cart_type_delivery'] = $type_delivery;
+        Yii::app()->session['cart_total_price'] = Yii::app()->session['cart_price'] + $cost_delivery;
+
+        $this->render('cart_step_three');
+    }
+
+    public function actionCartStepFour()
+    {
+        $type_payment = Yii::app()->request->getPost('type_payment');
+        Yii::app()->session['cart_type_payment'] = $type_payment;
+        $user = User::model()->findByPk(Yii::app()->user->getId());
+        $cart = ShopCart::model()->findAllByAttributes(array('user_id'=>$user->id));
+        $this->render('cart_step_four', array('cart'=>$cart));
+    }
+
+
 }

@@ -206,8 +206,8 @@ $(document).ready(function () {
     });
     
     //Mask input
-    if( $('#phone-register').size() > 0 ) $('#phone-register').mask("8(99)99-99-999",{placeholder:"8(__)__-__-___"});
-    
+    if( $('#phone-register').size() > 0 ) $('#phone-register').mask("8(999)99-99-999",{placeholder:"8(___)__-__-___"});
+
     //Карта google
     function initialize() {
         var options = {
@@ -697,6 +697,7 @@ function changeValCountCart(col){
                     allsum += parseInt(all.eq(i).text());
                 }
                 $("tr:last").find(".summary-cost strong").text(allsum);
+                $("#summary-cost_hidden").val(allsum);
 
                 CalculateDiscount();
             }
@@ -717,15 +718,14 @@ function CalculateDiscount(){
      */
 
   var credits = $('.sale_credits').text();
-  var credits_input = $('.sale_input input').val();
+  var credits_input = parseInt($('.sale_input input[type="text"]').val());
     var allsum = $("tr:last").find(".summary-cost strong").text();
     var discount =0;
-    //if (credits<credits_input)
-    //{
-    //    alert("У вас не хватает кредитов")
-    //}
-    //else
-    //{
+    if (credits<credits_input)
+    {
+        alert("У вас не хватает кредитов")
+        $('.sale_input input[type="text"]').val(credits);
+    }
             if (credits >= 100)
             {
               discount = credits_input/(allsum/100)/4;
@@ -734,12 +734,28 @@ function CalculateDiscount(){
         {
             discount = credits_input/(allsum/100)/1.2;
         }
-    //}
-        var procent_discount = Math.floor(discount*Math.pow(10, 2))/Math.pow(10, 2); //округление до 2 знаков
-        $('.summary-sale').text(procent_discount+'%');
-    var new_price = Math.floor(allsum-((allsum*procent_discount)/100))//округление
-    $(".summary-cost.pull-right strong").text(new_price);
 
+        if (discount>100)
+        {
+            discount = 100;
+            var max = 0;
+            if (credits >= 100)
+            {
+               max = 100 * 4 * (allsum/100)
+            }
+            else
+            {
+               max = 100 * 1.2 * (allsum/100)
+            }
+            //alert("Нельзя использовать такое количество кредитов. Макс кол-во: " + max);
+            $('.sale_input input[type="text"]').val(max);
+        }
+            var procent_discount = Math.floor(discount*Math.pow(10, 2))/Math.pow(10, 2); //округление до 2 знаков
+            $('.summary-sale span').text(procent_discount);
+            $('#summary-sale_hidden').val(procent_discount);
+            var new_price = Math.floor(allsum-((allsum*procent_discount)/100))//округление
+            $(".summary-cost.pull-right strong").text(new_price);
+            $("#summary-cost_hidden").val(new_price);
 }
 
 function RemoveFromBasket(col){
@@ -762,4 +778,22 @@ function RemoveFromBasket(col){
         }
     });
         console.log(id)
+}
+
+function CheckFieldsStepOne(){
+    var notError = true;
+    if ($('input[name="telephone"]').val() =="") {
+        notError = false;
+        $('input[name="telephone"]').siblings('label').css('color', 'red');
+    }
+    if ($('input[name="city"]').val() =="") {
+        notError = false;
+        $('input[name="city"]').siblings('label').css('color', 'red');
+    }
+    if ($('input[name="street"]').val() =="" || $('input[name="home"]').val() =="" || $('input[name="apartment"]').val() =="")
+    {
+        notError = false;
+        $('.basket_address fieldset:last').find('label').css('color', 'red');
+    }
+    return notError;
 }

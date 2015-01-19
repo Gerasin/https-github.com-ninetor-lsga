@@ -133,7 +133,7 @@
 
             $html.= '<a href="/shop/goods/'.$one_goods->id.'" class="tovar-photo"><span class="tovar-photo_wrapper"><img src='.$image.' alt=""></span></a>
             <a href="/shop/goods/'.$one_goods->id.'" class="tovar-name">'.$one_goods->name.'</a>
-            <p class="tovar-cost aright"><strong>'.$one_goods->price.'</strong> руб.</p>
+            <p class="tovar-cost aright"><strong>'.$one_goods->price.'</strong> &#8364;</p>
             <p class="aright tovar_action"><button class="favorite js-toggle-active pull-left"></button>';
             if ($active)
             {

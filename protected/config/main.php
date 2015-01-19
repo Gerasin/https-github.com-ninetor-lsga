@@ -78,7 +78,10 @@ return array(
 //                'shop/<page:\d+>' => 'shop/index', ///
                 'shop' => 'shop/index', ///
                 'shop/goods/<id:d+>' => 'shop/goods', ///
-//                'shop/goods/cart_step_one' => 'shop/cartStepOne', ///
+                'shop/cart_step_one' => 'shop/cartStepOne', ///
+                'shop/cart_step_two' => 'shop/cartStepTwo', ///
+                'shop/cart_step_three' => 'shop/cartStepThree', ///
+                'shop/cart_step_four' => 'shop/cartStepFour', ///
 //              'shop?page=<page:\d+>' => 'shop/index', ///
                 'education' => '/education/index', ///
                 'education/category/<id:\d+>' => '/education/category', ///

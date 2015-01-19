@@ -11,7 +11,7 @@
     <div class="">
         <div class="content-main">
 
-            <form class="basket">
+            <form class="basket" method="post" action="cart_step_two" onsubmit="return CheckFieldsStepOne()">
 
                 <div class="basket_steps">
                     <span class="active">Адрес доставки</span><!--
@@ -27,39 +27,35 @@
                     <fieldset>
                         <label class="input-name">Страна</label>
                         <div class="select-wrapper">
-                            <select style="display: none;">
+                            <select name="country" style="display: none;">
                                 <option>Россия</option>
-                                <option>Чехия</option>
-                                <option>Франция</option>
+                                <option>Беларусь</option>
+                                <option>Казахстан</option>
+                                <option>Украина</option>
+                                <option>Польша</option>
                             </select>
                         </div>
                     </fieldset>
                     <fieldset>
                         <label class="input-name">Город</label>
-                        <div class="select-wrapper">
-                            <select style="display: none;">
-                                <option>Москва</option>
-                                <option>Прага</option>
-                                <option>Париж</option>
-                            </select>
-                        </div>
+                        <input type="text" name="city" id="city-register" value="" placeholder="">
                     </fieldset>
                     <fieldset>
                         <label class="input-name">Телефон (с кодом страны)</label>
-                        <input type="text" value="" placeholder="+7  ( 123 )  123 - 45 - 67">
+                        <input type="text" name="telephone" id="phone-register" value="" placeholder="">
                     </fieldset>
                     <fieldset>
                         <label class="input-name">Улица, номер дома, квартира</label>
-                        <input type="text" value="" placeholder="Улица">
+                        <input type="text" name="street" value="" placeholder="Улица">
                         <div class="more-inputs clearfix">
-                            <input type="text" value="" class="pull-left" placeholder="Номер дома">
-                            <input type="text" value="" class="pull-left" placeholder="Квартира">
+                            <input type="text" value="" name="home" class="pull-left" placeholder="Номер дома">
+                            <input type="text" value="" name="apartment" class="pull-left" placeholder="Квартира">
                         </div>
                     </fieldset>
                 </div>
 
                 <div class="basket-end acenter">
-                    <button class="btn-simple next-step"><span>Перейти к шагу 2</span></button>
+                    <button type="submit" class="btn-simple next-step"><span>Перейти к шагу 2</span></button>
                 </div>
 
             </form>

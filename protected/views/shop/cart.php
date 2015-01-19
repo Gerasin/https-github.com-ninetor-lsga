@@ -12,7 +12,7 @@
     <div class="">
         <div class="content-main">
 
-            <form class="basket" action="cartStepOne">
+            <form class="basket" action="cart_step_one" method="post">
                 <table>
                     <thead>
                     <tr>
@@ -48,14 +48,14 @@
                                 <button class="minus disabled"></button><input type="text" class="count_cart_goods" onchange="changeValCountCart(this)" value="'.$goods->count.'"><button class="plus"></button>
                             </div>
                         </td>
-                        <td><span class="tovar_cost"><input type="hidden" value="'.$price.'" /><strong>'.$price*$goods->count .'</strong> руб.</span></td>
+                        <td><span class="tovar_cost"><input type="hidden" value="'.$price.'" /><strong>'.$price*$goods->count .'</strong> &#8364; </span></td>
                         <td><input type="button" class="remove-from-basket" onclick="RemoveFromBasket(this)"/></td>
                     </tr>';
                     }
                     ?>
                     <tr>
                         <th colspan="6" class="aright summary-cost">
-                            <em>Общая сумма</em><strong><?=$allprice?></strong> руб.
+                            <em>Общая сумма</em><strong><?=$allprice?></strong>  &#8364;
                         </th>
                     </tr>
                     </tbody>
@@ -66,9 +66,13 @@
                     <div class="sale_body">
                         <div>
                             <div class="sale_input pull-right">
+                                <?php if ($goods->user->credit>0):?>
                                 За какое количество вы хотите получить скидку?
-                                <input type="text" value="0">
+                                <input type="text" value="0" name="credits">
                                 <input type="button" class="sale_input_button" onclick="CalculateDiscount()" value="Расчитать скидку">
+                                    <?php else: ?>
+                                    <a href="/settings" class="sale_input_button" id="add_credits_href" >Пополнить кол-во кредитов</a>
+                                <?php endif;?>
                             </div>
                             У вас на счету
                             <span class="sale_credits"><?=$goods->user->credit?><i class="credit-ico"></i></span>
@@ -77,9 +81,11 @@
                         <hr>
                         <div>
                             <div class="summary-cost pull-right">
-                                <em>Конечная цена товара со скидкой</em><strong><?=$allprice?></strong> руб.
+                                <em>Конечная цена товара со скидкой</em><strong><?=$allprice?></strong> &#8364;
+                                <input id="summary-cost_hidden" name="price" type="hidden" value="<?=$allprice?>">
                             </div>
-                            Скидка на товар в вашей корзине составит <strong class="summary-sale">0%</strong>
+                            Скидка на товар в вашей корзине составит <strong class="summary-sale"><span>0</span>%</strong>
+                            <input id="summary-sale_hidden" name="discount" type="hidden" value="0">
                         </div>
                     </div>
                 </div>
