@@ -331,6 +331,19 @@ $(document).ready(function() {
     p_m_inp.bind("focus", function() {
         this.value = '';
     });
+
+
+    function plusminusDisabled(plusminus){
+        $('.tovar_action_count').each(function(){
+            var input = parseInt(plusminus.find('input').val()),
+                buttons = plusminus.children('button'),
+                plus = plusminus.children('.plus'),
+                minus = plusminus.children('.minus');
+            buttons.removeClass('disabled');
+            if (input >= max_c) plus.addClass('disabled');
+            if (input <= 1)  minus.addClass('disabled');
+        });
+    }
     //Кнопки +-
     if ($('.tovar_action_count').size() > 0) {
 
@@ -350,18 +363,6 @@ $(document).ready(function() {
         return false;
     });
 
-
-    function plusminusDisabled(plusminus){
-        $('.tovar_action_count').each(function(){
-            if ($(this).hasClass('minus'))
-                input--;
-            if ($(this).hasClass('plus'))
-                input++;
-            $(this).parent().find('input').val(input);
-            plusminusDisabled($(this).parent());
-        });
-        return false;
-    }
 
     $('.select-wrapper select').each(function(){
         $(this).chosen({disable_search_threshold: 10});
@@ -731,13 +732,13 @@ function CalculateDiscount(){
      */
 
   var credits = $('.sale_credits').text();
-  var credits_input = parseInt($('.sale_input input[type="text"]').val());
+  var credits_input = parseInt($('#credits_sale').val());
     var allsum = $("tr:last").find(".summary-cost strong").text();
     var discount =0;
     if (credits<credits_input)
     {
         alert("У вас не хватает кредитов")
-        $('.sale_input input[type="text"]').val(credits);
+        $('#credits_sale').val(credits);
     }
             if (credits >= 100)
             {
@@ -761,7 +762,7 @@ function CalculateDiscount(){
                max = 100 * 1.2 * (allsum/100)
             }
             //alert("Нельзя использовать такое количество кредитов. Макс кол-во: " + max);
-            $('.sale_input input[type="text"]').val(max);
+            $('#credits_sale').val(max);
         }
             var procent_discount = Math.floor(discount*Math.pow(10, 2))/Math.pow(10, 2); //округление до 2 знаков
             $('.summary-sale span').text(procent_discount);

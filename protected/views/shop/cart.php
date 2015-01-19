@@ -68,9 +68,10 @@
                             <div class="sale_input pull-right">
                                 <?php if ($goods->user->credit>0):?>
                                 За какое количество вы хотите получить скидку?
-                                <input type="text" value="0" name="credits">
+                                <input type="text" value="0" id="credits_sale" name="credits">
                                 <input type="button" class="sale_input_button" onclick="CalculateDiscount()" value="Расчитать скидку">
                                     <?php else: ?>
+                                    <input type="hidden" value="0" id="credits_sale" name="credits">
                                     <a href="/settings" class="sale_input_button" id="add_credits_href" >Пополнить кол-во кредитов</a>
                                 <?php endif;?>
                             </div>

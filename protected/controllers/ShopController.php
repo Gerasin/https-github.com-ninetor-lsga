@@ -26,6 +26,7 @@ class ShopController extends Controller
 
         $categories = ShopCategory::model()->getCategories(NULL);
         $criteria = new CDbCriteria();
+        $criteria->order = 'created DESC';
         $count = ShopGoods::model()->count($criteria);
         $pages=new CPagination($count);
         $pages->pageSize=10;
