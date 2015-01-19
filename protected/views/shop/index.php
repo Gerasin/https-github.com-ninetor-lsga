@@ -21,97 +21,113 @@
        Магазин
     </li>
 </ul>
-<aside class="sidebar-main shop-filtr">
-    <form>
-        <fieldset>
-            <input type="checkbox" value="" id="che-01">
-            <label for="che-01" class="bigest">Авто, мото</label>
-        </fieldset>
-        <fieldset class="js-accordeon">
-            <input type="checkbox" value="" id="che-02">
-            <label for="che-02" class="only-checkbox"></label>
-            <span class="js-accordeon_head">Автомобили</span>
-            <ul class="js-accordeon_body">
-                <li><input type="checkbox" value="" id="che-03"><label for="che-03" class="">Легковые</label></li>
-                <li><input type="checkbox" value="" id="che-04"><label for="che-04" class="">Грузовые</label></li>
-            </ul>
-        </fieldset>
-        <fieldset class="js-accordeon">
-            <input type="checkbox" value="" id="che-05">
-            <label for="che-05" class="only-checkbox"></label>
-            <span class="js-accordeon_head">Автоуслуги</span>
-            <ul class="js-accordeon_body">
-                <li><input type="checkbox" value="" id="che-06"><label for="che-06" class="">Аренда авто</label></li>
-                <li><input type="checkbox" value="" id="che-07"><label for="che-07" class="">Ремонт авто</label></li>
-            </ul>
-        </fieldset>
-        <fieldset class="js-accordeon">
-            <input type="checkbox" value="" id="che-08">
-            <label for="che-08" class="only-checkbox"></label>
-            <span class="js-accordeon_head">Автохимия</span>
-            <ul class="js-accordeon_body">
-                <li><input type="checkbox" value="" id="che-09"><label for="che-09" class="">Очистители</label></li>
-                <li><input type="checkbox" value="" id="che-10"><label for="che-10" class="">Присадки</label></li>
-            </ul>
-        </fieldset>
-        <fieldset>
-            <input type="checkbox" value="" id="che-11">
-            <label for="che-11" class="">Автошколы</label>
-        </fieldset>
-        <fieldset class="js-accordeon">
-            <input type="checkbox" value="" id="che-12">
-            <label for="che-12" class="only-checkbox"></label>
-            <span class="js-accordeon_head">Аксессуары, тюнинг</span>
-            <ul class="js-accordeon_body">
-                <li><input type="checkbox" value="" id="che-13"><label for="che-13" class="">Хром</label></li>
-                <li><input type="checkbox" value="" id="che-14"><label for="che-14" class="">Ручная работа</label></li>
-            </ul>
-        </fieldset>
-        <fieldset>
-            <input type="checkbox" value="" id="che-15">
-            <label for="che-15" class="">Гаражи</label>
-        </fieldset>
-        <fieldset class="js-accordeon">
-            <input type="checkbox" value="" id="che-16">
-            <label for="che-16" class="only-checkbox"></label>
-            <span class="js-accordeon_head">Запчасти</span>
-            <ul class="js-accordeon_body">
-                <li><input type="checkbox" value="" id="che-17"><label for="che-17" class="">Новые</label></li>
-                <li><input type="checkbox" value="" id="che-18"><label for="che-18" class="">Б/у</label></li>
-            </ul>
-        </fieldset>
-        <fieldset class="js-accordeon">
-            <input type="checkbox" value="" id="che-19">
-            <label for="che-19" class="only-checkbox"></label>
-            <span class="js-accordeon_head">Мототехника</span>
-            <ul class="js-accordeon_body">
-                <li><input type="checkbox" value="" id="che-20"><label for="che-20" class="">По воде</label></li>
-                <li><input type="checkbox" value="" id="che-21"><label for="che-21" class="">По суше</label></li>
-            </ul>
-        </fieldset>
-        <fieldset>
-            <input type="checkbox" value="" id="che-22">
-            <label for="che-22" class="">Охранные системы</label>
-        </fieldset>
-        <fieldset>
-            <input type="checkbox" value="" id="che-23">
-            <label for="che-23" class="">Шины и диски</label>
-        </fieldset>
-        <fieldset>
-            <input type="checkbox" value="" id="che-24">
-            <label for="che-24" class="">Просто длинное название но обрезанное</label>
-        </fieldset>
-        <fieldset>
-            <input type="checkbox" value="" id="che-25">
-            <label for="che-25" class="many-row">Просто длинное название, но строк уже неограниченно</label>
-        </fieldset>
-        <div class="filter-btn-con">
-            <a class="filter-btn" href="#"><span>Подобрать</span></a>
-        </div>
-    </form>
+    <aside class="sidebar-main shop-filtr">
+        <form>
+            <fieldset>
+                <input type="checkbox" value="" id="che-01">
+                <label for="che-01" class="bigest">Авто, мото</label>
+            </fieldset>
+            <fieldset class="js-accordeon many-accordeon active">
+                <input type="checkbox" value="" id="che-02">
+                <label for="che-02" class="only-checkbox"></label>
+                <span class="js-accordeon_head active">Автомобили</span>
+                <ul class="js-accordeon_body" style="display: block;">
+                    <li class="js-accordeon active">
+                        <input type="checkbox" value="" id="che-03">
+                        <label for="che-03" class="only-checkbox"></label>
+                        <span class="js-accordeon_head active">Уровень 2</span>
+                        <ul class="js-accordeon_body" style="display: block;">
+                            <li><input type="checkbox" value="" id="che-03-1"><label for="che-03-1" class=""><span>Уровень 3</span></label></li>
+                            <li class="js-accordeon active">
+                                <input type="checkbox" value="" id="che-04-1">
+                                <label for="che-04-1" class="only-checkbox"></label>
+                                <span class="js-accordeon_head active">Уровень 3</span>
+                                <ul class="js-accordeon_body" style="display: block;">
+                                    <li><input type="checkbox" value="" id="che-06-1"><label for="che-06-1" class=""><span>Уровень 4</span></label></li>
+                                    <li><input type="checkbox" value="" id="che-07-1"><label for="che-07-1" class=""><span>Уровень 4</span></label></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><input type="checkbox" value="" id="che-04"><label for="che-04" class=""><span>Грузовые</span></label></li>
+                </ul>
+            </fieldset>
+            <fieldset class="js-accordeon">
+                <input type="checkbox" value="" id="che-05">
+                <label for="che-05" class="only-checkbox"></label>
+                <span class="js-accordeon_head">Автоуслуги</span>
+                <ul class="js-accordeon_body">
+                    <li><input type="checkbox" value="" id="che-06"><label for="che-06" class=""><span>Аренда авто</span></label></li>
+                    <li><input type="checkbox" value="" id="che-07"><label for="che-07" class=""><span>Ремонт авто</span></label></li>
+                </ul>
+            </fieldset>
+            <fieldset class="js-accordeon">
+                <input type="checkbox" value="" id="che-08">
+                <label for="che-08" class="only-checkbox"></label>
+                <span class="js-accordeon_head">Автохимия</span>
+                <ul class="js-accordeon_body">
+                    <li><input type="checkbox" value="" id="che-09"><label for="che-09" class=""><span>Очистители</span></label></li>
+                    <li><input type="checkbox" value="" id="che-10"><label for="che-10" class=""><span>Присадки</span></label></li>
+                </ul>
+            </fieldset>
+            <fieldset>
+                <input type="checkbox" value="" id="che-11">
+                <label for="che-11" class=""><span>Автошколы</span></label>
+            </fieldset>
+            <fieldset class="js-accordeon">
+                <input type="checkbox" value="" id="che-12">
+                <label for="che-12" class="only-checkbox"></label>
+                <span class="js-accordeon_head">Аксессуары, тюнинг</span>
+                <ul class="js-accordeon_body">
+                    <li><input type="checkbox" value="" id="che-13"><label for="che-13" class=""><span>Хром</span></label></li>
+                    <li><input type="checkbox" value="" id="che-14"><label for="che-14" class=""><span>Ручная работа</span></label></li>
+                </ul>
+            </fieldset>
+            <fieldset>
+                <input type="checkbox" value="" id="che-15">
+                <label for="che-15" class=""><span>Гаражи</span></label>
+            </fieldset>
+            <fieldset class="js-accordeon">
+                <input type="checkbox" value="" id="che-16">
+                <label for="che-16" class="only-checkbox"></label>
+                <span class="js-accordeon_head">Запчасти</span>
+                <ul class="js-accordeon_body">
+                    <li><input type="checkbox" value="" id="che-17"><label for="che-17" class=""><span>Новые</span></label></li>
+                    <li><input type="checkbox" value="" id="che-18"><label for="che-18" class=""><span>Б/у</span></label></li>
+                </ul>
+            </fieldset>
+            <fieldset class="js-accordeon">
+                <input type="checkbox" value="" id="che-19">
+                <label for="che-19" class="only-checkbox"></label>
+                <span class="js-accordeon_head">Мототехника</span>
+                <ul class="js-accordeon_body">
+                    <li><input type="checkbox" value="" id="che-20"><label for="che-20" class=""><span>По воде</span></label></li>
+                    <li><input type="checkbox" value="" id="che-21"><label for="che-21" class=""><span>По суше</span></label></li>
+                </ul>
+            </fieldset>
+            <fieldset>
+                <input type="checkbox" value="" id="che-22">
+                <label for="che-22" class=""><span>Охранные системы</span></label>
+            </fieldset>
+            <fieldset>
+                <input type="checkbox" value="" id="che-23">
+                <label for="che-23" class=""><span>Шины и диски</span></label>
+            </fieldset>
+            <fieldset>
+                <input type="checkbox" value="" id="che-24">
+                <label for="che-24" class=""><span>Просто длинное название но обрезанное</span></label>
+            </fieldset>
+            <fieldset>
+                <input type="checkbox" value="" id="che-25">
+                <label for="che-25" class="many-row"><span>Просто длинное название, но строк уже неограниченно</span></label>
+            </fieldset>
+            <div class="filter-btn-con">
+                <a class="filter-btn" href="#"><span>Подобрать</span></a>
+            </div>
+        </form>
 
 
-</aside> <!-- sidebar main -->
+    </aside>
 
 <div class="content-main">
     <div class="shop">
