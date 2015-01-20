@@ -64,7 +64,7 @@ $this->pageTitle = $education->name;
                             <?php elseif ($value['status'] == 3): ?>
                                 <span class="pseudo-button green-contrast"><span>Завершено</span></span>
                             <?php elseif ($value['status'] == 4): ?>
-                                <a href="#" onclick="startLessonUser(<? = $value['id'] ?>); return false;" class="button"><span>Начать изучение</span></a>
+                                <a href="#" onclick="startLessonUser(<?= $value['id'] ?>); return false;" class="button"><span>Начать изучение</span></a>
                             <?php else: ?>
                                 <span class="pseudo-button dark-gray"><span>Закончите <?php echo $value['prev_name'] ?></span></span>
                             <?php endif; ?>                                                    
