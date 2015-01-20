@@ -1,3 +1,32 @@
+// выбор активного элемената свободного времени
+$(document).ready(function() {
+    $('.time-variant').bind('click', function() {
+        var start = $(this).attr('data-start');
+        var finish = $(this).attr('data-finish');        
+        $('.time-variant').removeClass('active');
+        $('#next-step').prop('disabled', true);
+        var thisElement=$(this);
+        
+        $.ajax({
+            data: {'start': start, 'finish': finish},
+            dataType: 'json',
+            type: 'POST',
+            url: '/dynoReservation/dynoReservationTimeVariant',
+            success: function(data) {
+                if (data.success == 1) {
+                    thisElement.addClass('active');
+                    $('#textForUserStatus').html(data.textResult);
+                    $('#next-step').prop('disabled', false);
+                }
+                else
+                {
+
+                }
+            }
+        });
+
+    });
+})
 // Согласен с "Условиями Эксплуатации Диностенда"
 function reserv_rules_ok(status) {
     if (status) {

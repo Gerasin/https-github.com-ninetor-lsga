@@ -9,14 +9,17 @@
  * Description of AdminUserController
  *
  */
-class AdminUserController extends AdminController {
+class AdminUserController extends AdminController
+{
 
-    public function actionIndex() {
+    public function actionIndex()
+    {
         $users = User::model()->findAll();
         $this->render('users', array('users' => $users));
     }
 
-    public function actionUserDetail() {
+    public function actionUserDetail()
+    {
         $id = (int) Yii::app()->request->getParam('id');
         $user = User::model()->findByPk($id);
 
@@ -27,7 +30,8 @@ class AdminUserController extends AdminController {
      * 
      * @return type
      */
-    public function actionUserEdit() {
+    public function actionUserEdit()
+    {
         $id = (int) Yii::app()->request->getParam('id');
         $user = User::model()->findByPk($id);
 
@@ -38,7 +42,8 @@ class AdminUserController extends AdminController {
      * edit user
      */
 
-    public function actionUserUpdate() {
+    public function actionUserUpdate()
+    {
         $user_id = (int) Yii::app()->request->getParam('id');
         $form = new UserUpdate();
         $form->attributes = Yii::app()->request->getPost('user');
@@ -70,7 +75,8 @@ class AdminUserController extends AdminController {
         }
     }
 
-    private function updateUser($form, $id, $nameImage) {
+    private function updateUser($form, $id, $nameImage)
+    {
         //$id = (int) Yii::app()->user->id;
         $user = User::model()->findByPk($id);
         $user->email = $form->email;
@@ -103,7 +109,8 @@ class AdminUserController extends AdminController {
      * @param type $toDirectory
      * @return string
      */
-    private function addImageForm($fileName, $toWidth, $toHeight, $toDirectory, $nameImage) {
+    private function addImageForm($fileName, $toWidth, $toHeight, $toDirectory, $nameImage)
+    {
         if (!empty($_FILES[$fileName]['tmp_name'])) {
             //$nameImage = 'education' . time() . '.jpg';
             $ih = new CImageHandler();
@@ -124,21 +131,26 @@ class AdminUserController extends AdminController {
      * @param type $toDirectory
      * @return type
      */
-    private function addImageFormError($fileName, $toWidth, $toHeight, $toDirectory) {
+    private function addImageFormError($fileName, $toWidth, $toHeight, $toDirectory)
+    {
         if (!empty($_FILES[$fileName]['tmp_name'])) {
             return Education::model()->imageFormValidate($_FILES[$fileName]);
         }
     }
 
-    public function actionDeleteUser() {
+    public function actionDeleteUser()
+    {
         $id = Yii::app()->request->getParam('id');
         $user = User::model()->findByPk($id);
         $user->delete();
+        CommentsUser::model()->deleteAll('id_user=' . $id);
+        Comments::model()->deleteAll('id_user=' . $id);
 
         $this->redirect($this->createUrl('/administration/users'));
     }
 
-    public function accessRules() {
+    public function accessRules()
+    {
         return array(
             array(
                 'allow',

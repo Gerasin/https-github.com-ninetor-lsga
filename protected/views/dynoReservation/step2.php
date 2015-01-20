@@ -9,54 +9,34 @@ $this->pageTitle = "Резервация диностенда";
 <script type="text/javascript" src="/js/reservation.js"></script>
 <div class="">
     <div class="content-main">
-
         <form class="reservation full-width" action="/dyno-reservation/step-3" method="POST">
-
             <div class="reserv-navigate clearfix">
                 <a href="#" class="pull-left">Предыдущая неделя</a>
                 <a href="#" class="pull-right">Следующая неделя</a>
                 Выберите дату  из доступных
             </div>
-
             <table class="reserv-table">
                 <thead>
                     <tr>
-                        <th>Понедельник (15.12)</th>
-                        <th>Вторник (16.12)</th>
-                        <th>Среда (17.12)</th>
-                        <th>Четверг (18.12)</th>
-                        <th>Пятница (19.12)</th>
+                        <?php foreach ($dayWeek as $value): ?>
+                            <th><?= Yii::app()->dateFormatter->formatDayInWeek('cccc', $value); ?> <?= date('(d.m)', $value)?></th>
+                        <?php endforeach; ?>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td><div class="time-variant">9:00 — 21:00</div></td>
-                        <td>Недоступно</td>
-                        <td><div class="time-variant active">9:00 — 21:00</div></td>
-                        <td><div class="time-variant">9:00 — 21:00</div></td>
-                        <td>Недоступно</td>
-                    </tr>
-                    <tr>
-                        <td><div class="time-variant active">9:00 — 21:00</div></td>
-                        <td>Недоступно</td>
-                        <td><div class="time-variant">9:00 — 21:00</div></td>
-                        <td><div class="time-variant">9:00 — 21:00</div></td>
-                        <td>Недоступно</td>
-                    </tr>
-                    <tr>
-                        <td><div class="time-variant">9:00 — 21:00</div></td>
-                        <td>Недоступно</td>
-                        <td><div class="time-variant active">9:00 — 21:00</div></td>
-                        <td><div class="time-variant">9:00 — 21:00</div></td>
-                        <td>Недоступно</td>
-                    </tr>
-                    <tr>
-                        <td><div class="time-variant">9:00 — 21:00</div></td>
-                        <td>Недоступно</td>
-                        <td><div class="time-variant">9:00 — 21:00</div></td>
-                        <td><div class="time-variant">9:00 — 21:00</div></td>
-                        <td>Недоступно</td>
-                    </tr>
+                    <?php foreach ($timetable as $value): ?>                   
+                        <tr>
+                            <?php foreach ($value as $item): ?>                                 
+                                <td>
+                                    <?php if ($item['startTimeWork']): ?>
+                                        <div class="timevariant time-variant" data-start="<?= $item['startTimeWork']?>" data-finish="<?= $item['finishTimeWork']?>"><?= date("H:i", $item['startTimeWork'])?> — <?= date("H:i", $item['finishTimeWork'])?></div>
+                                    <?php else: ?>
+                                        Недоступно
+                                    <?php endif; ?>
+                                </td>                                                             
+                            <?php endforeach; ?>
+                        </tr>
+                    <?php endforeach; ?>
                     <tr>
                         <th>&nbsp;</th>
                         <th>&nbsp;</th>
@@ -68,13 +48,9 @@ $this->pageTitle = "Резервация диностенда";
             </table>
 
             <div class="reserv-selection aright">
-                <input type="hidden" value="" name="reservation[date]"/>
-                <input type="hidden" value="" name="reservation[date_start]"/>
-                <input type="hidden" value="" name="reservation[date_finish]"/>
-                <button class="btn-simple next-step" onclick="history.back();
-                        return false;" style="margin-right: 40px;"><span>НАЗАД</span></button>
-                <span> Вы выбрали время с <strong>9:00</strong> до <strong>21:00</strong>, в <strong>Среду 17 декабря 2014</strong></span>
-                <button class="btn-simple next-step"><span>ДАЛЕЕ</span></button>
+                <button class="btn-simple next-step" onclick="history.back(); return false;" style="margin-right: 40px;"><span>НАЗАД</span></button>
+                <span id='textForUserStatus'>Выберите время  из доступных вариантов</span>
+                <button class="btn-simple next-step" id='next-step' disabled><span>ДАЛЕЕ</span></button>
             </div>
         </form>
     </div>   

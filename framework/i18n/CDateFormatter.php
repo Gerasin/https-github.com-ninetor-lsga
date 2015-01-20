@@ -314,9 +314,10 @@ class CDateFormatter extends CComponent
 	 * @return string day of the week.
 	 * @see http://www.unicode.org/reports/tr35/#Date_Format_Patterns
 	 */
-	protected function formatDayInWeek($pattern,$date)
+	public function formatDayInWeek($pattern,$date)
 	{
-		$day=$date['wday'];
+		//$day=$date['wday'];
+                $day=date('w',$date);
 		switch($pattern)
 		{
 			case 'E':
