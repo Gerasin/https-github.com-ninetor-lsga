@@ -1087,9 +1087,55 @@ function formgoodsaddsubmit() {
     $('.error-edit-user').attr('style', 'display:none');
     var form = document.forms.form_goods_add;
     var formData = new FormData(form);
-    //
+
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "/administration/adminShop/ShopGoodsAddNew");
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4) {
+            if (xhr.status == 200) {
+                data = JSON.parse(xhr.responseText);
+                if (data.success == '1') {
+                    $('.success-edit-user').attr('style', 'display:block');
+                    setTimeout(function() {
+                        location.href = "/administration/shopGoods/edit/"+data.id;
+                    }, 1000);
+                } else {
+                    $('#blockLoader').hide();
+                    var errors = [];
+                    errors = data.error[0];
+                    var form1 = $('#form_goods_add');
+                    form1.find('.list-group-item').each(function() {
+                        var input_element = $(this).find('input,textarea,select');
+                        var input = input_element[0]['id'];
+                        if (errors[input] > '') {
+                            input_element.addClass('input-error');
+                            $('.error-edit-user').attr('style', 'display:block');
+                        }
+                    });
+                    if (data.error[1]) {
+                        $('#fileToUploadmain').addClass('input-error');
+                        $('.error-edit-user').attr('style', 'display:block');
+                        $('.error-edit-user').text(data.error[1]);
+                    }
+                }
+
+            }
+        }
+    };
+
+    xhr.send(formData);
+}
+
+function formgoodseditsubmit(id) {
+    $('#blockLoader').show();
+    $('.input-simple').removeClass('input-error');
+    $('.error-edit-user').attr('style', 'display:none');
+    var form = document.forms.form_goods_edit;
+    var formData = new FormData(form);
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/administration/adminShop/ShopGoodsUpdate?id="+id);
 
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4) {
@@ -1127,48 +1173,60 @@ function formgoodsaddsubmit() {
     xhr.send(formData);
 }
 
-function formgoodseditsubmit() {
+
+
+function formshoppropertyadd(goods_id) {
     $('#blockLoader').show();
     $('.input-simple').removeClass('input-error');
     $('.error-edit-user').attr('style', 'display:none');
-    var form = document.forms.form_goods_edit;
-    var formData = new FormData(form);
-
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "/administration/adminShop/ShopGoodsUpdate");
-
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4) {
-            if (xhr.status == 200) {
-                data = JSON.parse(xhr.responseText);
-                if (data.success == '1') {
-                    $('.success-edit-user').attr('style', 'display:block');
-                    setTimeout(function() {
-                        location.href = "/administration/shopGoods/";
-                    }, 1000);
-                } else {
-                    $('#blockLoader').hide();
-                    var errors = [];
-                    errors = data.error[0];
-                    var form1 = $('#form_goods_add');
-                    form1.find('.list-group-item').each(function() {
-                        var input_element = $(this).find('input,textarea,select');
-                        var input = input_element[0]['id'];
-                        if (errors[input] > '') {
-                            input_element.addClass('input-error');
-                            $('.error-edit-user').attr('style', 'display:block');
-                        }
-                    });
-                    if (data.error[1]) {
-                        $('#fileToUploadmain').addClass('input-error');
-                        $('.error-edit-user').attr('style', 'display:block');
-                        $('.error-edit-user').text(data.error[1]);
-                    }
-                }
-
+    var title_property = $('#form_property_edit #title_property').val();
+    var text_property = $('#form_property_edit #text_property').val();
+    $.ajax({
+        data: {title_property: title_property, text_property: text_property, goods_id: goods_id},
+        dataType: 'json',
+        type: 'POST',
+        url: '/administration/adminShop/shopGoodsPropertyAdd',
+        success: function (data) {
+            if (data.success == 1) {
+                $('.success-edit-user').attr('style', 'display:block');
+                setTimeout(function () {
+                    history.back();
+                }, 1000);
+            }
+            else {
+                var errors = [];
+                errors = data.error;
+                $('#form_shop_category_add #name').addClass('input-error');
+                $('.error-edit-user').attr('style', 'display:block');
             }
         }
-    };
+    });
+}
 
-    xhr.send(formData);
+function formshoppropertyedit(goods_id, property_id) {
+    $('#blockLoader').show();
+    $('.input-simple').removeClass('input-error');
+    $('.error-edit-user').attr('style', 'display:none');
+    var title_property = $('#form_property_edit #title_property').val();
+    var text_property = $('#form_property_edit #text_property').val();
+    $.ajax({
+        data: {title_property: title_property, text_property: text_property, property_id: property_id, goods_id: goods_id},
+        dataType: 'json',
+        type: 'POST',
+        url: '/administration/adminShop/shopGoodsPropertyEdit',
+        success: function (data) {
+            if (data.success == 1) {
+                $('.success-edit-user').attr('style', 'display:block');
+                setTimeout(function () {
+                    history.back();
+                }, 1000);
+            }
+            else {
+                var errors = [];
+                errors = data.error;
+                $('#form_shop_category_add #name').addClass('input-error');
+                $('.error-edit-user').attr('style', 'display:block');
+            }
+        }
+    });
 }

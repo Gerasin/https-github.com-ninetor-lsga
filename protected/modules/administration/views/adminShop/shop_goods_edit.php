@@ -19,8 +19,6 @@
         <div class="row">
             <div class="col-lg-12">
                 <form enctype="multipart/form-data" method="post" id="form_goods_edit" onsubmit="return false;">
-                    <input class="input-simple" type="hidden"  id="id" name="goods[id]"
-                           value="<?=$goods->id?>"/>
                     <li class="list-group-item">Название: </br>
                         <input class="input-simple" type="text" style="width: 100%" id="name" name="goods[name]"
                                value="<?=$goods->name?>"/>
@@ -48,7 +46,10 @@
                         <input class="input-simple" type="text" style="width: 100%" id="warehouse_count" name="goods[warehouse_count]" value="<?=$goods->warehouse_count?>"/>
                         <span id="errmsgcount" style="color: #ac2925"></span>
                     </li>
-                    <li class="list-group-item">Стоимость, руб.: </br>
+                    <li class="list-group-item">Сообщение при отсутствии на складе: </br>
+                        <input class="input-simple" type="text" style="width: 100%" id="empty_warehouse_message" name="goods[empty_warehouse_message]" value="<?=$goods->empty_warehouse_message?>"/>
+                    </li>
+                    <li class="list-group-item">Стоимость,  &#8364;: </br>
                         <input class="input-simple" type="text" style="width: 100%" id="price" name="goods[price]" value="<?=$goods->price?>"/>
                         <span id="errmsgprice" style="color: #ac2925"></span>
                     </li>
@@ -61,9 +62,45 @@
                         <?php if (isset($goods->picture))
                             echo '<img src="/upload/images/tovars/'.$goods->picture.'"/>';?>
                     </li>
+                    <li class="list-group-item"><p>Свойства:</p>
+                        <?php
+                        echo '<a href="/administration/shopGoods/'.$goods->id.'/addProperty" class="btn btn-xs btn-primary">Добавить</a>';
+                        if (count($goods->shopGoodsProperties)){?>
+                        <div class="table-responsive">
+                            <table id="table-shop-properties" class="table table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th>Свойство</th>
+                                    <th>Содержание</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <?php foreach ($goods->shopGoodsProperties as $item): ?>
+                                    <tr id="<?= $item->id; ?>">
+                                        <td>
+                                            <?= $item->title; ?>
+                                        </td>
+                                        <td>
+                                            <?= $item->text; ?>
+                                        </td>
+                                        <td>
+                                            <a href="/administration/shopGoods/<?=$goods->id?>/editProperty/<?= $item->id; ?>">ред.</a>
+                                        </td>
+                                        <td>
+                                            <a href="/administration/shopGoods/<?=$goods->id?>/deleteProperty/<?= $item->id; ?>">удл.</a>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <?php }?>
+                    </li>
                     <div class="error-edit-user">Заполните корректно выделеные поля.</div>
                     <div class="success-edit-user">Данные сохранены</div>
-                    <button type="submit" class="form-personal-submit" onclick="formgoodseditsubmit()" id="form-goods-add-submit">Сохранить</button>
+                    <button type="submit" class="form-personal-submit" onclick="formgoodseditsubmit(<?=$goods->id?>)" id="form-goods-add-submit">Сохранить</button>
                 </form>
             </div>
         </div>

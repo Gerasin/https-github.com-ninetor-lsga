@@ -212,8 +212,8 @@ $(document).ready(function() {
     });
 
     //Mask input
-    if ($('#phone-register').size() > 0)
-        $('#phone-register').mask("8(99)99-99-999", {placeholder: "8(__)__-__-___"});
+    if( $('#phone-register').size() > 0 ) $('#phone-register').mask("8(999)99-99-999",{placeholder:"8(___)__-__-___"});
+
 
     //Карта google
     function initialize() {
@@ -223,7 +223,7 @@ $(document).ready(function() {
             mapTypeId: google.maps.MapTypeId.ROADMAP,
             zoomControl: true,
             scaleControl: false,
-            streetViewControl: false,
+            streetViewControl: false
         };
         var map = new google.maps.Map(document.getElementById("map"), options);
         var image = 'images/pointer.png';
@@ -331,6 +331,19 @@ $(document).ready(function() {
     p_m_inp.bind("focus", function() {
         this.value = '';
     });
+
+
+    function plusminusDisabled(plusminus){
+        $('.tovar_action_count').each(function(){
+            var input = parseInt(plusminus.find('input').val()),
+                buttons = plusminus.children('button'),
+                plus = plusminus.children('.plus'),
+                minus = plusminus.children('.minus');
+            buttons.removeClass('disabled');
+            if (input >= max_c) plus.addClass('disabled');
+            if (input <= 1)  minus.addClass('disabled');
+        });
+    }
     //Кнопки +-
     if ($('.tovar_action_count').size() > 0) {
 
@@ -342,33 +355,18 @@ $(document).ready(function() {
     $('.tovar_action_count button').click(function() {
         if (!$(this).hasClass('disabled')) {
             var input = parseInt($(this).parent().find('input').val());
-            if ($(this).hasClass('minus'))
-                input--;
-            if ($(this).hasClass('plus'))
-                input++;
-            $(this).parent().find('input').val(input);
-            plusminusDisabled($(this).parent());
+            if( $(this).hasClass('minus') ) input--;
+            if( $(this).hasClass('plus') ) input++;
+            $(this).siblings('input').val(input).trigger('change');
+            plusminusDisabled( $(this).parent() );
         }
         return false;
     });
-    function plusminusDisabled(plusminus) {
-        $('.tovar_action_count').each(function() {
-            var input = parseInt(plusminus.find('input').val()),
-                    buttons = plusminus.children('button'),
-                    plus = plusminus.children('.plus'),
-                    minus = plusminus.children('.minus');
-            buttons.removeClass('disabled');
-            if (input >= max_c)
-                plus.addClass('disabled');
-            if (input <= 1)
-                minus.addClass('disabled');
-        });
-    }
-    //Select - chosen
-    $('.select-wrapper select').each(function() {
+
+
+    $('.select-wrapper select').each(function(){
         $(this).chosen({disable_search_threshold: 10});
     });
-
 });
 
 
@@ -646,3 +644,170 @@ jQuery(function($) {
         $.datepicker.setDefaults($.datepicker.regional['ru']);
     }
 });
+
+
+function addToCartIndex(element, goods_id, count)
+{
+    $.ajax({
+        data: { goods_id : goods_id, count:count },
+        dataType: 'json',
+        type: 'POST',
+        url: '/shop/addToCart',
+        success: function (data) {
+            if (data.success == 1) {
+                $(element).parents('.tovar').addClass("active");
+                $(element).addClass("hidden");
+                $(element).siblings("span").removeClass("hidden");
+                $(element).siblings("a").removeClass("hidden");
+            }
+            else {
+                alert("Произошла ошибка добавления товара в корзину.")
+            }
+        }
+    });
+}
+
+function addToCartGoodsPage(element, goods_id)
+{
+    var count = $('.tovar_action_count input').val();
+
+    $.ajax({
+        data: { goods_id : goods_id, count:count },
+        dataType: 'json',
+        type: 'POST',
+        url: '/shop/addToCart',
+        success: function (data) {
+            if (data.success == 1) {
+                var parent = $(element).parent();
+                $(element).remove();
+                $('div.tovar_action_count').remove();
+                parent.append('<a href="/shop/cart" class="btn-simple pull-right tovar_action_buy"><span>Оформить</span></a>');
+            }
+            else {
+                alert("Произошла ошибка добавления товара в корзину.")
+            }
+        }
+    });
+}
+
+function changeValCountCart(col){
+    document.body.style.cursor = 'wait';
+    var price = $(col).parents("tr").find(".tovar_cost input:hidden").val();
+    var count = $(col).val();
+
+    var id = $(col).parents("tr").prop('id');
+    $.ajax({
+        data: { id : id, count:count },
+        dataType: 'json',
+        type: 'POST',
+        url: '/shop/changeCountCart',
+        success: function (data) {
+            if (data.success == 1) {
+                document.body.style.cursor = 'default';
+                $(col).parents("tr").find(".tovar_cost strong").text(price*count);
+                var all = $(".tovar_cost strong");
+                var allsum = 0;
+                for (var i=0; i<all.length; i++){
+                    allsum += parseInt(all.eq(i).text());
+                }
+                $("tr:last").find(".summary-cost strong").text(allsum);
+                $("#summary-cost_hidden").val(allsum);
+
+                CalculateDiscount();
+            }
+            else {
+                alert("Произошла ошибка")
+            }
+        }
+    });
+
+}
+function CalculateDiscount(){
+    /**
+     *
+     Если у клиента до 100 кредитов он получает скидку по принципу:
+     Количество кредитов за которые клиент хочет получить скидку / (цена товара в корзине/100)/4.
+     Если у клиента больше 100 кредитов он получает скидку по принципу:
+     Количество кредитов за которые клиент хочет получить скидку / (цена товара в корзине/100)/1,2
+     */
+
+  var credits = $('.sale_credits').text();
+  var credits_input = parseInt($('#credits_sale').val());
+    var allsum = $("tr:last").find(".summary-cost strong").text();
+    var discount =0;
+    if (credits<credits_input)
+    {
+        alert("У вас не хватает кредитов")
+        $('#credits_sale').val(credits);
+    }
+            if (credits >= 100)
+            {
+              discount = credits_input/(allsum/100)/4;
+            }
+        else
+        {
+            discount = credits_input/(allsum/100)/1.2;
+        }
+
+        if (discount>100)
+        {
+            discount = 100;
+            var max = 0;
+            if (credits >= 100)
+            {
+               max = 100 * 4 * (allsum/100)
+            }
+            else
+            {
+               max = 100 * 1.2 * (allsum/100)
+            }
+            //alert("Нельзя использовать такое количество кредитов. Макс кол-во: " + max);
+            $('#credits_sale').val(max);
+        }
+            var procent_discount = Math.floor(discount*Math.pow(10, 2))/Math.pow(10, 2); //округление до 2 знаков
+            $('.summary-sale span').text(procent_discount);
+            $('#summary-sale_hidden').val(procent_discount);
+            var new_price = Math.floor(allsum-((allsum*procent_discount)/100))//округление
+            $(".summary-cost.pull-right strong").text(new_price);
+            $("#summary-cost_hidden").val(new_price);
+}
+
+function RemoveFromBasket(col){
+    var id = $(col).parents("tr").prop('id');
+    document.body.style.cursor = 'wait';
+    $.ajax({
+        data: { id : id },
+        dataType: 'json',
+        type: 'POST',
+        url: '/shop/delete',
+        success: function (data) {
+            if (data.success == 1) {
+                document.body.style.cursor = 'default';
+                //$('.basket table tr#'+id).remove();
+            location.reload();
+            }
+            else {
+                alert("Произошла ошибка")
+            }
+        }
+    });
+        console.log(id)
+}
+
+function CheckFieldsStepOne(){
+    var notError = true;
+    if ($('input[name="telephone"]').val() =="") {
+        notError = false;
+        $('input[name="telephone"]').siblings('label').css('color', 'red');
+    }
+    if ($('input[name="city"]').val() =="") {
+        notError = false;
+        $('input[name="city"]').siblings('label').css('color', 'red');
+    }
+    if ($('input[name="street"]').val() =="" || $('input[name="home"]').val() =="" || $('input[name="apartment"]').val() =="")
+    {
+        notError = false;
+        $('.basket_address fieldset:last').find('label').css('color', 'red');
+    }
+    return notError;
+}

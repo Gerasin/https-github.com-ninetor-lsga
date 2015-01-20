@@ -33,6 +33,7 @@ return array(
     'components' => array(
         'ih' => array('class' => 'CImageHandler'),
         'user' => array(
+            'loginUrl'=>array('/login'),
             'class' => 'MyWebUser',
             // enable cookie-based authentication
             'allowAutoLogin' => true,
@@ -82,7 +83,7 @@ return array(
                 '/' => 'main/index', ///               
                 'registration' => 'user/Registation', ///
                 'login' => 'user/Login', ///
-                'settings' => 'profile/ProfileSettings', ///                
+                'settings' => 'profile/ProfileSettings', ///
                 'about' => 'pagesText/about', ///
                 'sitemap' => 'pagesText/sitemap', ///
                 'contacts' => 'pagesText/contacts', ///
@@ -93,6 +94,10 @@ return array(
 //                'shop/<page:\d+>' => 'shop/index', ///
                 'shop' => 'shop/index', ///
                 'shop/goods/<id:d+>' => 'shop/goods', ///
+                'shop/cart_step_one' => 'shop/cartStepOne', ///
+                'shop/cart_step_two' => 'shop/cartStepTwo', ///
+                'shop/cart_step_three' => 'shop/cartStepThree', ///
+                'shop/cart_step_four' => 'shop/cartStepFour', ///
 //              'shop?page=<page:\d+>' => 'shop/index', ///
                 'education' => '/education/index', ///
                 'education/category/<id:\d+>' => '/education/category', ///
@@ -187,6 +192,10 @@ return array(
                 'administration/shopGoods/add' => 'administration/adminShop/shopGoodsAdd', //
                 'administration/shopGoods/edit/<id:\d+>' => 'administration/adminShop/shopGoodsEdit', //
                 'administration/shopGoods/delete/<id:\d+>' => 'administration/adminShop/shopGoodsDelete', //
+                'administration/shopGoods/<id:\d+>/addProperty' => 'administration/adminShop/shopGoodsPropertyFormAdd', //
+                'administration/shopGoods/<id:\d+>/editProperty/<property:\d+>' => 'administration/adminShop/shopGoodsPropertyFormEdit', //
+                'administration/shopGoods/<id:\d+>/deleteProperty/<property:\d+>' => 'administration/adminShop/ShopGoodsPropertyDelete', //
+
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
