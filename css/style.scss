@@ -4998,9 +4998,38 @@ button.lock-link{
             line-height: 34px;
         }
     }
+    .reserv-confirm{
+        font-style: italic;
+        & > p{
+            color: #424c58;
+            font-size: 16px;
+            margin: -4px 0 18px;
+            font-weight: bold;
+        }
+        hr{
+            border-top: 2px solid #192738;
+            margin: 10px 0;
+        }
+        .reserv-confirm_block{
+            margin: 15px 0;
+            p{
+                margin: 23px 0;
+                color: #fff;
+                font-size: 14px;
+                label{
+                    color: #808d9d;
+                    display: block;
+                    margin-bottom: 15px;
+                }
+            }
+        }
+    }
+    .confirmed-reserv{
+        text-transform: uppercase;
+        width: 230px;
+        margin: 15px 0;
+    }
 }
-
-
 
 
 
