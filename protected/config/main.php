@@ -91,6 +91,7 @@ return array(
                 'dyno-reservation' => 'dynoReservation/index', ///
                 'dyno-reservation/step-2' => 'dynoReservation/step2', ///
                 'dyno-reservation/step-3' => 'dynoReservation/step3', ///
+                'dyno-reservation/finish' => 'dynoReservation/stepFinish', ///
 //                'shop/<page:\d+>' => 'shop/index', ///
                 'shop' => 'shop/index', ///
                 'shop/goods/<id:d+>' => 'shop/goods', ///

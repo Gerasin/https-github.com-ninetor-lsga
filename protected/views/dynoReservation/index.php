@@ -23,7 +23,7 @@ $this->pageTitle = "Резервация диностенда";
                     </fieldset>
                     <fieldset>
                         <label class="label">Номер вашего телефона</label>
-                        <input type="text" value="" name="reservation[phone]" id="phone-register" placeholder="8(__)__-__-___"/>
+                        <input type="text" value="" name="reservation[phone]" placeholder="+7  ( 123 )  123 - 45 - 67"/>
                     </fieldset>
                 </div><!--
                 --><div>

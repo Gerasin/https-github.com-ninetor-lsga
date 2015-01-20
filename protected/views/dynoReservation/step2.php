@@ -11,8 +11,8 @@ $this->pageTitle = "Резервация диностенда";
     <div class="content-main">
         <form class="reservation full-width" action="/dyno-reservation/step-3" method="POST">
             <div class="reserv-navigate clearfix">
-                <a href="#" class="pull-left">Предыдущая неделя</a>
-                <a href="#" class="pull-right">Следующая неделя</a>
+                <a href="#" class="pull-left" style="display: none">Предыдущая неделя</a>
+                <a href="#" class="pull-right" style="display: none">Следующая неделя</a>
                 Выберите дату  из доступных
             </div>
             <table class="reserv-table">
@@ -46,9 +46,10 @@ $this->pageTitle = "Резервация диностенда";
                     </tr>
                 </tbody>
             </table>
-
+            <input type="hidden" value="1" name="finish"/>
             <div class="reserv-selection aright">
-                <button class="btn-simple next-step" onclick="history.back(); return false;" style="margin-right: 40px;"><span>НАЗАД</span></button>
+                <button class="btn-simple next-step" onclick="history.back();
+                        return false;" style="margin-right: 40px;"><span>НАЗАД</span></button>
                 <span id='textForUserStatus'>Выберите время  из доступных вариантов</span>
                 <button class="btn-simple next-step" id='next-step' disabled><span>ДАЛЕЕ</span></button>
             </div>

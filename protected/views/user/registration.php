@@ -21,7 +21,7 @@
 
         <div class="form-register-row">
             <label for="phone-register" class="form-register-label">Телефон (с кодом города)</label>
-            <input class="input-simple form-register-input" id="phone-register" type="text" name="user[phone]" value="" placeholder="8(__)__-__-___" />  
+            <input class="input-simple form-register-input" type="text" name="user[phone]" value="" placeholder="+7  ( 123 )  123 - 45 - 67" />  
             <span class="error-text"></span>
         </div>
 

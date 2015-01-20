@@ -2507,7 +2507,7 @@ input[type="radio"]:checked + label::before {
   vertical-align: top;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
-  width: 320px;
+  width: 319px;
   height: 520px;
   /*border: 3px dashed #0f1c2c;*/
   position: relative; }
@@ -4111,8 +4111,8 @@ button.lock-link {
     .reservation .reserv-table td {
       border: 1px solid #1d252f;
       border-style: none solid;
-      padding: 20px;
-      height: 90px; }
+      /*padding: 20px;
+      height: 90px;*/ }
       .reservation .reserv-table td .time-variant, .reservation .reserv-table td .closes {
         display: block;
         -webkit-box-sizing: border-box;
@@ -4329,7 +4329,7 @@ button.lock-link {
     .reservation .reserv-table td {
       border: 1px solid #1d252f;
       border-style: none solid;
-      padding: 20px; }
+      padding: 10px; }
       .reservation .reserv-table td .time-variant {
         display: block;
         -webkit-box-sizing: border-box;
@@ -4352,6 +4352,37 @@ button.lock-link {
       vertical-align: middle;
       margin-right: 40px;
       line-height: 34px; }
-    
+    .reservation .reserv-confirm {
+    font-style: italic; }
+    .reservation .reserv-confirm > p {
+      color: #424c58;
+      font-size: 16px;
+      margin: -4px 0 18px;
+      font-weight: bold; }
+    .reservation .reserv-confirm hr {
+      border-top: 2px solid #192738;
+      margin: 10px 0; }
+    .reservation .reserv-confirm .reserv-confirm_block {
+      margin: 15px 0; }
+      .reservation .reserv-confirm .reserv-confirm_block p {
+        margin: 23px 0;
+        color: #fff;
+        font-size: 14px; }
+        .reservation .reserv-confirm .reserv-confirm_block p label {
+          color: #808d9d;
+          display: block;
+          margin-bottom: 15px; }
+  .reservation .confirmed-reserv {
+    text-transform: uppercase;
+    width: 230px;
+    margin: 15px 0; }
+  
     button:disabled, button:disabled:hover {opacity: 0.2; cursor: default;}
 /*# sourceMappingURL=style.css.map */
+.form-captcha-img a{color: #7F8D9D; font-style: italic; line-height: 30px;}
+.form-register-nickname img {padding-left: 15px; padding-top: 10px; display: none}
+.ans_loader{margin-right: 20px; display: none}
+.thankyou{border-bottom: 0px; color: #ff7f0a; display: inline-block; margin: 0 10px; font-size: 20px; text-decoration: none; transition: border-color 0.2s linear;}
+.menu-main .active a, .footer-menu .active a  { color: #F37A0B; }
+.menu-top .menu-top-link.header_logined-user a.user {color:#fff; margin-left: -5px;}
+.menu-top .menu-top-link.header_logined-user a.user:hover { text-decoration: underline; }

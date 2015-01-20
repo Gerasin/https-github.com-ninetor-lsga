@@ -1,3 +1,15 @@
+// подтверждение резервации
+function reservationFinishStatus() {
+    $.ajax({
+            data: {},
+            dataType: 'json',
+            type: 'POST',
+            url: '/dynoReservation/stepFinish',
+            success: function(data) {
+                $('#finish-step').prop('disabled', true);
+            }
+        });
+}
 // выбор активного элемената свободного времени
 $(document).ready(function() {
     $('.time-variant').bind('click', function() {

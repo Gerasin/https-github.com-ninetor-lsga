@@ -64,8 +64,8 @@ $this->pageTitle = $education->name;
                             <?php elseif ($value['status'] == 3): ?>
                                 <span class="pseudo-button green-contrast"><span>Завершено</span></span>
                             <?php elseif ($value['status'] == 4): ?>
-                                <a href="#" onclick="startLessonUser( <?= $value['id'] ?> ); return false;" class="button"><span>Начать изучение</span></a>
-                               <?php else: ?>
+                                <a href="#" onclick="startLessonUser(<? = $value['id'] ?>); return false;" class="button"><span>Начать изучение</span></a>
+                            <?php else: ?>
                                 <span class="pseudo-button dark-gray"><span>Закончите <?php echo $value['prev_name'] ?></span></span>
                             <?php endif; ?>                                                    
                         </td>
@@ -80,12 +80,27 @@ $this->pageTitle = $education->name;
                 </tr>
             </tbody>
         </table>
-
+        <?php
+        $title = 'LSGA'; // заголовок
+        $text = 'LSGA-text';
+        $summary = 'LSGA-text long'; // анонс поста
+        $url = 'http://lsga.nineseven.ru/'; // ссылка на пост
+        $image_url = 'http://prosvetlen.ru/templates/corporate/img/144.jpg' // URL изображения
+        ?>
         <div class="about-free">
             <p>Данная школа бесплатна, но Вы можете</p>
             <p>
                 поддержать нас лайкнув её в 
-                
+                <a id="vk" href="http://vkontakte.ru/share.php?url=<?= urlencode($url);?>&title=<?=$title;?>&description=<?=$summary;?>&image=<?= $image_url;?>&noparse=true" onclick="window.open(this.href, this.title, 'toolbar=0, status=0, width=548, height=325');
+                                        return false;" target="_parent">vk</a>
+
+                ﻿<?php
+                $title = urlencode('LSGA');
+                $url = urlencode('http://lsga.nineseven.ru/');
+                $summary = urlencode('Текстовое описание, которое вкратце рассказывает, зачем пользователям переходить по этой ссылке.');
+                $image = urlencode('http://www.masterskayafanstranic.com.ua/wp-content/uploads/2012/05/share-icon.png');
+                ?>
+                <a onClick="window.open('http://www.facebook.com/sharer.php?s=100&p[title]=<?php echo $title; ?>&p[summary]=<?php echo $summary; ?>&p[url]=<?php echo $url; ?>&&p[images][0]=<?php echo $image; ?>', 'sharer', 'toolbar=0,status=0,width=700,height=400');" href="javascript: void(0)">fb</a>
             <div class="pluso" data-background="none;" data-options="small,square,line,horizontal,nocounter,sepcounter=1,theme=14" data-services="vkontakte,odnoklassniki,facebook,twitter,google,email"></div>
             , так-же нам будет очень интересно услышать
             <a href="#" class="popup-open" data-key="write-us">Ваше мнение</a> по поводу школы.
@@ -108,7 +123,7 @@ $this->pageTitle = $education->name;
             </fieldset>
             <fieldset class="aright">
                 <button type="submit" class="btn-simple popup-form-submit" onclick="feedbackUserForm();
-                                return false;"><span>Отправить</span></button>
+                                        return false;"><span>Отправить</span></button>
             </fieldset>
         </form>
     </article>
