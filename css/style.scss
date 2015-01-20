@@ -266,6 +266,28 @@ header.short{
                 margin-top: -3px;
             }
         }
+        &.basket-ico{
+            color: #fff;
+            background: #ff7f0a;
+            font-size: 12px;
+            line-height: 24px;
+            padding: 0 5px;
+            i{
+                display: inline-block;
+                vertical-align: middle;
+                @include size(18px, 14px);
+                background: url("../images/basket-ico.png") no-repeat center;
+                margin-left: 5px;
+                margin-top: -3px;
+            }
+        }
+        &.basket-ico:before{
+            border-bottom: 24px solid #ff7f0a;
+        }
+
+        &.basket-ico:after{
+            border-top: 24px solid #ff7f0a;
+        }
     }
 
     @media screen and (max-width: 1100px){
@@ -1093,6 +1115,11 @@ footer{
     span{
         position: relative;
         z-index: 5;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        display: inline-block;
+        max-width: 90%;
     }
 
     &:focus{
@@ -2777,7 +2804,9 @@ input[type="radio"] + label::before{
 input[type="radio"]:checked + label::before {
     background-position: 0 100%;
 }
-
+.school-progress{
+    padding: 0 10px 0 0;
+}
 .summary-progress{
     display: block;
     float: right;
@@ -2881,6 +2910,22 @@ input[type="radio"]:checked + label::before {
         padding: 8px 0;
         &:first-child{
             min-width: 155px;
+        }
+        &.school-progress_topic{
+            span{
+                display: block;
+                margin-right: -300px;
+                position: relative;
+                z-index: 1;
+                em{
+                    background: #030a11;
+                    display: inline-block;
+                    padding-right: 10px;
+                }
+            }
+        }
+        &.school-progress_bar{
+            padding-right: 40px;
         }
     }
     tr:first-child td{
@@ -3657,9 +3702,9 @@ button.lock-link{
     margin-right: 0;
     margin-left: 0px;
     font-size: 14px;
-    font-style: italic;
+    font-style: normal;
     line-height: 24px;
-    color: #fff;
+    color: #76787a;
     input[type="checkbox"]{
         display:none;
         & + label{
@@ -3669,7 +3714,7 @@ button.lock-link{
             padding-left: 24px;
             min-width: 1px;
             min-height: 14px;
-            line-height: normal;
+            line-height: 20px;
             &:before{
                 content: "";
                 display: inline-block;
@@ -3700,16 +3745,49 @@ button.lock-link{
     }
     .js-accordeon_body{
         list-style: none;
-        padding: 0 0 0 25px;
-        margin: 0;
+        padding: 0 0 0px 10px;
+        margin: 15px 0 10px;
         list-style: none;
+        position: relative;
         li{
             display: block;
+            position: relative;
+            margin: 6px 0;
+            &:before{
+                content: "";
+                position: absolute;
+                left: 0;
+                top: 12px;
+                @include size(4px,1px);
+                background: #363c42;
+                margin: -1px 0 0 -9px;
+            }
+        }
+        &:before{
+            content: "";
+            position: absolute;
+            left: 0;
+            top: -2px;
+            @include size(1px,100%);
+            background: #363c42;
+            margin-top: -10px;
+        }
+        li:last-child .js-accordeon_body:after{
+            @include size(5px, 100%);
+            display: block;
+            content: "";
+            background: #030a11;
+            border-top: 1px solid #363c42;
+            top: -28px;
+            left: -10px;
+            position: absolute;
+            padding-top: 28px;
         }
     }
     .js-accordeon_head{
         padding-right: 10px;
-        border-bottom: 1px dashed #50555a;
+        border-bottom: 1px solid #71757a;
+        @include transition(border, .2s, linear);
         position: relative;
         &:after{
             content: "";
@@ -3722,6 +3800,12 @@ button.lock-link{
             top: 50%;
             margin: -1px -3px 0 0;
         }
+        &:hover{
+            border-bottom-color: transparent;
+        }
+        &.active{
+            color: #fff;
+        }
     }
     label, .js-accordeon_head{
         white-space: nowrap;
@@ -3729,10 +3813,30 @@ button.lock-link{
         text-overflow: ellipsis;
         @include box-sizing(border-box);
         max-width: 250px;
+        line-height: 20px;
         &.many-row{
             white-space: normal;
             overflow: visible;
         }
+    }
+    label > span{
+        border-bottom: 1px dashed #4e5358;
+        @include transition(border, .2s, linear);
+    }
+    input:checked + label > span, label:hover > span{
+        border-bottom-color: transparent;
+    }
+    input:checked + label{
+        color: #ff7f0a;
+        & > span{
+            border-bottom-color: #ff7f0a;
+        }
+        &:hover > span{
+            border-bottom-color: #transparent;
+        }
+    }
+    input:checked ~ .js-accordeon_head{
+        color: #ff7f0a;
     }
     fieldset{
         margin: 10px 0;
@@ -3751,6 +3855,12 @@ button.lock-link{
     &.active tbody.js-accordeon_body{
         display: table-row-group;
     }
+}
+.many-accordeon.js-accordeon > .js-accordeon_body, .many-accordeon .js-accordeon > .js-accordeon_body{
+    display: none;
+}
+.many-accordeon.js-accordeon.active > .js-accordeon_body, .many-accordeon .js-accordeon.active > .js-accordeon_body{
+    display: block;
 }
 
 .pagination{
